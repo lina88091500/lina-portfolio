@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+     <title>商品總覽 ｜ ZL&amp; accessories</title>
+     <meta charset="utf-8" />
+     <meta content="width=device-width, initial-scale=1" name="viewport" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <!-- 延用首頁的 CSS 檔案 -->
+     <link rel="stylesheet" href="./css/style.css">
+     <!-- 商品頁專用微調樣式 -->
+     <style>
+          .page-header {
+               background: linear-gradient(135deg, #1A1A1A 0%, #2D2625 100%);
+               padding: 100px 0 40px 0;
+               text-align: center;
+               border-bottom-right-radius: 40% 10px;
+          }
+
+          .filter-title {
+               font-size: 0.95rem;
+               letter-spacing: 2px;
+               font-weight: 600;
+               border-bottom: 1px solid #E6CBB3;
+               padding-bottom: 8px;
+               margin-bottom: 15px;
+               color: #1A1A1A;
+          }
+
+          .filter-link {
+               display: block;
+               color: #666666;
+               text-decoration: none;
+               font-size: 0.85rem;
+               padding: 6px 0;
+               letter-spacing: 1px;
+               transition: color 0.2s;
+          }
+
+          .filter-link:hover,
+          .filter-link.active {
+               color: #C5A880;
+               padding-left: 4px;
+          }
+
+          .product-sort-select {
+               font-size: 0.85rem;
+               border-color: rgba(230, 203, 179, 0.5);
+               color: #4A4A4A;
+               border-radius: 0;
+               letter-spacing: 1px;
+          }
+
+          .product-sort-select:focus {
+               border-color: #E6CBB3;
+               box-shadow: none;
+          }
+
+          .breadcrumb-item a {
+               color: #A0A0A0;
+               text-decoration: none;
+               font-size: 0.8rem;
+               letter-spacing: 1px;
+          }
+
+          .breadcrumb-item.active {
+               color: #E6CBB3;
+               font-size: 0.8rem;
+          }
+
+          /* 商品卡片基礎樣式 */
+          .zl-mini-card {
+               cursor: pointer;
+               transition: transform 0.3s ease, box-shadow 0.3s ease;
+               border: 1px solid transparent;
+          }
+
+          .zl-mini-card:hover {
+               transform: translateY(-5px);
+               border-color: rgba(230, 203, 179, 0.3);
+          }
+
+          .product-detail-story {
+               max-height: 0;
+               overflow: hidden;
+               transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+               opacity: 0;
+               font-size: 0.75rem;
+               color: #777;
+               line-height: 1.6;
+               letter-spacing: 1px;
+               border-top: 1px dashed rgba(230, 203, 179, 0.3);
+               margin-top: 0;
+               padding-top: 0;
+          }
+
+          .product-detail-story.show {
+               max-height: 400px;
+               opacity: 1;
+               margin-top: 10px;
+               padding-top: 10px;
+          }
+
+          .spec-tag {
+               display: inline-block;
+               background-color: #F7F4F0;
+               color: #8C7B6E;
+               padding: 2px 6px;
+               border-radius: 2px;
+               font-size: 0.7rem;
+               margin-top: 4px;
+          }
+
+          /* === 獨家諮詢表單專用樣式 === */
+          .consult-card {
+               background-color: #2D2625;
+               color: #E6CBB3;
+               border: 1px solid #E6CBB3;
+               transition: transform 0.3s ease;
+          }
+
+          .consult-card:hover {
+               transform: translateY(-5px);
+          }
+
+          .form-label-custom {
+               font-size: 0.75rem;
+               color: #E6CBB3;
+               letter-spacing: 1px;
+               margin-bottom: 4px;
+               display: block;
+          }
+
+          .form-check-label-custom {
+               font-size: 0.7rem;
+               color: #D0C5C3;
+               cursor: pointer;
+          }
+
+          .form-control-custom {
+               background-color: transparent;
+               border: 1px solid rgba(230, 203, 179, 0.4);
+               color: #ffffff !important;
+               border-radius: 0;
+               font-size: 0.75rem;
+          }
+
+          .form-control-custom:focus {
+               background-color: rgba(255, 255, 255, 0.05);
+               border-color: #E6CBB3;
+               box-shadow: none;
+               color: #ffffff;
+          }
+
+          .form-check-input-custom {
+               background-color: transparent;
+               border: 1px solid #E6CBB3;
+               border-radius: 0;
+          }
+
+          .form-check-input-custom:checked {
+               background-color: #E6CBB3;
+               border-color: #E6CBB3;
+          }
+
+          /* 分頁美化點綴 */
+          .pagination .page-link-custom {
+               color: #1A1A1A;
+               font-size: 0.85rem;
+               transition: all 0.2s;
+               border: 1px solid #dee2e6;
+               background-color: #fff;
+          }
+
+          .pagination .page-item.active .page-link-custom {
+               background-color: #E6CBB3 !important;
+               border-color: #E6CBB3 !important;
+               color: white !important;
+          }
+
+          .pagination .page-item.disabled .page-link-custom {
+               color: #A0A0A0;
+               pointer-events: none;
+               background-color: #fff;
+               border-color: #dee2e6;
+          }
+
+          /* 商品卡片相對定位，讓愛心可以定位在右上角 */
+          .zl-mini-card {
+               position: relative;
+          }
+
+          /* 愛心收藏按鈕樣式 */
+          .favorite-btn {
+               position: absolute;
+               top: 12px;
+               right: 12px;
+               z-index: 5;
+               background: rgba(255, 255, 255, 0.85);
+               backdrop-filter: blur(4px);
+               border: none;
+               border-radius: 50%;
+               width: 32px;
+               height: 32px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               color: #8C7B6E;
+               cursor: pointer;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+               transition: all 0.25s ease;
+          }
+
+          .favorite-btn:hover {
+               transform: scale(1.1);
+               background: #ffffff;
+               color: #e25555;
+          }
+
+          /* 收藏選取狀態 */
+          .favorite-btn.active {
+               color: #e25555;
+               background: #ffffff;
+          }
+
+          .favorite-btn svg {
+               width: 16px;
+               height: 16px;
+               transition: transform 0.2s ease;
+          }
+
+          .favorite-btn.active svg {
+               fill: #e25555;
+               /* 點擊後填滿顏色 */
+          }
+     </style>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+     <!-- ===================== Navbar ===================== -->
+     <div class="custom-nav-wrapper">
+          <div class="container">
+               <nav class="navbar navbar-expand-lg custom-navbar shadow">
+                    <a class="navbar-brand" href="index.html">
+                         ZL&amp;
+                         <span style="font-size: 0.6rem; letter-spacing: 1px; font-weight: 300;">accessories</span>
+                    </a>
+                    <button class="navbar-toggler navbar-dark" data-bs-target="#mynavbar" data-bs-toggle="collapse"
+                         type="button">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mynavbar">
+                         <ul class="navbar-nav ms-auto me-4">
+                              <li class="nav-item"><a class="nav-link" href="">品牌介紹</a></li>
+                              <li class="nav-item"><a class="nav-link active" href="products.html"
+                                        style="color: #E6CBB3 !important;">商品總覽</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#">服務專區</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#">個人檔案</a></li>
+                         </ul>
+                         <div id="nav-auth-area" class="mt-2 mt-lg-0">
+                              <a class="btn btn-outline-light rounded-0 px-4" href="./login.html"
+                                   style="border-color: #E6CBB3; color: #E6CBB3; font-size: 0.8rem; letter-spacing: 1px;">
+                                   登入
+                              </a>
+                         </div>
+                    </div>
+               </nav>
+          </div>
+     </div>
+
+     <!-- ===================== Page Header ===================== -->
+     <div class="page-header">
+          <div class="container mt-4">
+               <h2 style="color: #E6CBB3; letter-spacing: 4px; font-weight: 300; font-size: 1.8rem;">SHOP ALL</h2>
+               <p style="color: #D0C5C3; font-size: 0.85rem; letter-spacing: 2px;" class="mb-0">飾品是一種未完待續的氛圍</p>
+
+               <!-- 麵包屑導航 -->
+               <nav aria-label="breadcrumb" class="d-flex justify-content-center mt-3">
+                    <ol class="breadcrumb mb-0">
+                         <li class="breadcrumb-item active"><a href="index.html">首頁</a></li>
+                         <li class="breadcrumb-item active" aria-current="page">商品總覽</li>
+                    </ol>
+               </nav>
+          </div>
+     </div>
+
+     <!-- ===================== Main Content ===================== -->
+     <div class="container my-5">
+          <!-- 💡 幫頂部工具列加上一個 id 錨點，方便換頁時自動滾動回這裡 -->
+          <div class="row g-4" id="product-display-top">
+
+               <!-- 左側：分類篩選器 -->
+               <div class="col-lg-3 col-md-4">
+                    <div class="sticky-top" style="top: 100px; z-index: 10;">
+
+                         <!-- 1. 商品分類區塊 -->
+                         <div class="mb-3">
+                              <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+                                   aria-expanded="true"
+                                   style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                   商品分類 <span style="font-size: 0.7rem; float: right; color: #C5A880;">▼</span>
+                              </div>
+                              <div class="collapse show" id="collapseCategory">
+                                   <div class="pt-1">
+                                        <a href="#" class="filter-link filter-btn active" data-filter="all">全部商品 (8)</a>
+                                        <a href="#" class="filter-link filter-btn" data-filter="bracelet">BRACELET
+                                             手鍊</a>
+                                        <a href="#" class="filter-link filter-btn" data-filter="earrings">EARRINGS
+                                             耳環</a>
+                                        <a href="#" class="filter-link filter-btn" data-filter="necklace">NECKLACE
+                                             項鍊</a>
+                                        <a href="#" class="filter-link filter-btn" data-filter="ring">RING 戒指</a>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 2. 材質工藝區塊 -->
+                         <div class="mb-4">
+                              <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#collapseMaterial"
+                                   aria-expanded="true"
+                                   style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                   材質工藝 <span style="font-size: 0.7rem; float: right; color: #C5A880;">▼</span>
+                              </div>
+                              <div class="collapse show" id="collapseMaterial">
+                                   <div class="pt-1">
+                                        <a href="#" class="filter-link">925 純銀</a>
+                                        <a href="#" class="filter-link">14K / 18K 注金</a>
+                                        <a href="#" class="filter-link">天然珍珠 / 巴洛克珠</a>
+                                        <a href="#" class="filter-link">莫桑鑽 / 鋯石</a>
+                                   </div>
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+
+               <!-- 右側：商品列表與排序 -->
+               <div class="col-lg-9 col-md-8">
+
+                    <!-- 工具列 -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2"
+                         style="border-bottom: 1px solid rgba(230, 203, 179, 0.2);">
+                         <div id="product-count-summary" style="font-size: 0.85rem; color: #666; letter-spacing: 1px;">
+                              共顯示 8 個商品
+                         </div>
+                         <div class="d-flex align-items-center">
+                              <span class="me-2 text-nowrap"
+                                   style="font-size: 0.85rem; color: #666; letter-spacing: 1px;">排序方式：</span>
+                              <select class="form-select product-sort-select">
+                                   <option selected>精選推薦</option>
+                                   <option value="1">價格：由低至高</option>
+                                   <option value="2">價格：由高至低</option>
+                                   <option value="3">上架日期：由新至舊</option>
+                              </select>
+                         </div>
+                    </div>
+
+                    <!-- 商品網格 -->
+                    <div class="row g-3 g-md-4" id="product-grid-container">
+
+                         <!-- 商品 1：爪鑲莫桑石活圍戒指 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="ring">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=1"
+                                   data-product-id="prod-001">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+
+                                   <div class="zl-mini-img"><img alt="爪鑲莫桑石活圍戒指" src="./image/爪鑲莫桑石活圍戒指.png" /></div>
+                                   <div class="zl-mini-info">
+                                        <h6>爪鑲莫桑石活圍戒指</h6>
+                                        <p class="mb-1">NT$ 1,580</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊前往商品頁</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        細緻抓鑲工藝將莫桑石牢牢環抱，綻放如星辰般不滅的火彩。活圍設計，隨心定義屬於你的指尖故事。<br><br>
+                                        <span class="spec-tag">材質｜莫桑鑽 / 925純銀</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 2：扭結愛心C字耳貼 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="earrings">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=2"
+                                   data-product-id="prod-002">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+                                   <div class="zl-mini-img"><img alt="扭結愛心C字耳貼" src="./image/扭結愛心C字耳貼.png" /></div>
+                                   <div class="zl-mini-info">
+                                        <h6>扭結愛心C字耳貼</h6>
+                                        <p class="mb-1">NT$ 1,130</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        交織的扭結化作內斂的愛心輪廓，立體C字弧度完美貼合耳垂。復古與甜美的完美平衡。<br><br>
+                                        <span class="spec-tag">材質｜925銀</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 3：愛心粉玉隨拼接小珍珠項鍊 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="necklace">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=3"
+                                   data-product-id="prod-003">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+                                   <div class="zl-mini-img"><img alt="愛心粉玉隨拼接小珍珠項鍊" src="./image/愛心粉玉隨拼接小珍珠項鍊.png" />
+                                   </div>
+                                   <div class="zl-mini-info">
+                                        <h6>愛心粉玉隨拼接小珍珠項鍊</h6>
+                                        <p class="mb-1">NT$ 1,130</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        天然小珍珠的溫潤光芒，托起粉玉髓的少女心思。優雅卻不流於俗套，日常配戴最亮眼的陪伴。<br><br>
+                                        <span class="spec-tag">材質｜天然珍珠 / 粉玉髓</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- [ 獨家焦點 ]：美學諮詢表單 -->
+                         <div class="col-12 col-lg-4 product-item" data-category="all">
+                              <div class="consult-card p-3 shadow-sm h-100 rounded">
+                                   <div class="text-center mb-3">
+                                        <span
+                                             style="font-size: 0.6rem; letter-spacing: 2px; color: #E6CBB3; font-weight: bold; border: 1px solid #E6CBB3; padding: 2px 8px;">EXCLUSIVE</span>
+                                        <h6 class="mt-2 mb-1" style="letter-spacing: 1px; font-size: 0.95rem;">專屬飾品美學諮詢
+                                        </h6>
+                                        <p style="font-size: 0.7rem; color: #D0C5C3;" class="mb-0">填寫表單，尋找屬於你的氛圍感</p>
+                                   </div>
+                                   <iframe name="id_iframe" id="id_iframe" style="display:none;"></iframe>
+                                   <form action="https://docs.google.com/forms/d/e/1FAIpQLScx_2Zr_gj0f2fSKiVcBxVKyz7tznHXC1tdxN_1LySLWNU2zQ/formResponse"
+                                        method="POST" target="id_iframe"
+                                        onsubmit="alert('感謝你的填寫，ZL& 專屬飾品美學提案已為你保留！🤎');">
+                                        <div class="row">
+                                             <div class="col-6 mb-3">
+                                                  <label for="consult_name" class="form-label form-label-custom">你的稱呼
+                                                       *</label>
+                                                  <input type="text" name="entry.682292784" id="consult_name"
+                                                       class="form-control form-control-custom py-1" required
+                                                       placeholder="例如：Lina">
+                                             </div>
+                                             <div class="col-6 mb-3">
+                                                  <label for="consult_email" class="form-label form-label-custom">聯絡信箱
+                                                       *</label>
+                                                  <input type="email" name="entry.49267800" id="consult_email"
+                                                       class="form-control form-control-custom py-1" required
+                                                       placeholder="Email">
+                                             </div>
+                                        </div>
+                                        <div class="mb-3">
+                                             <label class="form-label form-label-custom">偏好的飾品類型 (可多選)</label>
+                                             <div class="d-flex flex-wrap gap-2 pt-1">
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="checkbox" name="entry.847358651" value="項鍊"
+                                                            id="type_nec">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="type_nec">項鍊</label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="checkbox" name="entry.847358651" value="耳環"
+                                                            id="type_ear">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="type_ear">耳環</label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="checkbox" name="entry.847358651" value="手鍊"
+                                                            id="type_bra">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="type_bra">手鍊</label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="checkbox" name="entry.847358651" value="戒指"
+                                                            id="type_rin">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="type_rin">戒指</label>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="mb-3">
+                                             <label class="form-label form-label-custom">日常最鍾愛的材質 *</label>
+                                             <div class="d-flex flex-wrap gap-2 pt-1">
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="radio" name="entry.657744475" value="925純銀"
+                                                            id="mat_silver" checked>
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="mat_silver">925純銀</label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="radio" name="entry.657744475" value="K金/注金"
+                                                            id="mat_gold">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="mat_gold">K金/注金</label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                       <input class="form-check-input form-check-input-custom"
+                                                            type="radio" name="entry.657744475" value="天然珍珠"
+                                                            id="mat_pearl">
+                                                       <label class="form-check-label form-check-label-custom"
+                                                            for="mat_pearl">天然珍珠</label>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="mb-4">
+                                             <label for="skin_tone"
+                                                  class="form-label form-label-custom">妳的肌膚襯托色調</label>
+                                             <select class="form-select form-control-custom py-1" id="skin_tone"
+                                                  name="entry.1261374756" style="background-color: #2D2625;">
+                                                  <option value="清冷銀光 (適合冷調肌膚)">清冷銀光 (適合冷調肌膚)</option>
+                                                  <option value="溫潤復古金 (適合暖調肌膚)">溫潤復古金 (適合暖調肌膚)</option>
+                                                  <option value="浪漫玫瑰金 (不挑膚色)">浪漫玫瑰金 (不挑膚色)</option>
+                                                  <option value="混搭不設限">混搭不設限</option>
+                                             </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-light w-100 rounded-0"
+                                             style="font-size: 0.75rem; color: #2D2625; background-color: #E6CBB3; border: none; font-weight: bold; letter-spacing: 2px;">
+                                             開啟專屬名單 🤎
+                                        </button>
+                                   </form>
+                              </div>
+                         </div>
+
+                         <!-- 商品 4：《靜影流光》雙鍊珍珠手鍊 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="bracelet">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=4"
+                                   data-product-id="prod-004">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+                                   <div class="zl-mini-img"><img alt="雙鍊珍珠手鍊"
+                                             src="./image/《靜影流光》｜溫柔與俐落的交織・雙鍊珍珠手鍊.png" /></div>
+                                   <div class="zl-mini-info">
+                                        <h6>《靜影流光》雙鍊珍珠手鍊</h6>
+                                        <p class="mb-1">NT$ 1,200</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        一面是金屬鍊條的率性俐落，一面是天然珍珠的溫柔流淌。<br>
+                                        靜影沉璧，雙向詮釋你的多面氣質。<br><br>
+                                        <span class="spec-tag">材質｜天然珍珠 / 925純銀</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 5：雛菊珍珠碎銀手鍊 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="bracelet">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=5"
+                                   data-product-id="prod-005">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+                                   <div class="zl-mini-img"><img alt="雛菊珍珠碎銀手鍊" src="./image/雛菊珍珠碎銀手鍊.png" /></div>
+                                   <div class="zl-mini-info">
+                                        <h6>雛菊珍珠碎銀手鍊</h6>
+                                        <p class="mb-1">NT$ 1,600</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        碎銀在陽光下灑落不規則的波光，襯托著手作感的手編小雛菊。隨興、自在，帶有一點夏日的田園微風。<br><br>
+                                        <span class="spec-tag">材質｜925純銀 / 天然珍珠</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 6：Double Line Star Bracelet -->
+                         <div class="col-6 col-lg-4 product-item" data-category="bracelet">
+                              <div class="zl-mini-card shadow-sm p-2 rounded" data-href="product-detail.html?id=6"
+                                   data-product-id="prod-006">
+
+                                   <!-- 右上角愛心收藏按鈕 -->
+                                   <button type="button" class="favorite-btn" title="加入收藏" aria-label="收藏商品">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                             <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                                        </svg>
+                                   </button>
+                                   <div class="zl-mini-img"><img alt="Double Line Star Bracelet"
+                                             src="./image/Double Line Star Bracelet.png" /></div>
+                                   <div class="zl-mini-info">
+                                        <h6>Double Line Star Bracelet</h6>
+                                        <p class="mb-1">NT$ 1,200</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        雙鍊設計，讓線條自然落在手腕的弧度上。一顆小星垂墜於中央。純銀的冷調光澤，在舉手投足間輕輕晃動，低調，卻始終被看見。<br><br>
+                                        <span class="spec-tag">材質｜925純銀</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 7：水滴鑽石垂墜耳貼 (藍) -->
+                         <div class="col-6 col-lg-4 product-item" data-category="earrings">
+                              <div class="zl-mini-card shadow-sm p-2 rounded">
+                                   <div class="zl-mini-img"><img alt="水滴鑽石垂墜耳貼 (藍)" src="./image/水滴鑽石垂墜耳貼 (藍).png" />
+                                   </div>
+                                   <div class="zl-mini-info">
+                                        <h6>水滴鑽石垂墜耳貼 (藍)</h6>
+                                        <p class="mb-1">NT$ 850</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        如清晨凝結的湛藍水滴，在耳畔搖曳生姿。鋯石爪鑲折射極致光芒，為清冷氣質蓋上完美的優雅印記。<br><br>
+                                        <span class="spec-tag">材質｜藍鋯石 / 925純銀</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- 商品 8：《光的交響曲》幾何造型項鍊 -->
+                         <div class="col-6 col-lg-4 product-item" data-category="necklace">
+                              <div class="zl-mini-card shadow-sm p-2 rounded">
+                                   <div class="zl-mini-img"><img alt="幾何造型項鍊" src="./image/《光的交響曲》✨ 爪鑲拼接幾何造型項鍊 ✨.png" />
+                                   </div>
+                                   <div class="zl-mini-info">
+                                        <h6>《光的交響曲》幾何造型項鍊</h6>
+                                        <p class="mb-1">NT$ 790</p>
+                                        <small class="text-muted" style="font-size:0.65rem;">✨ 點擊看氛圍介紹</small>
+                                   </div>
+                                   <div class="product-detail-story">
+                                        交錯的幾何線條捕捉了光影變幻。打破常規的對稱美學，鎖骨間最獨一無二的現代感宣言。<br><br>
+                                        <span class="spec-tag">材質｜925純銀 / 鋯石</span>
+                                   </div>
+                              </div>
+                         </div>
+
+                    </div>
+
+                    <!-- 動態生成的分頁導航 -->
+                    <nav class="d-flex justify-content-center mt-5">
+                         <ul class="pagination" id="pagination-dynamic-controls">
+                              <!-- 這裡會透過 JS 自動計算產出頁碼 -->
+                         </ul>
+                    </nav>
+
+               </div>
+          </div>
+     </div>
+
+     <!-- ===================== 品牌質感頁尾 (Footer) ===================== -->
+     <footer class="brand-footer">
+          <div class="container">
+               <div class="row gy-4">
+
+                    <!-- 左側：品牌 Logo 與標語 -->
+                    <div class="col-md-4 brand-footer-info">
+                         <h5 class="footer-logo">ZL& <span>accessories</span></h5>
+                         <p class="footer-tagline">飾品是一種未完待續的氛圍</p>
+                    </div>
+
+                    <!-- 中間：快速連結 -->
+                    <div class="col-6 col-md-4">
+                         <h6 class="footer-title">服務指南</h6>
+                         <ul class="footer-links">
+                              <li><a href="#">品牌介紹</a></li>
+                              <li><a href="products.html">商品總覽</a></li>
+                              <li><a href="#">售後服務</a></li>
+                         </ul>
+                    </div>
+
+                    <!-- 右側：社群追蹤 -->
+                    <div class="col-6 col-md-4">
+                         <h6 class="footer-title">追蹤 ZL&</h6>
+                         <div class="footer-social-icons">
+                              <a href="https://reurl.cc/Le1eq7" target="_blank" class="social-icon" title="Instagram">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-instagram" viewBox="0 0 16 16">
+                                        <path
+                                             d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92.c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                   </svg>
+                              </a>
+                              <a href="https://reurl.cc/RRdRE9" target="_blank" class="social-icon" title="Facebook">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-facebook" viewBox="0 0 16 16">
+                                        <path
+                                             d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                   </svg>
+                              </a>
+                         </div>
+                    </div>
+
+               </div>
+
+               <hr class="footer-divider">
+
+               <!-- 最下層：版權所有標記 -->
+               <div class="row">
+                    <div class="col-12 text-center">
+                         <p class="footer-copyright">© 2026 ZL& accessories. All Rights Reserved.</p>
+                    </div>
+               </div>
+          </div>
+     </footer>
+
+     <!-- ===================== JavaScript 篩選與動態分頁邏輯 ===================== -->
+     <script>
+          document.addEventListener("DOMContentLoaded", function () {
+               const itemsPerPage = 6;
+               let currentPage = 1;
+               let currentFilter = "all";
+
+               const filterBtns = document.querySelectorAll(".filter-btn");
+               const productItems = document.querySelectorAll(".product-item");
+               const paginationContainer = document.getElementById("pagination-dynamic-controls");
+               const countSummary = document.getElementById("product-count-summary");
+
+               // 頁面初次載入，初始化分頁顯示
+               updateProductDisplay();
+
+               // ======= 自動偵測首頁傳過來的分類標籤 =======
+               const currentHash = window.location.hash;
+               if (currentHash) {
+                    const targetFilter = currentHash.replace('#', '');
+                    const targetBtn = document.querySelector(`.filter-btn[data-filter="${targetFilter}"]`);
+
+                    if (targetBtn) {
+                         filterBtns.forEach(b => b.classList.remove("active"));
+                         targetBtn.classList.add("active");
+
+                         currentFilter = targetFilter;
+                         currentPage = 1;
+                         updateProductDisplay();
+                    }
+               }
+
+               // 核心運算：更新商品的可見度與頁碼導航
+               function updateProductDisplay() {
+                    let visibleItems = [];
+                    productItems.forEach(item => {
+                         const cat = item.getAttribute("data-category");
+                         if (currentFilter === "all" || cat === currentFilter) {
+                              visibleItems.push(item);
+                              item.style.display = "none";
+                         } else {
+                              item.style.display = "none";
+                         }
+                    });
+
+                    countSummary.innerText = `共顯示 ${visibleItems.length} 個商品`;
+
+                    const totalItems = visibleItems.length;
+                    const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+
+                    if (currentPage > totalPages) {
+                         currentPage = totalPages;
+                    }
+
+                    const startIndex = (currentPage - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+
+                    for (let i = startIndex; i < endIndex; i++) {
+                         if (visibleItems[i]) {
+                              visibleItems[i].style.display = "block";
+                         }
+                    }
+
+                    renderPaginationControls(totalPages);
+               }
+
+               // 繪製分頁按鈕的函式
+               function renderPaginationControls(totalPages) {
+                    paginationContainer.innerHTML = "";
+
+                    // 1. 上一頁按鈕
+                    const prevLi = document.createElement("li");
+                    prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+                    prevLi.innerHTML = `<a class="page-link page-link-custom px-3 py-2 text-decoration-none" href="#">上一頁</a>`;
+                    prevLi.addEventListener("click", function (e) {
+                         e.preventDefault();
+                         if (currentPage > 1) {
+                              currentPage--;
+                              updateProductDisplay();
+                              scrollToTop();
+                         }
+                    });
+                    paginationContainer.appendChild(prevLi);
+
+                    // 2. 頁碼按鈕們
+                    for (let p = 1; p <= totalPages; p++) {
+                         const pageLi = document.createElement("li");
+                         pageLi.className = `page-item ${currentPage === p ? 'active' : ''}`;
+                         pageLi.innerHTML = `<a class="page-link page-link-custom px-3 py-2 text-decoration-none" href="#">${p}</a>`;
+                         pageLi.addEventListener("click", function (e) {
+                              e.preventDefault();
+                              currentPage = p;
+                              updateProductDisplay();
+                              scrollToTop();
+                         });
+                         paginationContainer.appendChild(pageLi);
+                    }
+
+                    // 3. 下一頁按鈕
+                    const nextLi = document.createElement("li");
+                    nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+                    nextLi.innerHTML = `<a class="page-link page-link-custom px-3 py-2 text-decoration-none" href="#">下一頁</a>`;
+                    nextLi.addEventListener("click", function (e) {
+                         e.preventDefault();
+                         if (currentPage < totalPages) {
+                              currentPage++;
+                              updateProductDisplay();
+                              scrollToTop();
+                         }
+                    });
+                    paginationContainer.appendChild(nextLi);
+               }
+
+               // 點擊換頁時自動置頂回商品列頂部
+               function scrollToTop() {
+                    document.getElementById("product-display-top").scrollIntoView({
+                         behavior: "smooth"
+                    });
+               }
+
+               // 綁定左側商品分類點擊事件
+               filterBtns.forEach(btn => {
+                    btn.addEventListener("click", function (e) {
+                         e.preventDefault();
+
+                         filterBtns.forEach(b => b.classList.remove("active"));
+                         this.classList.add("active");
+
+                         currentFilter = this.getAttribute("data-filter");
+                         currentPage = 1;
+                         updateProductDisplay();
+
+                         const parentOffcanvas = this.closest('.offcanvas');
+                         if (parentOffcanvas) {
+                              const bsOffcanvas = bootstrap.Offcanvas.getInstance(parentOffcanvas) || new bootstrap.Offcanvas(parentOffcanvas);
+                              bsOffcanvas.hide();
+                         }
+
+                         document.getElementById("product-display-top").scrollIntoView({
+                              behavior: "smooth"
+                         });
+                    });
+               });
+
+               // 💡 新增：綁定商品圖片點擊跳轉事件
+               const productImgs = document.querySelectorAll(".zl-mini-img");
+               productImgs.forEach(imgContainer => {
+                    imgContainer.addEventListener("click", function (e) {
+                         e.stopPropagation(); // 阻止冒泡，避免觸發展開故事介紹
+
+                         // 取得卡片上的 data-href
+                         const card = this.closest(".zl-mini-card");
+                         const targetUrl = card ? card.getAttribute("data-href") : null;
+
+                         if (targetUrl) {
+                              window.location.href = targetUrl;
+                         }
+                    });
+               });
+
+               // 點擊卡片其他區域（如文字或空白處）展開詳細故事介紹
+               const productCards = document.querySelectorAll(".zl-mini-card");
+               productCards.forEach(card => {
+                    card.addEventListener("click", function (e) {
+                         // 如果點到愛心按鈕則不展開故事
+                         if (e.target.closest(".favorite-btn")) return;
+
+                         const storySection = this.querySelector(".product-detail-story");
+                         if (storySection) {
+                              storySection.classList.toggle("show");
+                         }
+                    });
+               });
+          });
+     </script>
+
+     <!-- ===================== 檢查與控制登入/登出狀態腳本 ===================== -->
+     <script>
+          document.addEventListener("DOMContentLoaded", function () {
+               const authArea = document.getElementById("nav-auth-area");
+
+               const loginBtnHtml = `
+                         <a class="btn btn-outline-light rounded-0 px-4 mt-2 mt-lg-0" href="./login.html"
+                            style="border-color: #E6CBB3; color: #E6CBB3; font-size: 0.8rem; letter-spacing: 1px;">
+                            登入
+                         </a>
+                    `;
+
+               function checkAuthStatus() {
+                    const userSession = localStorage.getItem("zl_user");
+
+                    if (userSession) {
+                         authArea.innerHTML = `
+                                   <span class="me-3" style="color: #E6CBB3; font-size: 0.85rem; letter-spacing: 1px;">
+                                        你好，${userSession}
+                                   </span>
+                                   <a class="btn btn-outline-secondary rounded-0 px-3 mt-2 mt-lg-0" href="#" id="logout-btn"
+                                        style="border-color: rgba(230,203,179,0.3); color: #A0A0A0; font-size: 0.75rem; letter-spacing: 1px;">
+                                        登出
+                                   </a>
+                              `;
+
+                         document.getElementById("logout-btn").addEventListener("click", function (e) {
+                              e.preventDefault();
+                              localStorage.removeItem("zl_user");
+                              alert("已安全登出 ZL& accessories");
+                              authArea.innerHTML = loginBtnHtml;
+                         });
+                    } else {
+                         authArea.innerHTML = loginBtnHtml;
+                    }
+               }
+
+               checkAuthStatus();
+          });
+     </script>
+</body>
+
+</html>

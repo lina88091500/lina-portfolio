@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+     <title>ZL&amp; accessories ｜ 會員中心</title>
+     <meta charset="utf-8" />
+     <meta content="width=device-width, initial-scale=1" name="viewport" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="./css/style.css">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+     <style>
+          /* 專屬登入頁面的全螢幕置中排版 */
+          .login-wrapper {
+               min-height: 100vh;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               padding: 40px 20px;
+               background-color: #F7F4EB;
+               /* 延續商品頁經典沙色 */
+          }
+
+          /* 精品微透明白底卡片 */
+          .login-card {
+               background: rgba(255, 255, 255, 0.85);
+               backdrop-filter: blur(15px);
+               -webkit-backdrop-filter: blur(15px);
+               border: 1px solid rgba(230, 203, 179, 0.4);
+               /* 極細淺金邊框 */
+               border-radius: 8px;
+               box-shadow: 0 10px 30px rgba(45, 38, 37, 0.04);
+               width: 100%;
+               max-width: 420px;
+               padding: 40px 30px;
+               transition: all 0.3s ease;
+          }
+
+          /* 品牌 Logo 縮小秀氣化 */
+          .login-brand {
+               font-family: 'Cinzel', serif;
+               font-weight: 700;
+               letter-spacing: 4px;
+               color: #1A1A1A;
+               text-decoration: none;
+               font-size: 1.6rem;
+               display: block;
+               margin-bottom: 5px;
+          }
+
+          /* 頁籤導覽 (登入/註冊 切換) */
+          .login-tabs {
+               border-bottom: 1px solid rgba(230, 203, 179, 0.3);
+               margin-bottom: 30px;
+               justify-content: center;
+          }
+
+          .login-tabs .nav-link {
+               color: #777777 !important;
+               border: none !important;
+               background: transparent !important;
+               font-size: 0.9rem;
+               letter-spacing: 2px;
+               padding: 10px 20px;
+               position: relative;
+               transition: color 0.3s ease;
+          }
+
+          .login-tabs .nav-link.active {
+               color: #C5A880 !important;
+               /* 招牌金棕色 */
+               font-weight: 500;
+          }
+
+          /* 激活狀態底下的極細金線動態效果 */
+          .login-tabs .nav-link::after {
+               content: '';
+               position: absolute;
+               bottom: 0;
+               left: 50%;
+               width: 0;
+               height: 1px;
+               background-color: #C5A880;
+               transition: all 0.3s ease;
+               transform: translateX(-50%);
+          }
+
+          .login-tabs .nav-link.active::after {
+               width: 40px;
+          }
+
+          /* 表單輸入框精品化 */
+          .form-custom-group {
+               margin-bottom: 20px;
+               text-align: left;
+          }
+
+          .form-custom-label {
+               font-size: 0.75rem;
+               letter-spacing: 1px;
+               color: #555555;
+               margin-bottom: 6px;
+               display: block;
+          }
+
+          .form-custom-input {
+               width: 100%;
+               background-color: #FFFFFF !important;
+               border: 1px solid rgba(230, 203, 179, 0.5) !important;
+               border-radius: 4px !important;
+               padding: 10px 14px;
+               font-size: 0.85rem;
+               color: #1A1A1A;
+               letter-spacing: 0.5px;
+               transition: all 0.2s ease;
+          }
+
+          .form-custom-input:focus {
+               border-color: #C5A880 !important;
+               outline: none;
+               box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.1) !important;
+          }
+
+          /* 勾選框與忘記密碼 */
+          .form-options {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               font-size: 0.75rem;
+               margin-bottom: 25px;
+               color: #666666;
+          }
+
+          .form-options a {
+               color: #666666;
+               text-decoration: none;
+               border-bottom: 1px solid transparent;
+               transition: all 0.2s ease;
+          }
+
+          .form-options a:hover {
+               color: #C5A880;
+               border-bottom-color: #C5A880;
+          }
+
+          .form-check-input:checked {
+               background-color: #1A1A1A;
+               border-color: #1A1A1A;
+          }
+
+          .form-check-input:focus {
+               box-shadow: none;
+               border-color: rgba(230, 203, 179, 0.6);
+          }
+
+          /* 精品按鈕調校 */
+          .btn-gold-submit {
+               background-color: #1A1A1A;
+               color: #E6CBB3;
+               border: 1px solid #1A1A1A;
+               border-radius: 0;
+               width: 100%;
+               padding: 12px;
+               font-size: 0.85rem;
+               letter-spacing: 2px;
+               transition: all 0.3s ease;
+          }
+
+          .btn-gold-submit:hover {
+               background-color: #2D2625;
+               border-color: #2D2625;
+               color: #FFFFFF;
+          }
+
+          /* 返回商店按鈕 */
+          .back-to-shop {
+               display: inline-block;
+               margin-top: 25px;
+               font-size: 0.75rem;
+               color: #888888;
+               text-decoration: none;
+               letter-spacing: 1px;
+               transition: color 0.2s ease;
+          }
+
+          .back-to-shop:hover {
+               color: #1A1A1A;
+          }
+
+          /* 手機版比例微調 */
+          @media (max-width: 576px) {
+               .login-card {
+                    padding: 30px 20px;
+                    box-shadow: 0 4px 15px rgba(45, 38, 37, 0.02);
+               }
+
+               .login-brand {
+                    font-size: 1.4rem;
+               }
+          }
+     </style>
+</head>
+
+<body>
+     <div class="login-wrapper">
+          <div class="login-card text-center">
+
+               <!-- 品牌識別 -->
+               <a href="index.html" class="login-brand">ZL&amp;</a>
+               <p
+                    style="font-size: 0.6rem; letter-spacing: 2px; color: #C5A880; margin-bottom: 25px; font-weight: 300;">
+                    ACCESSORIES</p>
+
+               <!-- 登入 / 註冊 頁籤切換控制 -->
+               <ul class="nav nav-tabs login-tabs" id="authTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                         <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                              data-bs-target="#login-pane" type="button" role="tab" aria-controls="login-pane"
+                              aria-selected="true">會員登入</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                         <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-pane"
+                              type="button" role="tab" aria-controls="register-pane"
+                              aria-selected="false">註冊新會員</button>
+                    </li>
+               </ul>
+
+               <!-- 頁籤內容區 -->
+               <div class="tab-content" id="authTabsContent">
+
+                    <!-- 1. 登入表單區塊 -->
+                    <div class="tab-pane fade show active" id="login-pane" role="tabpanel" aria-labelledby="login-tab">
+                         <form id="loginForm" onsubmit="handleLogin(event)">
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">電子郵件 / EMAIL</label>
+                                   <input type="email" class="form-custom-input" id="loginEmail" required
+                                        placeholder="example@mail.com">
+                              </div>
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">密碼 / PASSWORD</label>
+                                   <input type="password" class="form-custom-input" id="loginPassword" required
+                                        placeholder="請輸入密碼">
+                              </div>
+
+                              <div class="form-options">
+                                   <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" style="padding-top: 1px;"
+                                             for="rememberMe">記住登入狀態</label>
+                                   </div>
+                                   <a href="#" onclick="alert('密碼重設信件已發送至您的信箱（前端模擬）')">忘記密碼？</a>
+                              </div>
+
+                              <button type="submit" class="btn btn-gold-submit">登入會員</button>
+                         </form>
+                    </div>
+
+                    <!-- 2. 註冊表單區塊 -->
+                    <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab">
+                         <form id="registerForm" onsubmit="handleRegister(event)">
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">您的姓名 / NAME</label>
+                                   <input type="text" class="form-custom-input" id="regName" required
+                                        placeholder="請輸入姓名">
+                              </div>
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">電子郵件 / EMAIL</label>
+                                   <input type="email" class="form-custom-input" id="regEmail" required
+                                        placeholder="example@mail.com">
+                              </div>
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">設定密碼 / PASSWORD</label>
+                                   <input type="password" class="form-custom-input" id="regPassword" required
+                                        placeholder="至少 6 位數密碼">
+                              </div>
+                              <div class="form-custom-group">
+                                   <label class="form-custom-label">確認密碼 / CONFIRM PASSWORD</label>
+                                   <input type="password" class="form-custom-input" id="regPasswordConfirm" required
+                                        placeholder="請再次輸入密碼">
+                              </div>
+
+                              <div class="form-options justify-content-start">
+                                   <div class="form-check text-start">
+                                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                        <label class="form-check-label" style="padding-top: 1px;" for="agreeTerms">
+                                             我已閱讀並同意 <a href="#" style="color: #C5A880;">會員服務條款</a>
+                                        </label>
+                                   </div>
+                              </div>
+
+                              <button type="submit" class="btn btn-gold-submit">建立帳號</button>
+                         </form>
+                    </div>
+
+               </div>
+
+               <!-- 返回商店連結 -->
+               <a href="index.html" class="back-to-shop">← 返回商店首頁</a>
+          </div>
+     </div>
+
+     <!-- ===================== 前端動態模擬 JavaScript ===================== -->
+     <script>
+          // 處理登入驗證
+          function handleLogin(event) {
+               event.preventDefault(); // 防止表單重新整理頁面
+
+               const email = document.getElementById('loginEmail').value;
+
+               // 💡 【關鍵修正】從 Email 內切出前端的名字（例如取出 @ 前面的字當名字，或寫死一個名字）
+               // 這裡我們先用 Email 的開頭當作會員名稱
+               const userName = email.split('@')[0];
+               localStorage.setItem("zl_user", userName); // 存入瀏覽器紀錄中
+
+               // 前端模擬成功提示
+               alert(`歡迎回來 ZL& accessories！\n登入成功`);
+
+               // 模擬登入後跳轉回首頁
+               window.location.href = 'index.html';
+          }
+
+          // 處理註冊驗證
+          function handleRegister(event) {
+               event.preventDefault();
+
+               const name = document.getElementById('regName').value;
+               const password = document.getElementById('regPassword').value;
+               const confirmPassword = document.getElementById('regPasswordConfirm').value;
+
+               // 密碼長度基本防護
+               if (password.length < 6) {
+                    alert('為了保障帳戶安全，密碼長度請至少設定 6 個字元。');
+                    return;
+               }
+
+               // 檢查密碼是否一致
+               if (password !== confirmPassword) {
+                    alert('兩次輸入的密碼不一致，請重新檢查。');
+                    return;
+               }
+
+               alert(`謝謝妳的加入，${name}！\n帳號已成功註冊，正在為您跳轉登入。`);
+
+               // 註冊成功後，自動切換回「會員登入」頁籤
+               const loginTab = new bootstrap.Tab(document.getElementById('login-tab'));
+               loginTab.show();
+          }
+     </script>
+</body>
+
+</html>

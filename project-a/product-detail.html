@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <title>爪鑲莫桑石活圍戒指 ｜ ZL&amp; accessories</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- 延用風格 CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        /* ===================== 全局與麵包屑優化 ===================== */
+body {
+    background-color: #FAF9F6; /* 微溫的極簡米白背景 */
+    color: #333333;
+}
+
+.page-header-mini {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2D2625 100%);
+    padding: 100px 0 20px 0;
+    text-align: center;
+}
+
+.breadcrumb-item a {
+    color: #A0A0A0;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    transition: color 0.2s;
+}
+
+.breadcrumb-item a:hover {
+    color: #E6CBB3;
+}
+
+.breadcrumb-item.active {
+    color: #E6CBB3;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+}
+
+/* ===================== 商品展示圖區 ===================== */
+.main-product-img {
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid rgba(230, 203, 179, 0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.4s ease;
+}
+
+.thumb-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.thumb-img.active,
+.thumb-img:hover {
+    border-color: #C5A880;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ===================== 商品資訊區 ===================== */
+.product-title {
+    font-size: 1.75rem;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 1.35rem;
+    color: #2D2625;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+.badge-tag {
+    background-color: rgba(230, 203, 179, 0.15);
+    color: #8C7B6E;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(230, 203, 179, 0.3);
+}
+
+/* ===================== 重構：質感數量選擇器 ===================== */
+.custom-qty-group {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #E0D8D0;
+    border-radius: 30px; /* 膠囊圓角 */
+    padding: 2px 8px;
+    background-color: #ffffff;
+}
+
+.qty-btn {
+    border: none;
+    background: transparent;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+    background-color: #F3ECE6;
+    color: #1A1A1A;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2D2625;
+    outline: none;
+}
+
+/* ===================== 高級感購物與收藏按鈕 ===================== */
+.btn-add-cart {
+    background-color: #2D2625;
+    color: #E6CBB3;
+    border: 1px solid #2D2625;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    padding: 14px 28px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(45, 38, 37, 0.15);
+}
+
+.btn-add-cart:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn-fav-large {
+    border: 1px solid #E0D8D0;
+    background: #ffffff;
+    color: #A0A0A0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-fav-large:hover,
+.btn-fav-large.active {
+    background-color: #FFF5F5;
+    border-color: #e25555;
+    color: #e25555;
+}
+
+/* ===================== 頁籤 Tab 質感升級 ===================== */
+.nav-tabs-custom {
+    border-bottom: 1px solid rgba(230, 203, 179, 0.3);
+}
+
+.nav-tabs-custom .nav-link {
+    color: #888;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 12px 28px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs-custom .nav-link:hover {
+    color: #2D2625;
+}
+
+.nav-tabs-custom .nav-link.active {
+    color: #2D2625;
+    border-bottom: 2px solid #C5A880;
+    background: transparent;
+    font-weight: 600;
+}
+
+.tab-content-area {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 1px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid rgba(230, 203, 179, 0.2);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- ===================== Navbar ===================== -->
+    <div class="custom-nav-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom-navbar shadow">
+                <a class="navbar-brand" href="index.html">
+                    ZL&amp;
+                    <span style="font-size: 0.6rem; letter-spacing: 1px; font-weight: 300;">accessories</span>
+                </a>
+                <button class="navbar-toggler navbar-dark" data-bs-target="#mynavbar" data-bs-toggle="collapse"
+                    type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav ms-auto me-4">
+                        <li class="nav-item"><a class="nav-link" href="#">品牌介紹</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="products.html"
+                                style="color: #E6CBB3 !important;">商品總覽</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">服務專區</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">個人檔案</a></li>
+                    </ul>
+                    <div id="nav-auth-area" class="mt-2 mt-lg-0">
+                        <a class="btn btn-outline-light rounded-0 px-4" href="./login.html"
+                            style="border-color: #E6CBB3; color: #E6CBB3; font-size: 0.8rem; letter-spacing: 1px;">
+                            登入
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ===================== Page Header / Breadcrumb ===================== -->
+    <div class="page-header-mini">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+                    <li class="breadcrumb-item"><a href="products.html">商品總覽</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ===================== Product Main Detail ===================== -->
+    <div class="container my-5">
+        <div class="row g-4 g-lg-5 align-items-start">
+
+            <!-- 左側：商品圖廊 -->
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <img id="mainImage" src="./image/爪鑲莫桑石活圍戒指.png" alt="爪鑲莫桑石活圍戒指" class="main-product-img shadow-sm" />
+                </div>
+                <!-- 縮圖選擇 -->
+                <div class="row g-2">
+                    <div class="col-3">
+                        <img src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 1" class="thumb-img active" onclick="changeImage(this.src, this)" />
+                    </div>
+                    <!-- 可視需求替換為其他細節視角圖 -->
+                    <div class="col-3">
+                        <img src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 2" class="thumb-img" onclick="changeImage(this.src, this)" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：購買資訊 -->
+            <div class="col-lg-6">
+                <div class="ps-lg-3">
+                    <span class="badge-tag mb-2 d-inline-block">莫桑鑽 / 925純銀</span>
+                    <h1 class="product-title mb-3">爪鑲莫桑石活圍戒指</h1>
+                    <div class="product-price mb-4">NT$ 1,580</div>
+
+                    <p style="font-size: 0.88rem; color: #666; line-height: 1.8; letter-spacing: 1px;" class="mb-4">
+                        細緻抓鑲工藝將莫桑石牢牢環抱，綻放如星辰般不滅的火彩。<br>
+                        獨特的活圍設計，不受戒圍限制，隨心定義屬於你的指尖故事。
+                    </p>
+
+                    <hr style="border-color: rgba(230, 203, 179, 0.4);" class="my-4">
+
+                    <!-- 選擇數量與按鈕 -->
+<div class="d-flex align-items-center mb-4">
+    <span class="me-3" style="font-size: 0.8rem; color: #777; letter-spacing: 1px;">數量</span>
+    <div class="custom-qty-group">
+        <button class="qty-btn" type="button" onclick="adjustQty(-1)">−</button>
+        <input type="text" id="cartQty" class="qty-input" value="1" readonly />
+        <button class="qty-btn" type="button" onclick="adjustQty(1)">+</button>
+    </div>
+</div>
+
+                    <!-- 操作按鈕 -->
+                    <div class="d-flex gap-3 mb-4">
+                        <button class="btn btn-add-cart rounded-0 flex-grow-1" type="button" id="addToCartBtn">
+                            加入購物車
+                        </button>
+                        <button class="btn btn-fav-large rounded-0" type="button" id="favBtnLarge" title="加入收藏">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- 貼心提醒與服務承諾 -->
+                    <div class="p-3 rounded" style="background-color: #FBF9F7; border: 1px solid rgba(230, 203, 179, 0.3);">
+                        <div class="d-flex align-items-center text-muted" style="font-size: 0.78rem; letter-spacing: 1px;">
+                            <span class="me-2">✨</span> 全館滿 NT$ 1,500 即享免運優惠
+                        </div>
+                        <div class="d-flex align-items-center text-muted mt-2" style="font-size: 0.78rem; letter-spacing: 1px;">
+                            <span class="me-2">💎</span> 附贈 ZL& 品牌專屬拭銀布與精緻禮盒包裝
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===================== 詳細頁籤介紹 (Tabs) ===================== -->
+        <div class="row mt-5 pt-4">
+            <div class="col-12">
+                <ul class="nav nav-tabs nav-tabs-custom justify-content-center" id="productTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="story-tab" data-bs-toggle="tab" data-bs-target="#story-tab-pane" type="button" role="tab">商品靈感</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="spec-tab" data-bs-toggle="tab" data-bs-target="#spec-tab-pane" type="button" role="tab">規格與材質</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="care-tab" data-bs-toggle="tab" data-bs-target="#care-tab-pane" type="button" role="tab">保養說明</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content tab-content-area p-4 p-md-5" id="productTabContent">
+                    <!-- 1. 商品靈感 -->
+                    <div class="tab-pane fade show active" id="story-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="col-md-8 mx-auto text-center">
+                            <h5 style="color: #2D2625; letter-spacing: 2px;" class="mb-3">「閃耀，不必依附光芒；因為你本身就是星辰。」</h5>
+                            <p>
+                                爪鑲莫桑石活圍戒指以經典的四爪工藝打造，將高品質莫桑石最大程度地暴露於光線之中，每個角度都能折射出極致燦爛的火彩。
+                            </p>
+                            <p>
+                                活圍的貼心細節，免去了測量戒圍的困擾，讓你可以隨心情配戴於食指、中指或無名指，隨心詮釋專屬於你的時尚氣場。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2. 規格與材質 -->
+                    <div class="tab-pane fade" id="spec-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="col-md-8 mx-auto">
+                            <ul class="list-group list-group-flush" style="font-size: 0.85rem;">
+                                <li class="list-group-item d-flex justify-content-between py-3">
+                                    <span class="fw-bold">主石材質</span>
+                                    <span class="text-muted">頂級莫桑鑽 (Moissanite)</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between py-3">
+                                    <span class="fw-bold">座台材質</span>
+                                    <span class="text-muted">S925 標準純銀 / 多層電鍍白金（防氧化抗過敏）</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between py-3">
+                                    <span class="fw-bold">戒圍尺寸</span>
+                                    <span class="text-muted">可調節活圍（適配國際圍 #8 ~ #14）</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between py-3">
+                                    <span class="fw-bold">工藝細節</span>
+                                    <span class="text-muted">手工爪鑲、鏡面拋光處理</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. 保養說明 -->
+                    <div class="tab-pane fade" id="care-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="col-md-8 mx-auto">
+                            <p><strong>【925純銀飾品日常保養建議】</strong></p>
+                            <ol class="ps-3" style="line-height: 2;">
+                                <li>避免配戴著洗澡、溫泉或游泳，避免接觸化學清潔劑與香水。</li>
+                                <li>未配戴時，請用乾燥軟布 wiping 擦拭乾淨後，放入封口袋中隔絕空氣氧化。</li>
+                                <li>若產生輕微氧化變黑現象，可使用隨附的拭銀布輕拭即可恢復光澤。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== Footer ===================== -->
+    <footer class="brand-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4 brand-footer-info">
+                    <h5 class="footer-logo">ZL& <span>accessories</span></h5>
+                    <p class="footer-tagline">飾品是一種未完待續的氛圍</p>
+                </div>
+                <div class="col-6 col-md-4">
+                    <h6 class="footer-title">服務指南</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">品牌介紹</a></li>
+                        <li><a href="products.html">商品總覽</a></li>
+                        <li><a href="#">售後服務</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4">
+                    <h6 class="footer-title">追蹤 ZL&</h6>
+                    <div class="footer-social-icons">
+                        <a href="https://reurl.cc/Le1eq7" target="_blank" class="social-icon" title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92.c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                            </svg>
+                        </a>
+                        <a href="https://reurl.cc/RRdRE9" target="_blank" class="social-icon" title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">© 2026 ZL& accessories. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== JS 互動邏輯 ===================== -->
+    <script>
+        // 1. 切換商品大圖
+        function changeImage(src, element) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 2. 數量加減
+        function adjustQty(amount) {
+            const qtyInput = document.getElementById('cartQty');
+            let currentQty = parseInt(qtyInput.value) || 1;
+            currentQty += amount;
+            if (currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // 3. 加入購物車提示
+            const addToCartBtn = document.getElementById("addToCartBtn");
+            addToCartBtn.addEventListener("click", function () {
+                const qty = document.getElementById("cartQty").value;
+                alert(`已將 ${qty} 件「爪鑲莫桑石活圍戒指」加入您的購物車 🤎`);
+            });
+
+            // 4. 大圖頁收藏按鈕與 LocalStorage 同步
+            const favBtn = document.getElementById("favBtnLarge");
+            const productId = "prod-001";
+            let favorites = JSON.parse(localStorage.getItem("zl_favorites")) || [];
+
+            if (favorites.includes(productId)) {
+                favBtn.classList.add("active");
+            }
+
+            favBtn.addEventListener("click", function () {
+                this.classList.toggle("active");
+                if (this.classList.contains("active")) {
+                    if (!favorites.includes(productId)) favorites.push(productId);
+                    alert("已加入收藏清單 ✨");
+                } else {
+                    favorites = favorites.filter(id => id !== productId);
+                    alert("已從收藏清單移除");
+                }
+                localStorage.setItem("zl_favorites", JSON.stringify(favorites));
+            });
+        });
+    </script>
+</body>
+
+</html>

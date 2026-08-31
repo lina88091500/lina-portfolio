@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Customized | 專屬個人化訂製</title>
+     <!-- 引入與妳原本首頁相同的 Bootstrap 5 -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+          body {
+               background-color: #FDFBF7;
+               /* 妳最漂亮的微醺奶茶底色 */
+               color: #1A1A1A;
+               font-family: "Noto Serif TC", serif;
+               /* 或者是妳原本愛用的字體 */
+          }
+
+          .custom-form-container {
+               max-width: 600px;
+               margin: 80px auto;
+               background-color: #ffffff;
+               padding: 40px;
+               border-radius: 4px;
+               border: 1px solid #E6CBB3;
+               /* 經典金框色 */
+               box-shadow: 0 4px 20px rgba(230, 203, 179, 0.15);
+          }
+
+          .form-title {
+               font-size: 1.6rem;
+               letter-spacing: 3px;
+               font-weight: bold;
+               color: #1A1A1A;
+          }
+
+          .form-subtitle {
+               font-size: 0.8rem;
+               letter-spacing: 1px;
+               color: #E6CBB3;
+               margin-bottom: 30px;
+          }
+
+          .form-label {
+               font-size: 0.85rem;
+               letter-spacing: 1px;
+               color: #1A1A1A;
+               font-weight: bold;
+               margin-top: 15px;
+          }
+
+          /* 美化輸入框 */
+          .form-control,
+          .form-select {
+               border: 1px solid #E6CBB3;
+               border-radius: 2px;
+               background-color: #FDFBF7;
+               font-size: 0.9rem;
+               padding: 10px 12px;
+               color: #1A1A1A;
+          }
+
+          .form-control:focus,
+          .form-select:focus {
+               border-color: #D4B295;
+               box-shadow: 0 0 0 0.25rem rgba(230, 203, 179, 0.25);
+               background-color: #ffffff;
+          }
+
+          /* 溫柔質感按鈕 */
+          .btn-submit {
+               background-color: #1A1A1A;
+               color: #ffffff;
+               border: none;
+               border-radius: 2px;
+               padding: 12px;
+               font-size: 0.9rem;
+               letter-spacing: 2px;
+               width: 100%;
+               margin-top: 30px;
+               transition: all 0.3s ease;
+          }
+
+          .btn-submit:hover {
+               background-color: #E6CBB3;
+               color: #1A1A1A;
+          }
+
+          .btn-back {
+               display: inline-block;
+               margin-bottom: 20px;
+               color: #666666;
+               text-decoration: none;
+               font-size: 0.85rem;
+               transition: color 0.3s;
+          }
+
+          .btn-back:hover {
+               color: #E6CBB3;
+          }
+     </style>
+</head>
+
+<body>
+
+     <div class="container">
+          <div class="custom-form-container">
+               <!-- 返回首頁 -->
+               <a href="./index.html" class="btn-back">← 返回首頁</a>
+
+               <div class="text-center">
+                    <h2 class="form-title">CUSTOMIZED</h2>
+                    <p class="form-subtitle">專屬個人化訂製需求單</p>
+               </div>
+
+               <!-- 💡 表單開始：未來學到 PHP 後，可以在 action 帶入妳的後端程式 -->
+               <!-- <form action="submit_custom.php" method="POST"> -->
+
+               <!-- 💡 拿掉 action，改用 onsubmit 觸發 JavaScript 函式 -->
+               <form onsubmit="handleCustomSubmit(event)">
+
+                    <!-- 顧客姓名 -->
+                    <div class="mb-3">
+                         <label for="cusName" class="form-label">訂製人姓名</label>
+                         <input type="text" class="form-control" id="cusName" name="cusName" required
+                              placeholder="請輸入您的真實姓名">
+                    </div>
+
+                    <!-- 聯絡電話 -->
+                    <div class="mb-3">
+                         <label for="cusPhone" class="form-label">聯絡電話</label>
+                         <input type="tel" class="form-control" id="cusPhone" name="cusPhone" required
+                              placeholder="例如：0912345678">
+                    </div>
+
+                    <!-- 想要訂製的款式 -->
+                    <div class="mb-3">
+                         <label for="itemType" class="form-label">欲訂製的飾品類別</label>
+                         <select class="form-select" id="itemType" name="itemType" required>
+                              <option value="" selected disabled>請選擇品項</option>
+                              <option value="bracelet">BRACELET 手鍊 ｜ 腕間流光</option>
+                              <option value="earrings">EARRINGS 耳環 ｜ 耳畔呢喃</option>
+                              <option value="necklace">NECKLACE 項鍊 ｜ 鎖骨微光</option>
+                              <option value="ring">RING 戒指 ｜ 指尖承諾</option>
+                         </select>
+                    </div>
+
+                    <!-- 材質選擇 -->
+                    <div class="mb-3">
+                         <label class="form-label">金屬材質</label>
+                         <div class="d-flex gap-4 mt-1">
+                              <div class="form-check">
+                                   <input class="form-check-input" type="radio" name="material" id="mat1" value="silver"
+                                        checked>
+                                   <label class="form-check-label" style="font-size: 0.9rem;" for="mat1">925 純銀</label>
+                              </div>
+                              <div class="form-check">
+                                   <input class="form-check-input" type="radio" name="material" id="mat2" value="gold">
+                                   <label class="form-check-label" style="font-size: 0.9rem;" for="mat2">18K 包金
+                                        (香檳金)</label>
+                              </div>
+                              <div class="form-check">
+                                   <input class="form-check-input" type="radio" name="material" id="mat3"
+                                        value="rosegold">
+                                   <label class="form-check-label" style="font-size: 0.9rem;" for="mat3">玫瑰金</label>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- 刻字內容 -->
+                    <div class="mb-3">
+                         <label for="engraving" class="form-label">專屬刻字內容 (若不需刻字請留白)</label>
+                         <input type="text" class="form-control" id="engraving" name="engraving"
+                              placeholder="例如：Lina 2026.07 / Always with you">
+                         <div class="form-text" style="font-size: 0.75rem; color: #999999;">* 限英文字母、數字及基本符號，建議 15 個字元以內
+                         </div>
+                    </div>
+
+                    <!-- 備註與特殊手圍需求 -->
+                    <div class="mb-3">
+                         <label for="memo" class="form-label">特殊手圍/淨手圍 或 備註需求</label>
+                         <textarea class="form-control" id="memo" name="memo" rows="4"
+                              placeholder="請填寫您的淨手圍（公分），或任何想對設計師說的話..."></textarea>
+                    </div>
+
+                    <!-- 送出按鈕 -->
+                    <button type="submit" class="btn-submit">確認並送出訂製需求</button>
+               </form>
+          </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+     <script>
+          function handleCustomSubmit(event) {
+               // 1. 阻止表單預設的重新整理/跳轉行為
+               event.preventDefault();
+
+               // 2. 抓取欄位中填寫的姓名
+               const name = document.getElementById('cusName').value;
+
+               // 3. 彈出美美的提示視窗（這裡可以用簡單的 alert，或是直接把表單內容隱藏，顯示成功畫面）
+               alert(`謝謝你，${name}！\n我們已成功收到您的專屬訂製需求（模擬成功）。`);
+
+               // 4. 虛擬送出後，自動幫客人跳轉回首頁
+               window.location.href = 'index.html';
+          }
+     </script>
+</body>
+
+</html>
