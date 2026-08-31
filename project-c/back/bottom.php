@@ -15,7 +15,8 @@
 
     <div style="width:100%; height:460px; margin:auto; overflow:auto; border:1px solid var(--j-pink-accent); border-radius:14px; padding:12px; background:#FFFDF9; box-sizing:border-box;">
         <p class="t cent botli" style="font-size:15px;">🌸 頁尾版權宣告資料管理</p>
-        <form method="post" action="./api/edit_info.php?table=<?= $do ?>">
+        <form method="post" action="./api/edit_value.php?table=<?= $do ?>">
+            <input type="hidden" name="id" value="1">
             <table width="100%" style="margin-top:40px;">
                 <tbody>
                     <tr>

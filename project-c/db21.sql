@@ -60,10 +60,11 @@ CREATE TABLE `admin` (
 -- 傾印資料表的資料 `admin`
 --
 
+-- 預設帳密皆為 admin / 1234（密碼以 bcrypt 雜湊儲存）
 INSERT INTO `admin` (`id`, `acc`, `pw`) VALUES
-(1, 'admin', '1234'),
-(2, 'lisa', '1234'),
-(3, 'tom', '1234');
+(1, 'admin', '$2y$10$213mwpofnmNsnmws2whScuo/93NGH/jy2w.ZXkTHYDKgPKsYAdwwu'),
+(2, 'lisa', '$2y$10$w.6U0TDoldOTc.C9byRIL.wIJocM7BZW8SPKIy4TR/WJSkAEXGEB2'),
+(3, 'tom', '$2y$10$LpSTRhMhDpFC1qcyjWvB5OFwOOSkYdnQd7qOfoK9Uq.EE3csGzxxu');
 
 -- --------------------------------------------------------
 

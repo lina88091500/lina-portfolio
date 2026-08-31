@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bloom Aesthetic Studio | 日本精緻美妝與美學誌</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 <link href="./css/css.css" rel="stylesheet" type="text/css">
 <script src="./js/jquery-1.9.1.min.js"></script>
 <script src="./js/js.js"></script>
@@ -52,7 +53,7 @@ function showNewsDetail(el) {
 		</div>
 
     	<?php 
-		$titleImg = "upload/top_ad_banner.svg";
+		$titleImg = "upload/header_jbeauty_v2.png";
 		$titleText = "Bloom Aesthetic Studio - 日本精緻美妝與美學誌";
 		if (isset($Title)) {
 			$title = $Title->find(['sh'=>1]);

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>林宣芝 Lina｜網頁設計作品集</title>
+    <meta name="description" content="林宣芝（Lina）的網頁設計作品集 —— 從美編與行政跨入前端，收錄電商切版、PHP 內容管理與後台介面設計等實作專案。" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9997;</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg: #faf7f2;
+            --surface: #ffffff;
+            --ink: #2c2a28;
+            --ink-soft: #6b6560;
+            --line: #e7e0d6;
+            --accent: #9c5c68;
+            --accent-soft: #f2e7e8;
+            --radius: 14px;
+            --shadow: 0 10px 30px rgba(60, 45, 40, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", sans-serif;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- Hero ---------- */
+        header.hero {
+            padding: 88px 0 56px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        header.hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 6px;
+        }
+
+        header.hero .en-name {
+            color: var(--ink-soft);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        header.hero .role {
+            font-size: 1.05rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        header.hero p.bio {
+            max-width: 60ch;
+            color: var(--ink-soft);
+            font-size: 0.98rem;
+        }
+
+        /* ---------- Sections ---------- */
+        section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+
+        .section-note {
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        /* ---------- Skills ---------- */
+        .skill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            align-items: baseline;
+            padding: 14px 0;
+            border-top: 1px dashed var(--line);
+        }
+
+        .skill-group:first-of-type {
+            border-top: none;
+        }
+
+        .skill-group .label {
+            flex: 0 0 108px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--ink);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 4px 13px;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+        }
+
+        /* ---------- Project cards ---------- */
+        .group-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin: 26px 0 14px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 26px 24px 22px;
+            text-decoration: none;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .card .kind {
+            font-size: 0.76rem;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.12rem;
+            margin-bottom: 4px;
+        }
+
+        .card .folder {
+            font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+            font-size: 0.78rem;
+            color: var(--ink-soft);
+            margin-bottom: 14px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            margin-bottom: 16px;
+        }
+
+        .card .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .card .stack span {
+            font-size: 0.75rem;
+            color: var(--ink-soft);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            padding: 2px 8px;
+        }
+
+        .card .go {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 40px;
+            font-size: 0.95rem;
+        }
+
+        .contact-list div span {
+            display: block;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            color: var(--ink-soft);
+            margin-bottom: 2px;
+        }
+
+        .contact-list a {
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 1px;
+        }
+
+        footer {
+            padding: 34px 0 48px;
+            color: var(--ink-soft);
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 560px) {
+            header.hero {
+                padding: 60px 0 40px;
+            }
+
+            .skill-group .label {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow">Web Design Portfolio</div>
+            <h1>林宣芝</h1>
+            <div class="en-name">Lin, Hsuan-Chih ｜ Lina</div>
+            <div class="role">網頁設計 · 前端切版 · 視覺美編</div>
+            <p class="bio">
+                有約八年的第一線服務、行政秘書與社群美編經驗。在房仲門市擔任秘書兼小編期間，
+                獨立負責宣傳圖文、形象照修圖、影片剪輯與每月月會報告。2026 年參加勞動部
+                「全端網頁開發與 AI 應用」職前訓練，把原本的視覺專長延伸到網頁實作 ——
+                自己規劃版面與配色，善用 AI 工具輔助產生程式碼，再由我測試、修改與微調畫面。
+                以下是課程期間完成的幾個練習專案。
+            </p>
+        </div>
+    </header>
+
+    <section id="skills">
+        <div class="wrap">
+            <h2 class="section-title">技能</h2>
+            <p class="section-note">實際用在下方專案裡的工具與技術。</p>
+
+            <div class="skill-group">
+                <div class="label">網頁前端</div>
+                <div class="tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">響應式設計 RWD</span>
+                    <span class="tag">Bootstrap 5</span>
+                    <span class="tag">JavaScript（原生）</span>
+                    <span class="tag">jQuery</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="label">後端與資料庫</div>
+                <div class="tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">CRUD 資料操作</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="label">視覺設計</div>
+                <div class="tags">
+                    <span class="tag">Photoshop</span>
+                    <span class="tag">Illustrator</span>
+                    <span class="tag">Canva</span>
+                    <span class="tag">版面配置</span>
+                    <span class="tag">影片剪輯</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="label">開發協作</div>
+                <div class="tags">
+                    <span class="tag">Git</span>
+                    <span class="tag">GitHub</span>
+                    <span class="tag">ChatGPT / Gemini 輔助開發</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="label">語言</div>
+                <div class="tags">
+                    <span class="tag">中文（母語）</span>
+                    <span class="tag">日文 JLPT N5</span>
+                    <span class="tag">英文（略懂）</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="wrap">
+            <h2 class="section-title">作品</h2>
+            <p class="section-note">點卡片即可開啟該專案。資料夾名稱標在標題下方。</p>
+
+            <div class="cards">
+                <a class="card" href="./project-a/index.html">
+                    <div class="kind">響應式靜態網站</div>
+                    <h3>ZL&amp; accessories 飾品電商</h3>
+                    <div class="folder">project-a/</div>
+                    <p>
+                        以 HTML / CSS / JavaScript 加上 Bootstrap 切版的飾品品牌網站。
+                        包含首頁、商品總覽（分類篩選＋分頁）、商品詳情頁（依網址參數切換商品）、
+                        會員登入／註冊，以及專屬訂製需求表單。收藏與登入狀態用瀏覽器 localStorage 記住。
+                    </p>
+                    <div class="stack">
+                        <span>HTML/CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>RWD</span>
+                    </div>
+                    <div class="go">開啟專案 →</div>
+                </a>
+
+                <a class="card" href="./project-d/index.html">
+                    <div class="kind">後台介面原型</div>
+                    <h3>尋找貓咪的家 · 領養平台</h3>
+                    <div class="folder">project-d/</div>
+                    <p>
+                        貓咪領養網站的前後台流程原型。前台有輪播、待領養列表與詳情頁；
+                        後台是一套完整的「列表 → 新增 → 修改 → 刪除」介面設計，
+                        並加上管理員登入判斷，未登入者無法從網址直接進入後台。
+                    </p>
+                    <div class="stack">
+                        <span>HTML/CSS</span><span>Bootstrap 5</span><span>CRUD 流程</span><span>權限控制</span>
+                    </div>
+                    <div class="go">開啟專案 →</div>
+                </a>
+            </div>
+
+            <div class="group-label">Bloom Aesthetic Studio · 同一套系統的兩種版面</div>
+            <div class="cards">
+                <a class="card" href="./project-b/index.php">
+                    <div class="kind">PHP + MySQL 動態網站</div>
+                    <h3>日系美妝 CMS · 固定版面版</h3>
+                    <div class="folder">project-b/</div>
+                    <p>
+                        以網頁設計乙級檢定題目為基礎改作的內容管理系統。前台呈現品牌內容，
+                        後台可管理網站標題、輪播圖、最新消息、導覽選單與管理員帳號。
+                        資料存在 MySQL；連不到資料庫時會自動改用內建範例資料，讓畫面仍可完整呈現。
+                    </p>
+                    <div class="stack">
+                        <span>PHP</span><span>MySQL</span><span>jQuery</span><span>前台＋後台</span>
+                    </div>
+                    <div class="go">開啟專案 →</div>
+                </a>
+
+                <a class="card" href="./project-c/index.php">
+                    <div class="kind">PHP CMS · 響應式重構版</div>
+                    <h3>日系美妝 CMS · RWD 版面版</h3>
+                    <div class="folder">project-c/</div>
+                    <p>
+                        與 project-b 同一套後端邏輯，但把前台從固定 1024px 版面重寫為流動式響應式版面：
+                        新的置頂導覽列、可捲動的選單、依裝置寬度自動調整的三欄／單欄佈局，
+                        手機、平板、桌機都能正常閱讀。
+                    </p>
+                    <div class="stack">
+                        <span>PHP</span><span>MySQL</span><span>RWD 重構</span><span>手機適配</span>
+                    </div>
+                    <div class="go">開啟專案 →</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="notes">
+        <div class="wrap">
+            <h2 class="section-title">關於這些專案</h2>
+            <p class="section-note" style="margin-bottom:14px;">給第一次看的人的幾點說明。</p>
+            <ul style="color:var(--ink-soft); font-size:0.92rem; padding-left:1.2em; display:flex; flex-direction:column; gap:8px;">
+                <li>project-a 與 project-d 是純前端網頁，直接用瀏覽器開啟 <code>index.html</code> 就能看。</li>
+                <li>project-b 與 project-c 需要 PHP 環境（例如 XAMPP）。把資料夾放到網站根目錄後開啟 <code>index.php</code>；沒有匯入資料庫也能看到畫面（會顯示範例資料）。</li>
+                <li>後台預設登入帳號密碼皆為 <code>admin</code> / <code>1234</code>。</li>
+                <li>製作方式與每個檔案的整理重點，寫在 <a href="./作品集說明.md" style="border-bottom:1px solid var(--accent);">作品集說明.md</a>。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrap">
+            <h2 class="section-title">聯絡方式</h2>
+            <p class="section-note">歡迎來信或來電。</p>
+            <div class="contact-list">
+                <div>
+                    <span>EMAIL</span>
+                    <a href="mailto:a88091500@gmail.com">a88091500@gmail.com</a>
+                </div>
+                <div>
+                    <span>電話</span>
+                    <a href="tel:+886960988172">0960-988-172</a>
+                </div>
+                <div>
+                    <span>所在地</span>
+                    新北市淡水區
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">© 2026 林宣芝 Lina</div>
+    </footer>
+
+</body>
+
+</html>

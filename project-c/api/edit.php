@@ -26,7 +26,13 @@ foreach($_POST['id'] as $idx => $id){
             break;
             case "admin":
                 $row['acc']=$_POST['acc'][$idx];
-                $row['pw']=$_POST['pw'][$idx];
+                // 留空＝不變更密碼；有填且不是既有雜湊時才重新雜湊
+                $newPw = $_POST['pw'][$idx] ?? '';
+                if ($newPw !== '' && $newPw !== $row['pw']) {
+                    $row['pw'] = password_get_info($newPw)['algo']
+                        ? $newPw
+                        : password_hash($newPw, PASSWORD_DEFAULT);
+                }
             break;
             case "menu":
                 $row['href']=$_POST['href'][$idx];

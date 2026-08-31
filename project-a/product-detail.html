@@ -6,6 +6,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128141;</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <!-- 延用風格 CSS -->
     <link rel="stylesheet" href="./css/style.css">
 
@@ -271,11 +275,11 @@ body {
                 <!-- 縮圖選擇 -->
                 <div class="row g-2">
                     <div class="col-3">
-                        <img src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 1" class="thumb-img active" onclick="changeImage(this.src, this)" />
+                        <img id="thumb1" src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 1" class="thumb-img active" onclick="changeImage(this.src, this)" />
                     </div>
                     <!-- 可視需求替換為其他細節視角圖 -->
                     <div class="col-3">
-                        <img src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 2" class="thumb-img" onclick="changeImage(this.src, this)" />
+                        <img id="thumb2" src="./image/爪鑲莫桑石活圍戒指.png" alt="縮圖 2" class="thumb-img" onclick="changeImage(this.src, this)" />
                     </div>
                 </div>
             </div>
@@ -283,11 +287,11 @@ body {
             <!-- 右側：購買資訊 -->
             <div class="col-lg-6">
                 <div class="ps-lg-3">
-                    <span class="badge-tag mb-2 d-inline-block">莫桑鑽 / 925純銀</span>
-                    <h1 class="product-title mb-3">爪鑲莫桑石活圍戒指</h1>
-                    <div class="product-price mb-4">NT$ 1,580</div>
+                    <span class="badge-tag mb-2 d-inline-block" id="pdBadge">莫桑鑽 / 925純銀</span>
+                    <h1 class="product-title mb-3" id="pdTitle">爪鑲莫桑石活圍戒指</h1>
+                    <div class="product-price mb-4" id="pdPrice">NT$ 1,580</div>
 
-                    <p style="font-size: 0.88rem; color: #666; line-height: 1.8; letter-spacing: 1px;" class="mb-4">
+                    <p style="font-size: 0.88rem; color: #666; line-height: 1.8; letter-spacing: 1px;" class="mb-4" id="pdDesc">
                         細緻抓鑲工藝將莫桑石牢牢環抱，綻放如星辰般不滅的火彩。<br>
                         獨特的活圍設計，不受戒圍限制，隨心定義屬於你的指尖故事。
                     </p>
@@ -349,7 +353,7 @@ body {
                 <div class="tab-content tab-content-area p-4 p-md-5" id="productTabContent">
                     <!-- 1. 商品靈感 -->
                     <div class="tab-pane fade show active" id="story-tab-pane" role="tabpanel" tabindex="0">
-                        <div class="col-md-8 mx-auto text-center">
+                        <div class="col-md-8 mx-auto text-center" id="pdStory">
                             <h5 style="color: #2D2625; letter-spacing: 2px;" class="mb-3">「閃耀，不必依附光芒；因為你本身就是星辰。」</h5>
                             <p>
                                 爪鑲莫桑石活圍戒指以經典的四爪工藝打造，將高品質莫桑石最大程度地暴露於光線之中，每個角度都能折射出極致燦爛的火彩。
@@ -363,17 +367,17 @@ body {
                     <!-- 2. 規格與材質 -->
                     <div class="tab-pane fade" id="spec-tab-pane" role="tabpanel" tabindex="0">
                         <div class="col-md-8 mx-auto">
-                            <ul class="list-group list-group-flush" style="font-size: 0.85rem;">
+                            <ul class="list-group list-group-flush" style="font-size: 0.85rem;" id="pdSpecList">
                                 <li class="list-group-item d-flex justify-content-between py-3">
-                                    <span class="fw-bold">主石材質</span>
-                                    <span class="text-muted">頂級莫桑鑽 (Moissanite)</span>
+                                    <span class="fw-bold">主要材質</span>
+                                    <span class="text-muted">莫桑鑽 / 925 純銀</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between py-3">
-                                    <span class="fw-bold">座台材質</span>
-                                    <span class="text-muted">S925 標準純銀 / 多層電鍍白金（防氧化抗過敏）</span>
+                                    <span class="fw-bold">座台工藝</span>
+                                    <span class="text-muted">多層電鍍白金（防氧化抗過敏）</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between py-3">
-                                    <span class="fw-bold">戒圍尺寸</span>
+                                    <span class="fw-bold">尺寸</span>
                                     <span class="text-muted">可調節活圍（適配國際圍 #8 ~ #14）</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between py-3">
@@ -390,7 +394,7 @@ body {
                             <p><strong>【925純銀飾品日常保養建議】</strong></p>
                             <ol class="ps-3" style="line-height: 2;">
                                 <li>避免配戴著洗澡、溫泉或游泳，避免接觸化學清潔劑與香水。</li>
-                                <li>未配戴時，請用乾燥軟布 wiping 擦拭乾淨後，放入封口袋中隔絕空氣氧化。</li>
+                                <li>未配戴時，請用乾燥軟布擦拭乾淨後，放入封口袋中隔絕空氣氧化。</li>
                                 <li>若產生輕微氧化變黑現象，可使用隨附的拭銀布輕拭即可恢復光澤。</li>
                             </ol>
                         </div>
@@ -422,7 +426,7 @@ body {
                     <div class="footer-social-icons">
                         <a href="https://reurl.cc/Le1eq7" target="_blank" class="social-icon" title="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92.c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.486.038.843.046 1.096.046 3.231s-.008 2.389-.046 3.232c-.036.78-.166 1.203-.276 1.486a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.046-3.232.046s-2.39-.008-3.233-.046c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.599.282-.11.705-.24 1.486-.275.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
                             </svg>
                         </a>
                         <a href="https://reurl.cc/RRdRE9" target="_blank" class="social-icon" title="Facebook">
@@ -444,14 +448,113 @@ body {
 
     <!-- ===================== JS 互動邏輯 ===================== -->
     <script>
-        // 1. 切換商品大圖
+        // ===== 商品資料庫（與 products.html 同步）=====
+        // 網址參數 ?id=1~8 會決定這頁顯示哪一款飾品
+        const PRODUCTS = {
+            1: {
+                name: "爪鑲莫桑石活圍戒指", price: "NT$ 1,580", material: "莫桑鑽 / 925 純銀",
+                img: "./image/爪鑲莫桑石活圍戒指.png",
+                desc: "細緻抓鑲工藝將莫桑石牢牢環抱，綻放如星辰般不滅的火彩。<br>獨特的活圍設計，不受戒圍限制，隨心定義屬於你的指尖故事。",
+                quote: "「閃耀，不必依附光芒；因為你本身就是星辰。」",
+                story: ["以經典的四爪工藝打造，將高品質莫桑石最大程度地暴露於光線之中，每個角度都能折射出燦爛火彩。", "活圍的貼心細節，免去了測量戒圍的困擾，可隨心情配戴於食指、中指或無名指。"],
+                spec: [["主要材質", "莫桑鑽 / 925 純銀"], ["尺寸", "可調節活圍（適配國際圍 #8 ~ #14）"], ["工藝細節", "手工爪鑲、鏡面拋光處理"]]
+            },
+            2: {
+                name: "扭結愛心 C 字耳貼", price: "NT$ 1,130", material: "925 純銀",
+                img: "./image/扭結愛心C字耳貼.png",
+                desc: "交織的扭結化作內斂的愛心輪廓，立體 C 字弧度完美貼合耳垂。復古與甜美的完美平衡。",
+                quote: "「柔軟的線條，也能有堅定的姿態。」",
+                story: ["扭結線條在耳畔繞出一枚不張揚的愛心，適合沒有耳洞、或想換個輕鬆戴法的日常。", "C 字開口設計方便配戴，貼合耳廓不易滑落。"],
+                spec: [["主要材質", "925 純銀"], ["配戴方式", "耳夾式 / 免耳洞"], ["工藝細節", "手工塑形、拋光處理"]]
+            },
+            3: {
+                name: "愛心粉玉隨拼接小珍珠項鍊", price: "NT$ 1,130", material: "天然珍珠 / 粉玉髓",
+                img: "./image/愛心粉玉隨拼接小珍珠項鍊.png",
+                desc: "天然小珍珠的溫潤光芒，托起粉玉髓的少女心思。優雅卻不流於俗套，是日常配戴最亮眼的陪伴。",
+                quote: "「溫柔，是一種被記住的力量。」",
+                story: ["粉玉髓的柔和色澤搭配天然小珍珠，適合想在素色穿搭裡加一點顏色的日子。", "鍊長設計落在鎖骨附近，單戴或疊戴都合適。"],
+                spec: [["主要材質", "天然珍珠 / 粉玉髓"], ["鍊長", "約 40cm + 5cm 延長鍊"], ["工藝細節", "手工串接"]]
+            },
+            4: {
+                name: "《靜影流光》雙鍊珍珠手鍊", price: "NT$ 1,200", material: "天然珍珠 / 925 純銀",
+                img: "./image/《靜影流光》｜溫柔與俐落的交織・雙鍊珍珠手鍊.png",
+                desc: "一面是金屬鍊條的率性俐落，一面是天然珍珠的溫柔流淌。<br>靜影沉璧，雙向詮釋你的多面氣質。",
+                quote: "「俐落與溫柔，可以是同一個人。」",
+                story: ["雙鍊設計把金屬與珍珠並排在同一條手鍊上，一次擁有兩種調性。", "扣環處可微調鬆緊，適合大多數手圍。"],
+                spec: [["主要材質", "天然珍珠 / 925 純銀"], ["手圍", "約 16cm + 3cm 延長鍊"], ["工藝細節", "雙鍊並接、手工組裝"]]
+            },
+            5: {
+                name: "雛菊珍珠碎銀手鍊", price: "NT$ 1,600", material: "925 純銀 / 天然珍珠",
+                img: "./image/雛菊珍珠碎銀手鍊.png",
+                desc: "碎銀在陽光下灑落不規則的波光，襯托著手作感的手編小雛菊。隨興、自在，帶著一點夏日的田園微風。",
+                quote: "「不完美的形狀，才有手作的溫度。」",
+                story: ["碎銀顆粒大小不一，配戴時會有細碎的閃光，是這款手鍊的特色。", "小雛菊為手編元素，帶有輕鬆的度假感。"],
+                spec: [["主要材質", "925 純銀 / 天然珍珠"], ["手圍", "約 16.5cm + 3cm 延長鍊"], ["工藝細節", "碎銀鑲嵌、手編雛菊"]]
+            },
+            6: {
+                name: "Double Line Star Bracelet", price: "NT$ 1,200", material: "925 純銀",
+                img: "./image/Double Line Star Bracelet.png",
+                desc: "雙鍊設計，讓線條自然落在手腕的弧度上，一顆小星垂墜於中央。純銀的冷調光澤，在舉手投足間輕輕晃動，低調卻始終被看見。",
+                quote: "「低調，不代表不想被看見。」",
+                story: ["雙層細鍊讓手鍊更服貼手腕，中央的小星星是視覺重點。", "純銀材質，冷色調適合搭配銀飾系列。"],
+                spec: [["主要材質", "925 純銀"], ["手圍", "約 16cm + 3cm 延長鍊"], ["工藝細節", "雙層細鍊、星形墜飾"]]
+            },
+            7: {
+                name: "水滴鑽石垂墜耳貼（藍）", price: "NT$ 850", material: "藍鋯石 / 925 純銀",
+                img: "./image/水滴鑽石垂墜耳貼 (藍).png",
+                desc: "如清晨凝結的湛藍水滴，在耳畔搖曳生姿。鋯石爪鑲折射細緻光芒，為清冷氣質加上一枚優雅的印記。",
+                quote: "「一滴藍，剛好的存在感。」",
+                story: ["水滴造型的藍鋯石以爪鑲固定，光線折射明顯。", "垂墜長度適中，日常與正式場合都適合。"],
+                spec: [["主要材質", "藍鋯石 / 925 純銀"], ["配戴方式", "耳夾式 / 免耳洞"], ["工藝細節", "爪鑲、垂墜設計"]]
+            },
+            8: {
+                name: "《光的交響曲》幾何造型項鍊", price: "NT$ 790", material: "925 純銀 / 鋯石",
+                img: "./image/《光的交響曲》✨ 爪鑲拼接幾何造型項鍊 ✨.png",
+                desc: "交錯的幾何線條捕捉了光影變幻。打破常規的對稱美學，是鎖骨間最有記憶點的現代感單品。",
+                quote: "「不對稱，也是一種平衡。」",
+                story: ["幾何線條以不對稱方式排列，鑲入小顆鋯石點綴。", "適合想要簡約但不平凡的穿搭。"],
+                spec: [["主要材質", "925 純銀 / 鋯石"], ["鍊長", "約 42cm + 5cm 延長鍊"], ["工藝細節", "幾何拼接、爪鑲鋯石"]]
+            }
+        };
+
+        // 依網址參數載入對應商品
+        (function loadProduct() {
+            const params = new URLSearchParams(location.search);
+            const id = params.get("id") || "1";
+            const p = PRODUCTS[id] || PRODUCTS["1"];
+
+            document.title = `${p.name} ｜ ZL& accessories`;
+            document.getElementById("mainImage").src = p.img;
+            document.getElementById("mainImage").alt = p.name;
+            document.getElementById("thumb1").src = p.img;
+            document.getElementById("thumb2").src = p.img;
+            document.getElementById("pdBadge").textContent = p.material;
+            document.getElementById("pdTitle").textContent = p.name;
+            document.getElementById("pdPrice").textContent = p.price;
+            document.getElementById("pdDesc").innerHTML = p.desc;
+
+            const story = document.getElementById("pdStory");
+            story.innerHTML =
+                `<h5 style="color:#2D2625; letter-spacing:2px;" class="mb-3">${p.quote}</h5>` +
+                p.story.map(t => `<p>${t}</p>`).join("");
+
+            document.getElementById("pdSpecList").innerHTML = p.spec.map(([k, v]) => `
+                <li class="list-group-item d-flex justify-content-between py-3">
+                    <span class="fw-bold">${k}</span><span class="text-muted">${v}</span>
+                </li>`).join("");
+
+            // 給下方的購物車 / 收藏按鈕記住目前商品
+            window.__currentProduct = { id, name: p.name };
+        })();
+
+        // 切換商品大圖
         function changeImage(src, element) {
             document.getElementById('mainImage').src = src;
             document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
             element.classList.add('active');
         }
 
-        // 2. 數量加減
+        // 數量加減
         function adjustQty(amount) {
             const qtyInput = document.getElementById('cartQty');
             let currentQty = parseInt(qtyInput.value) || 1;
@@ -461,21 +564,20 @@ body {
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            // 3. 加入購物車提示
-            const addToCartBtn = document.getElementById("addToCartBtn");
-            addToCartBtn.addEventListener("click", function () {
+            const current = window.__currentProduct || { id: "1", name: "" };
+
+            // 加入購物車提示
+            document.getElementById("addToCartBtn").addEventListener("click", function () {
                 const qty = document.getElementById("cartQty").value;
-                alert(`已將 ${qty} 件「爪鑲莫桑石活圍戒指」加入您的購物車 🤎`);
+                alert(`已將 ${qty} 件「${current.name}」加入您的購物車 🤎`);
             });
 
-            // 4. 大圖頁收藏按鈕與 LocalStorage 同步
+            // 大圖頁收藏按鈕與 localStorage 同步
             const favBtn = document.getElementById("favBtnLarge");
-            const productId = "prod-001";
+            const productId = "prod-" + String(current.id).padStart(3, "0");
             let favorites = JSON.parse(localStorage.getItem("zl_favorites")) || [];
 
-            if (favorites.includes(productId)) {
-                favBtn.classList.add("active");
-            }
+            if (favorites.includes(productId)) favBtn.classList.add("active");
 
             favBtn.addEventListener("click", function () {
                 this.classList.toggle("active");

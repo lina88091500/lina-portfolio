@@ -38,7 +38,7 @@
                             <input type="text" name="acc[]" value="<?= htmlspecialchars($row['acc']); ?>" style="width:90%;">
                         </td>
                         <td width="42%">
-                            <input type="password" name="pw[]" value="<?= htmlspecialchars($row['pw']); ?>" style="width:90%;">
+                            <input type="password" name="pw[]" value="" placeholder="留空＝不變更密碼" style="width:90%;">
                         </td>
                         <td width="16%" class="cent">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">

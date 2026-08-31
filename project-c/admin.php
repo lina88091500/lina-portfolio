@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bloom Aesthetic Studio | 品牌專櫃後台管理中心</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 <link href="./css/css.css" rel="stylesheet" type="text/css">
 <script src="./js/jquery-1.9.1.min.js"></script>
 <script src="./js/js.js"></script>

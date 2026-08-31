@@ -15,6 +15,9 @@ if(!empty($_FILES['img']['tmp_name'])){
         break;
         case 'admin':
             unset($_POST['pw2']);
+            if (!empty($_POST['pw'])) {
+                $_POST['pw'] = password_hash($_POST['pw'], PASSWORD_DEFAULT);
+            }
         break;
         case "menu":
             $_POST['main_id']=0;

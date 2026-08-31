@@ -30,14 +30,15 @@
                     $rows=$db->all();
                     if(empty($rows)){
                         $rows = [
-                            ['id'=>1, 'img'=>'top_ad_banner.svg', 'text'=>'Bloom Aesthetic Studio - 日本精緻美妝與美學誌', 'sh'=>1]
+                            ['id'=>1, 'img'=>'header_jbeauty_v2.png', 'text'=>'Bloom Aesthetic Studio - 日本精緻美妝與美學誌', 'sh'=>1]
                         ];
                     }
                     foreach($rows as $row):
+                        $rowImage = (!empty($row['img']) && file_exists("upload/" . $row['img'])) ? $row['img'] : 'header_jbeauty_v2.png';
                     ?>
                     <tr>
                         <td width="42%" class="cent">
-                            <img src="./upload/<?= $row['img']; ?>" style="width:230px; height:36px; object-fit:cover; border-radius:6px; border:1px solid var(--j-pink-accent);">
+                            <img src="./upload/<?= htmlspecialchars($rowImage); ?>" style="width:230px; height:36px; object-fit:cover; border-radius:6px; border:1px solid var(--j-pink-accent);">
                         </td>
                         <td width="24%">
                             <input type="text" name="text[]" value="<?= htmlspecialchars($row['text']); ?>" style="width:95%;">
