@@ -7,7 +7,7 @@
                     <a href="?do=admin" style="color:var(--j-primary-dark); text-decoration:none; font-size:14px;">🌸 品牌網頁與視覺管理中心 (Admin Control Panel)</a>
                 </td>
                 <td style="text-align:right;">
-                    <button onclick="document.cookie='user=';location.replace('index.php')" style="padding:8px 16px; font-size:12.5px;">🔐 管理員登出 Log out</button>
+                    <button onclick="location.href='admin.php?do=logout'" style="padding:8px 16px; font-size:12.5px;">🔐 管理員登出 Log out</button>
                 </td>
             </tr>
         </tbody>

@@ -128,6 +128,12 @@ class DB
         $res = $this->pdo->query($sql);
         return $res ? $res->fetchAll(PDO::FETCH_ASSOC) : [];
     }
+
+    /** 是否成功連上資料庫（false = 進入範例資料展示模式） */
+    function connected()
+    {
+        return $this->pdo !== null;
+    }
 }
 
 function dd($array)
@@ -154,6 +160,14 @@ $Menu   = new DB('menu');
 $Total  = new DB('total');
 $Bottom = new DB('bottom');
 
+
+// 登出：清掉登入狀態後回首頁
+if (($_GET['do'] ?? '') === 'logout') {
+    $_SESSION = [];
+    session_destroy();
+    header("Location: index.php");
+    exit;
+}
 
 // 一個瀏覽階段只計一次訪客數
 if (!isset($_SESSION['visit'])) {

@@ -1,4 +1,11 @@
-<?php include_once "./api/db.php";?>
+<?php
+include_once "./api/db.php";
+// 後台守衛：未登入直接導回登入頁
+if (empty($_SESSION['login'])) {
+    header("Location: index.php?do=login");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
