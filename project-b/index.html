@@ -279,6 +279,11 @@
 
 <body>
 
+     <!-- 面試官示範帳號提示 -->
+     <div style="background:#4a4540; color:#f0e4d8; font-size:13px; letter-spacing:0.3px; text-align:center; padding:8px 16px; line-height:1.6;">
+          面試官示範：點右上「登入」進入後台 —— 帳號 <strong>admin</strong>、密碼 <strong>1234</strong>（本頁為前端展示，實際輸入任意帳密皆可登入）。
+     </div>
+
      <!-- 導覽列 -->
      <nav class="navbar navbar-expand-sm navbar-light bg-white">
           <div class="container-fluid">
@@ -298,8 +303,8 @@
                               <a class="nav-link" href="javascript:void(0)">領養諮詢</a>
                          </li>
 
-                         <!-- 【全新關鍵修正】加入後台管理連結，預設加上 d-none 隱藏（沒登入的完全看不到） -->
-                         <li class="nav-item" id="admin-nav-item">
+                         <!-- 後台管理連結：預設用 inline style 隱藏，登入後由下方 JS 顯示（沒登入的完全看不到、也不會閃現） -->
+                         <li class="nav-item" id="admin-nav-item" style="display:none;">
                               <a class="nav-link admin-link" href="./admin.html">⚙️ 後台管理</a>
                          </li>
                     </ul>

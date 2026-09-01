@@ -37,6 +37,10 @@ function showNewsDetail(el) {
 
 <body class="front-page">
 
+<div style="background:#7E4A52; color:#FFF0F3; font-size:13px; letter-spacing:0.3px; text-align:center; padding:8px 16px; line-height:1.6;">
+    面試官示範：點「品牌後台管理」進入後台 —— 帳號 <strong>admin</strong>、密碼 <strong>1234</strong>（未匯入資料庫也能登入瀏覽）。
+</div>
+
 <?php $do = $_GET['do'] ?? 'main'; ?>
 <?php include 'include/front_nav.php'; ?>
 

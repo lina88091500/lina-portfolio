@@ -367,10 +367,10 @@
                     <div class="go">開啟專案 →</div>
                 </a>
 
-                <a class="card" href="./project-d/index.html">
+                <a class="card" href="./project-b/index.html">
                     <div class="kind">後台介面原型</div>
                     <h3>尋找貓咪的家 · 領養平台</h3>
-                    <div class="folder">project-d/</div>
+                    <div class="folder">project-b/</div>
                     <p>
                         貓咪領養網站的前後台流程原型。前台有輪播、待領養列表與詳情頁；
                         後台是一套完整的「列表 → 新增 → 修改 → 刪除」介面設計，
@@ -385,12 +385,12 @@
 
             <div class="group-label">Bloom Aesthetic Studio · 同一套系統的兩種版面</div>
             <div class="cards">
-                <a class="card" href="./project-b/index.php">
+                <a class="card" href="./project-d/index.php">
                     <div class="kind">PHP + MySQL 動態網站</div>
                     <h3>日系美妝 CMS · 固定版面版</h3>
-                    <div class="folder">project-b/</div>
+                    <div class="folder">project-d/</div>
                     <p>
-                        以網頁設計乙級檢定題目為基礎改作的內容管理系統。前台呈現品牌內容，
+                        以網頁設計乙級檢定題目為基礎改作的內容管理系統，前台固定 1024px 版面。
                         後台可管理網站標題、輪播圖、最新消息、導覽選單與管理員帳號。
                         資料存在 MySQL；連不到資料庫時會自動改用內建範例資料，讓畫面仍可完整呈現。
                     </p>
@@ -405,7 +405,7 @@
                     <h3>日系美妝 CMS · RWD 版面版</h3>
                     <div class="folder">project-c/</div>
                     <p>
-                        與 project-b 同一套後端邏輯，但把前台從固定 1024px 版面重寫為流動式響應式版面：
+                        與 project-d 同一套後端邏輯，但把前台從固定 1024px 版面重寫為流動式響應式版面：
                         新的置頂導覽列、可捲動的選單、依裝置寬度自動調整的三欄／單欄佈局，
                         手機、平板、桌機都能正常閱讀。
                     </p>
@@ -423,9 +423,16 @@
             <h2 class="section-title">關於這些專案</h2>
             <p class="section-note" style="margin-bottom:14px;">給第一次看的人的幾點說明。</p>
             <ul style="color:var(--ink-soft); font-size:0.92rem; padding-left:1.2em; display:flex; flex-direction:column; gap:8px;">
-                <li>project-a 與 project-d 是純前端網頁，直接用瀏覽器開啟 <code>index.html</code> 就能看。</li>
-                <li>project-b 與 project-c 需要 PHP 環境（例如 XAMPP）。把資料夾放到網站根目錄後開啟 <code>index.php</code>；沒有匯入資料庫也能看到畫面（會顯示範例資料）。</li>
-                <li>後台預設登入帳號密碼皆為 <code>admin</code> / <code>1234</code>。</li>
+                <li>project-a 與 project-b 是純前端網頁，直接用瀏覽器開啟 <code>index.html</code> 就能看。</li>
+                <li>project-c 與 project-d 需要 PHP 環境（例如 XAMPP）。把資料夾放到網站根目錄後開啟 <code>index.php</code>；沒有匯入資料庫也能看到畫面（會顯示範例資料）。</li>
+                <li>
+                    <strong>給面試官的示範帳號</strong>（各專案首頁上也都有標示）：
+                    <ul style="margin-top:6px; padding-left:1.2em; display:flex; flex-direction:column; gap:4px;">
+                        <li>project-a（飾品電商）：會員登入為前端示範，輸入<strong>任意 Email 與密碼</strong>即可登入。</li>
+                        <li>project-b（尋找貓咪的家）：點右上「登入」，帳號 <code>admin</code>、密碼 <code>1234</code>（前端示範，任意輸入亦可）。</li>
+                        <li>project-c／project-d（日系美妝 CMS）：點「品牌後台管理」，帳號 <code>admin</code>、密碼 <code>1234</code>。</li>
+                    </ul>
+                </li>
                 <li>製作方式與每個檔案的整理重點，寫在 <a href="./作品集說明.md" style="border-bottom:1px solid var(--accent);">作品集說明.md</a>。</li>
             </ul>
         </div>

@@ -37,6 +37,10 @@ function showNewsDetail(el) {
 
 <body>
 
+<div style="background:#7E4A52; color:#FFF0F3; font-size:13px; letter-spacing:0.3px; text-align:center; padding:8px 16px; line-height:1.6;">
+    面試官示範：點「品牌後台管理」進入後台 —— 帳號 <strong>admin</strong>、密碼 <strong>1234</strong>（未匯入資料庫也能登入瀏覽）。
+</div>
+
 <div id="cover" style="display:none;">
 	<div id="coverr">
     	<a style="position:absolute; right:15px; top:12px; cursor:pointer; z-index:9999; font-size:20px; color:#7E4A52;" onclick="cl('#cover')">✕</a>

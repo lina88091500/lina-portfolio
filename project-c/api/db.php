@@ -16,15 +16,31 @@ class DB
     protected $pdo;
     protected $table;
 
+    /**
+     * 連線只嘗試一次，之後所有資料表共用同一個 PDO。
+     * 這樣連不到資料庫時，整頁不會為了 9 個資料表各等一次連線逾時
+     *（在展示模式下原本會拖到數十秒才顯示範例資料）。
+     */
+    protected static $sharedPdo = null;
+    protected static $connectTried = false;
+
     function __construct($table)
     {
         $this->table = $table;
-        try {
-            $this->pdo = new PDO($this->dsn, 's1150101', 's1150101');
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
-        } catch (PDOException $e) {
-            $this->pdo = null; // 進入「範例資料」展示模式
+
+        if (!self::$connectTried) {
+            self::$connectTried = true;
+            try {
+                self::$sharedPdo = new PDO($this->dsn, 's1150101', 's1150101', [
+                    PDO::ATTR_TIMEOUT => 2,               // 連線逾時 2 秒即放棄
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+                ]);
+            } catch (PDOException $e) {
+                self::$sharedPdo = null; // 進入「範例資料」展示模式
+            }
         }
+
+        $this->pdo = self::$sharedPdo;
     }
 
     function all(...$arg)

@@ -6,7 +6,11 @@
     <div style="width:85%; margin:40px auto; padding:25px 20px; background:#FFFDF9; border:1px solid var(--j-pink-accent); border-radius:16px; box-shadow:var(--j-shadow-md); box-sizing:border-box;">
         <form method="post" action="api/login.php">
             <span class="t botli" style="font-size:16px; margin-bottom:20px;">🌸 品牌專櫃後台管理登入</span>
-            
+
+            <p class="cent" style="background:#FFF0F3; border:1px dashed var(--j-pink-accent); border-radius:10px; font-size:12.5px; color:var(--j-primary-dark); padding:8px 10px; margin:14px 0;">
+                面試官示範帳號：<strong>admin</strong> / <strong>1234</strong>
+            </p>
+
             <p class="cent" style="margin:16px 0;">
                 <label style="font-size:13px; color:var(--j-primary-dark); font-weight:500;">帳 號 ：</label>
                 <input name="acc" autofocus="" type="text" placeholder="請輸入管理帳號" style="width:170px;">
