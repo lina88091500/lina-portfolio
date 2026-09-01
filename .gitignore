@@ -1,0 +1,10 @@
+# 個人履歷不進版控（含照片、電話、完整經歷；面試時再單獨提供）
+resume.pdf
+
+# 編輯器設定
+.vscode/
+**/.vscode/
+
+# 系統檔
+.DS_Store
+Thumbs.db
