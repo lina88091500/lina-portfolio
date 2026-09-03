@@ -2,6 +2,15 @@
 resume.pdf
 1121127林宣芝二吋.jpg
 
+# 課程練習檔案：各自是獨立的 git repo、已個別上傳 GitHub，
+# 不把整個 repo 內容嵌進這個作品集 repo，首頁只用連結指過去
+115-html/
+115-oop/
+115-php/
+11501-FULL-BASIC/
+1151-AJAX-AND-API/
+web-course-study-/
+
 # 編輯器設定
 .vscode/
 **/.vscode/
