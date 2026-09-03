@@ -8,6 +8,8 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128062;</text></svg>">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- 共用的貓咪清單存取工具：新增／修改／刪除都靠它讀寫同一份資料 -->
+     <script src="./cats-data.js"></script>
      <script>
           if (localStorage.getItem("isLoggedIn") !== "true") {
                alert("請先以管理員身分登入");
@@ -145,21 +147,52 @@
 
      <div class="container mt-3">
           <h2>登記新貓咪</h2>
-          <form action="./store.html" method="GET" enctype="multipart/form-data">
+          <form id="createForm" onsubmit="return handleCreate(event)">
                <div class="mb-3 mt-4">
                     <label for="name">貓咪名字：</label>
-                    <!-- 💡 拔掉了 required，現在不輸入名字也能送出測試 -->
-                    <input type="text" class="form-control" id="name" placeholder="請輸入貓咪名字" name="name">
+                    <input type="text" class="form-control" id="name" placeholder="請輸入貓咪名字" name="name" required>
                </div>
                <div class="mb-3">
                     <label for="image">上傳照片：</label>
-                    <!-- 💡 拔掉了 required，現在不上傳照片也能送出測試 -->
                     <input type="file" class="form-control" id="image" name="image" accept="image/*">
                </div>
                <button type="submit" class="btn btn-primary">確認登記</button>
                <a href="../admin.html" class="btn btn-primary ms-2">返回</a>
           </form>
      </div>
+
+     <!-- 送出後把新貓咪真正存進共用清單，再導去登記成功頁 -->
+     <script>
+          function handleCreate(event) {
+               event.preventDefault();
+
+               const name = document.getElementById("name").value.trim();
+               if (!name) {
+                    alert("請輸入貓咪名字");
+                    return false;
+               }
+
+               const file = document.getElementById("image").files[0];
+
+               function finishCreate(imgSrc) {
+                    CatStore.addCat({ name: name, img: imgSrc });
+                    window.location.href = "./store.html";
+               }
+
+               if (file) {
+                    // 純前端展示，沒有後端伺服器可存檔，改用 FileReader 把照片轉成
+                    // data URL 直接存進 localStorage，讓後台列表能立刻顯示這張照片
+                    const reader = new FileReader();
+                    reader.onload = function (e) { finishCreate(e.target.result); };
+                    reader.onerror = function () { finishCreate(CatStore.PLACEHOLDER_IMG); };
+                    reader.readAsDataURL(file);
+               } else {
+                    finishCreate(CatStore.PLACEHOLDER_IMG);
+               }
+
+               return false;
+          }
+     </script>
 
 </body>
 

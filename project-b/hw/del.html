@@ -8,6 +8,8 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128062;</text></svg>">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- 共用的貓咪清單存取工具：新增／修改／刪除都靠它讀寫同一份資料 -->
+     <script src="./cats-data.js"></script>
      <script>
           if (localStorage.getItem("isLoggedIn") !== "true") {
                alert("請先以管理員身分登入");
@@ -29,10 +31,26 @@
 
      <div class="card">
           <div class="icon">✨</div>
-          <h2>刪除成功！</h2>
-          <p>已成功移除該筆貓咪資料，謝謝您的協助管理。</p>
+          <h2 id="del-title">刪除成功！</h2>
+          <p id="del-message">已成功移除該筆貓咪資料，謝謝您的協助管理。</p>
           <a href="../admin.html" class="btn-primary">回管理後台</a>
      </div>
+
+     <!-- 真正從共用清單裡移除這筆資料，而不是只顯示一句固定的成功訊息 -->
+     <script>
+          const urlParams = new URLSearchParams(window.location.search);
+          const catId = urlParams.get('id');
+          const removed = catId ? CatStore.removeCat(catId) : null;
+
+          if (removed) {
+               document.getElementById('del-message').textContent =
+                    `「${removed.name}」已成功移除，希望牠已經找到溫暖的家。`;
+          } else {
+               document.getElementById('del-title').textContent = "找不到這筆資料";
+               document.getElementById('del-message').textContent =
+                    "這筆貓咪資料可能已經被移除過了。";
+          }
+     </script>
 
 </body>
 
