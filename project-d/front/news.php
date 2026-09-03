@@ -1,9 +1,13 @@
+<?php $do = $do ?? ($_GET['do'] ?? 'news'); ?>
 <div style="height:540px; border:1px solid var(--j-border); border-radius:16px; width:100%; margin:0; background:rgba(255,255,255,0.85); box-shadow:var(--j-shadow-sm); padding:10px; box-sizing:border-box;">
     <?php include "include/marquee.php";?>
     <div style="height:20px; display:block;"></div>
     
     <div style="padding:10px 15px; position:relative;">
-        <span class="t botli" style="text-align:left; font-size:15px;">🌸 日系美粧專欄 & 全站情報列表</span>
+        <div class="news-page-toolbar">
+            <span class="t botli">🌸 日系美粧專欄 & 全站情報列表</span>
+            <a class="news-home-link" href="index.php">← 返回首頁</a>
+        </div>
         
         <?php 
         $all = 0;

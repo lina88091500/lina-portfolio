@@ -8,7 +8,7 @@
             <span class="t botli" style="font-size:16px; margin-bottom:20px;">🌸 品牌專櫃後台管理登入</span>
 
             <p class="cent" style="background:#FFF0F3; border:1px dashed var(--j-pink-accent); border-radius:10px; font-size:12.5px; color:var(--j-primary-dark); padding:8px 10px; margin:14px 0;">
-                面試官示範帳號：<strong>admin</strong> / <strong>1234</strong>
+                帳密使用登入號：<strong>admin</strong> / <strong>1234</strong>
             </p>
 
             <p class="cent" style="margin:16px 0;">

@@ -1,4 +1,3 @@
-<?php $do = $_GET['do'] ?? 'title'; ?>
 <div class="di back-center-panel">
     <!--後台頂部導覽區-->
     <table width="100%" style="margin-bottom:10px;">

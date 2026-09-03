@@ -34,7 +34,7 @@ if (empty($_SESSION['login'])) {
 		</div>
 
     	<?php 
-        $titleImg = "upload/header_jbeauty_v2.png";
+		$titleImg = "upload/header_jbeauty_v2.png";
 		$titleText = "Bloom Aesthetic Studio - 品牌後台管理中心";
 		if (isset($Title)) {
 			$title = $Title->find(['sh'=>1]);

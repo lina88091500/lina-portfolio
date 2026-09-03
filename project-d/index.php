@@ -35,11 +35,26 @@ function showNewsDetail(el) {
 </script>
 </head>
 
-<body>
+<body class="front-page">
 
 <div style="background:#7E4A52; color:#FFF0F3; font-size:13px; letter-spacing:0.3px; text-align:center; padding:8px 16px; line-height:1.6;">
-    面試官示範：點「品牌後台管理」進入後台 —— 帳號 <strong>admin</strong>、密碼 <strong>1234</strong>（未匯入資料庫也能登入瀏覽）。
+    帳密使用登入號：點「品牌後台管理」進入後台 —— 帳號 <strong>admin</strong>、密碼 <strong>1234</strong>（未匯入資料庫也能登入瀏覽）。
 </div>
+
+<?php $do = $_GET['do'] ?? 'main'; ?>
+<?php include 'include/front_nav.php'; ?>
+
+<?php
+$totalCount = 12580;
+if (isset($Total)) {
+    $tData = $Total->find(1);
+    if (!empty($tData['total'])) $totalCount = $tData['total'];
+}
+?>
+<aside class="floating-visitor" aria-label="網站訪客人數">
+    <span>VIP VISITORS</span>
+    <strong>🌸 貴賓蒞臨 : <?= number_format($totalCount); ?> 人</strong>
+</aside>
 
 <div id="cover" style="display:none;">
 	<div id="coverr">
@@ -57,7 +72,7 @@ function showNewsDetail(el) {
 		</div>
 
     	<?php 
-		$titleImg = "upload/header_jbeauty_v2.png";
+        $titleImg = "upload/header_jbeauty_v2.png";
 		$titleText = "Bloom Aesthetic Studio - 日本精緻美妝與美學誌";
 		if (isset($Title)) {
 			$title = $Title->find(['sh'=>1]);
@@ -75,7 +90,7 @@ function showNewsDetail(el) {
 			</div>
 		</a>
         
-    	<div id="ms">
+    	<div id="ms" class="<?= ($do === 'news') ? 'news-layout' : ''; ?>">
             <!--🔒 左側主選單欄位 (FixedWidth 215px)-->
             <div id="lf">
                 <div id="menuput" class="dbor">
@@ -145,7 +160,6 @@ function showNewsDetail(el) {
             <!--🔒 中央主動態內容區 (FixedWidth 540px)-->
             <div class="di main-center-panel">
 				<?php 
-				$do = $_GET['do'] ?? "main";
 				$file = "front/$do.php";
 				if (file_exists($file)) {
 					include $file;
@@ -166,7 +180,7 @@ function showNewsDetail(el) {
                     
                     <!-- 上按鈕：強迫水平置中 -->
                     <div class="gallery-arrow-container">
-                        <img src="icon/up.png" onclick="pp(1)" style="cursor:pointer; width:22px; height:auto; margin:0 auto; display:block; filter: drop-shadow(0 2px 4px rgba(126,74,82,0.2));" alt="Up">
+                        <button type="button" class="gallery-arrow" onclick="pp(1)" aria-label="上一組圖片">▲</button>
                     </div>
                     
                     <?php 
@@ -192,7 +206,7 @@ function showNewsDetail(el) {
                     
                     <!-- 下按鈕：強迫水平置中 -->
                     <div class="gallery-arrow-container">
-                        <img src="icon/dn.png" onclick="pp(2)" style="cursor:pointer; width:22px; height:auto; margin:0 auto; display:block; filter: drop-shadow(0 2px 4px rgba(126,74,82,0.2));" alt="Down">
+                        <button type="button" class="gallery-arrow" onclick="pp(2)" aria-label="下一組圖片">▼</button>
                     </div>
 
                     <script>
