@@ -166,6 +166,16 @@
             box-shadow: 0 6px 16px rgba(156, 92, 104, 0.28);
         }
 
+        nav.tabs a.tab-out {
+            border: 1px solid var(--line);
+            color: var(--accent);
+            margin-left: 6px;
+        }
+
+        nav.tabs a.tab-out:hover {
+            border-color: var(--accent);
+        }
+
         /* ============ 分頁容器 ============ */
         .page {
             display: none;
@@ -1042,6 +1052,7 @@
                 <a href="#/works" data-tab="works">作品</a>
                 <a href="#/learning" data-tab="learning">學習歷程</a>
                 <a href="#/contact" data-tab="contact">聯絡我</a>
+                <a href="./resume.html" class="tab-out">履歷 ↗</a>
             </nav>
         </div>
     </header>

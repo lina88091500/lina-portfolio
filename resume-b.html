@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>林宣芝 Lina｜履歷 · 版型 B</title>
+    <meta name="description" content="林宣芝（Lina）的求職履歷 —— 網頁工程師／前端工程師。" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128196;</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            /* 專業藍 */
+            --sand: #d7e0ea;      /* 左欄底色 */
+            --sand-deep: #bccbdb;
+            --ink: #1f2a36;
+            --ink-soft: #4a5766;
+            --ink-faint: #8592a1;
+            --line: #dde5ee;
+            --accent: #2f5d8a;    /* 主藍 */
+            --accent-deep: #1c3a5c;  /* 深海軍藍 */
+            --accent-soft: #e6eef7;
+            --gold: #4a86b8;      /* 亮藍點綴 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e8ecf1;
+            color: var(--ink);
+            font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            padding: 24px 16px 60px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.32;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============ A4 ============ */
+        .a4 {
+            position: relative;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: var(--sand);
+            box-shadow: 0 20px 54px rgba(60, 45, 40, 0.18);
+            display: grid;
+            grid-template-columns: 84mm 1fr;
+            overflow: hidden;
+            font-size: 12pt;
+            line-height: 1.62;
+        }
+
+        /* ============ 左欄 ============ */
+        .left {
+            padding: 12mm 7mm 12mm 10mm;
+            display: flex;
+            flex-direction: column;
+            gap: 6mm;
+            position: relative;
+        }
+
+        /* 照片形狀：拱形（上圓下方）
+           想換形狀就改下面兩個 border-radius（.photo-wrap 與 img 要一致）：
+           正圓 → 50%　／　圓角方 → 5mm　／　葉形 → 22mm 4mm 22mm 4mm */
+        .photo-wrap {
+            width: 44mm;
+            height: 52mm;
+            margin: 0 auto;
+            border-radius: 22mm 22mm 5mm 5mm;
+            padding: 1.6mm;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(28, 58, 92, 0.14);
+        }
+
+        .photo-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20.4mm 20.4mm 3.6mm 3.6mm;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+        }
+
+        .id-block {
+            text-align: center;
+        }
+
+        .id-block h1 {
+            font-size: 25pt;
+            letter-spacing: 4px;
+        }
+
+        .id-block .en {
+            font-size: 9.6pt;
+            letter-spacing: 1.6px;
+            color: var(--ink-faint);
+            font-weight: 300;
+            margin-top: 1px;
+        }
+
+        .id-block .job {
+            display: inline-block;
+            margin-top: 5px;
+            background: #fff;
+            color: var(--accent-deep);
+            border-radius: 999px;
+            padding: 1px 14px;
+            font-size: 11pt;
+            font-weight: 500;
+        }
+
+        .left h2 {
+            font-size: 13pt;
+            color: var(--accent-deep);
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .left h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(28, 58, 92, 0.26);
+        }
+
+        .left p, .left li {
+            font-size: 11.4pt;
+            color: var(--ink-soft);
+            line-height: 1.66;
+            text-align: justify;
+        }
+
+        .left p strong {
+            color: var(--accent-deep);
+            font-weight: 500;
+        }
+
+        .port .url {
+            display: block;
+            font-size: 11.6pt;
+            font-weight: 500;
+            color: var(--accent-deep);
+            background: rgba(255, 255, 255, 0.62);
+            border-radius: 999px;
+            padding: 1px 12px;
+            margin-bottom: 2mm;
+            text-align: center;
+        }
+
+        .port ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1mm;
+        }
+
+        .port li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            font-size: 10.8pt;
+        }
+
+        .port li::before {
+            content: "";
+            width: 2.4mm;
+            height: 2.4mm;
+            background: var(--gold);
+            border-radius: 50%;
+            flex: 0 0 auto;
+        }
+
+        .contact {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6mm;
+        }
+
+        .contact li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            word-break: break-all;
+        }
+
+        .contact li i {
+            flex: 0 0 auto;
+            width: 6.5mm;
+            height: 6.5mm;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--accent);
+            font-style: normal;
+            font-size: 8.6pt;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0;
+        }
+
+        /* ============ 右欄白卡 ============ */
+        .right {
+            padding: 9mm 9mm 12mm 4mm;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 7mm;
+            height: 100%;
+            padding: 9mm 8mm 8mm;
+            display: flex;
+            flex-direction: column;
+            gap: 6mm;
+        }
+
+        .card h2 {
+            font-size: 14.5pt;
+            color: var(--accent-deep);
+            letter-spacing: 2px;
+            margin-bottom: 3mm;
+        }
+
+        /* 技能圓環 */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4mm 2mm;
+        }
+
+        .skill {
+            text-align: center;
+        }
+
+        .skill .ring {
+            position: relative;
+            width: 15mm;
+            height: 15mm;
+            margin: 0 auto 1.2mm;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--sand) 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill .ring::before {
+            content: "";
+            position: absolute;
+            inset: 1.5mm;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .skill .ring b {
+            position: relative;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 10.5pt;
+            font-weight: 600;
+            color: var(--accent-deep);
+            letter-spacing: 0;
+        }
+
+        .skill span {
+            display: block;
+            font-size: 9.4pt;
+            color: var(--ink-faint);
+            line-height: 1.3;
+        }
+
+        /* 時間軸 */
+        .tl {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tl li {
+            display: grid;
+            grid-template-columns: 26mm 1fr;
+            gap: 5mm;
+            padding-bottom: 3.4mm;
+            position: relative;
+        }
+
+        .tl li:last-child {
+            padding-bottom: 0;
+        }
+
+        .tl .when {
+            font-size: 9.6pt;
+            color: var(--accent-deep);
+            background: var(--accent-soft);
+            border-radius: 999px;
+            text-align: center;
+            padding: 0.6mm 0;
+            height: fit-content;
+            white-space: nowrap;
+        }
+
+        .tl .body {
+            position: relative;
+            padding-left: 6mm;
+            border-left: 1px solid var(--line);
+        }
+
+        .tl .body::before {
+            content: "";
+            position: absolute;
+            left: -1.6mm;
+            top: 2.6mm;
+            width: 3.2mm;
+            height: 3.2mm;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .tl li:last-child .body {
+            border-left-color: transparent;
+        }
+
+        .tl h3 {
+            font-size: 12.4pt;
+        }
+
+        .tl .org {
+            font-size: 10.2pt;
+            color: var(--ink-faint);
+            line-height: 1.4;
+            margin-bottom: 0.6mm;
+        }
+
+        .tl p {
+            font-size: 11pt;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* ============ 工具列 ============ */
+        .toolbar {
+            width: 210mm;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .toolbar .hint {
+            font-size: 8.8pt;
+            color: #8d867f;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 9.5pt;
+            font-weight: 500;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            font-family: inherit;
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn.on {
+            background: var(--accent-soft);
+        }
+
+        @media (max-width: 830px) {
+            body {
+                padding: 14px 0 40px;
+            }
+
+            .stage {
+                width: 210mm;
+                transform-origin: top center;
+                transform: scale(0.6);
+                margin: 0 auto;
+                height: calc(297mm * 0.6 + 60px);
+            }
+
+            .toolbar {
+                width: auto;
+                padding: 0 14px;
+            }
+
+            .toolbar .hint {
+                margin-left: 0;
+                text-align: left;
+                width: 100%;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .toolbar {
+                display: none !important;
+            }
+
+            .stage {
+                transform: none;
+                width: auto;
+                height: auto;
+            }
+
+            .a4 {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: avoid;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .card, .tl .when, .id-block .job, .contact li i, .port .url {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="window.print()">列印 ／ 存成 PDF</button>
+        <a class="btn" href="./resume.html">版型 A</a>
+        <a class="btn on" href="./resume-b.html">版型 B</a>
+        <a class="btn" href="./resume-c.html">版型 C</a>
+        <a class="btn" href="./resume-d.html">版型 D</a>
+        <a class="btn" href="./index.html">回作品集</a>
+        <div class="hint">列印時請勾選「背景圖形」，藍色底與白卡才會印出來。</div>
+    </div>
+
+    <div class="stage">
+        <div class="a4">
+
+            <!-- ============ 左欄 ============ -->
+            <div class="left">
+                <div class="photo-wrap">
+                    <img src="./1121127林宣芝二吋.jpg" alt="林宣芝">
+                </div>
+
+                <div class="id-block">
+                    <h1>林宣芝</h1>
+                    <div class="en">Lin-Xuan-Zhi ｜ Lina</div>
+                    <div class="job">網頁工程師 ／ 前端工程師</div>
+                </div>
+
+                <section>
+                    <h2>介紹</h2>
+                    <p>
+                        服務業與行政資歷約 8 年，近兩年在房仲門市擔任<strong>店務秘書兼社群小編</strong>，
+                        負責全店的宣傳圖文、形象照修圖與活動影片。
+                        2026 年參加勞動部「全端網頁開發與 AI 應用」職前訓練，把美編經驗延伸到網頁實作。
+                    </p>
+                </section>
+
+                <section class="port">
+                    <h2>作品集</h2>
+                    <a class="url" href="http://220.128.133.15/s1150101/lina/index.html">220.128.133.15/s1150101/lina</a>
+                    <ul>
+                        <li>ZL&amp; accessories 飾品電商</li>
+                        <li>尋找貓咪的家 領養平台</li>
+                        <li>Bloom 日系美妝 CMS</li>
+                        <li>Bloom CMS・RWD 重構版</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>聯絡我</h2>
+                    <ul class="contact">
+                        <li><i>T</i>0960-988-172</li>
+                        <li><i>@</i>a88091500@gmail.com</li>
+                        <li><i>◎</i>新北市淡水區</li>
+                        <li><i>G</i>github.com/lina88091500</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- ============ 右欄白卡 ============ -->
+            <div class="right">
+                <div class="card">
+
+                    <section>
+                        <h2>技能</h2>
+                        <div class="skill-grid">
+                            <div class="skill">
+                                <div class="ring" style="--p:70"><b>70</b></div><span>Photoshop</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:70"><b>70</b></div><span>Illustrator</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:70"><b>70</b></div><span>Canva</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:65"><b>65</b></div><span>HTML5</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:65"><b>65</b></div><span>CSS3</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:65"><b>65</b></div><span>Git / GitHub</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:60"><b>60</b></div><span>AI 輔助開發</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:60"><b>60</b></div><span>影片剪輯</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:55"><b>55</b></div><span>RWD</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:50"><b>50</b></div><span>JavaScript</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:50"><b>50</b></div><span>PHP</span>
+                            </div>
+                            <div class="skill">
+                                <div class="ring" style="--p:45"><b>45</b></div><span>MySQL</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>經歷</h2>
+                        <ul class="tl">
+                            <li>
+                                <div class="when">2024/05 – 2026/01</div>
+                                <div class="body">
+                                    <h3>店務秘書（兼社群小編）</h3>
+                                    <div class="org">永慶不動產籬仔內瑞豐加盟店・鉅鈦不動產仲介經紀</div>
+                                    <p>以 Photoshop、Illustrator、Canva 製作店內宣傳圖文與業務形象照修圖；負責活動拍攝、影片剪輯與社群發文，每月製作 PPT 圖表報告並協助開會，並處理案件文書與資料統整。</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="when">2020/05 – 2023/03</div>
+                                <div class="body">
+                                    <h3>作業員／包裝員</h3>
+                                    <div class="org">橙品手作烘焙</div>
+                                    <p>負責分裝、標籤製作與收貨揀貨，協調分裝組工作事項，並帶領約 10 位新進人員。</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="when">2015/07 – 2024/01</div>
+                                <div class="body">
+                                    <h3>餐飲服務生・牙醫助理</h3>
+                                    <div class="org">永和豆漿・食忤生活輕食・陳學偉牙科</div>
+                                    <p>累積第一線接待與現場應對經驗。</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>教育與訓練</h2>
+                        <ul class="tl">
+                            <li>
+                                <div class="when">2026/04 – 2026/09</div>
+                                <div class="body">
+                                    <h3>全端網頁開發與 AI 應用</h3>
+                                    <div class="org">勞動部勞動力發展署 職前訓練</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="when">進修課程</div>
+                                <div class="body">
+                                    <h3>Photoshop・社群小編實務</h3>
+                                    <div class="org">巨匠電腦</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="when">2015/09 – 2018/06</div>
+                                <div class="body">
+                                    <h3>私立淡江高中</h3>
+                                    <div class="org">應用日語科</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>林宣芝 Lina｜履歷 · 版型 C</title>
+    <meta name="description" content="林宣芝（Lina）的求職履歷 —— 網頁工程師／前端工程師。" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128196;</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --ink: #232b21;
+            --ink-soft: #4b544a;
+            --ink-faint: #8b9189;
+            --line: #e2e5df;
+            --moss: #4a6b52;
+            --moss-deep: #2f4a37;
+            --moss-soft: #eaf0ea;
+            --clay: #b07d5b;
+            --paper: #fdfdfb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e9ebe6;
+            color: var(--ink);
+            font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            padding: 24px 16px 60px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============ A4 ============ */
+        .a4 {
+            position: relative;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 20px 54px rgba(35, 43, 33, 0.18);
+            overflow: hidden;
+            font-size: 12pt;
+            line-height: 1.62;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============ 抬頭橫幅 ============ */
+        .banner {
+            flex: 0 0 auto;
+            position: relative;
+            background: var(--moss-deep);
+            color: #fff;
+            padding: 11mm 14mm 10mm;
+            display: grid;
+            grid-template-columns: 1fr 34mm;
+            gap: 10mm;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .banner .g1,
+        .banner .g2,
+        .banner .g3 {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .banner .g1 {
+            width: 52mm;
+            height: 52mm;
+            border: 1.2mm solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            top: -22mm;
+            left: 96mm;
+        }
+
+        .banner .g2 {
+            width: 0;
+            height: 0;
+            border-left: 9mm solid transparent;
+            border-right: 9mm solid transparent;
+            border-bottom: 14mm solid rgba(176, 125, 91, 0.5);
+            bottom: -5mm;
+            left: 78mm;
+            transform: rotate(12deg);
+        }
+
+        .banner .g3 {
+            width: 30mm;
+            height: 18mm;
+            left: 4mm;
+            bottom: 3mm;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.26) 0.5mm, transparent 0.5mm);
+            background-size: 3.6mm 3.6mm;
+        }
+
+        .banner > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner h1 {
+            font-size: 30pt;
+            letter-spacing: 6px;
+            line-height: 1.1;
+        }
+
+        .banner .en {
+            font-size: 10pt;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            margin: 2px 0 6px;
+        }
+
+        .banner .job {
+            display: inline-block;
+            font-size: 12pt;
+            font-weight: 500;
+            border-left: 2mm solid var(--clay);
+            padding-left: 4mm;
+            margin-bottom: 5mm;
+        }
+
+        .banner .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2mm 7mm;
+            font-size: 10.6pt;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .banner .meta span b {
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 8.4pt;
+            letter-spacing: 1.4px;
+            margin-right: 4px;
+            text-transform: uppercase;
+        }
+
+        /* 照片：圓角方形 */
+        .shot {
+            width: 34mm;
+            height: 42mm;
+            border-radius: 3mm;
+            overflow: hidden;
+            border: 1.2mm solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+        }
+
+        /* ============ 內文 ============ */
+        .body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 74mm;
+            gap: 9mm;
+            padding: 9mm 14mm 10mm;
+        }
+
+        h2.sec {
+            font-size: 14pt;
+            color: var(--moss-deep);
+            letter-spacing: 2px;
+            padding-bottom: 1.5mm;
+            margin-bottom: 3mm;
+            border-bottom: 2px solid var(--moss-soft);
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        h2.sec em {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-style: normal;
+            font-size: 7.6pt;
+            letter-spacing: 1.8px;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+        }
+
+        section {
+            margin-bottom: 6mm;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        .about {
+            font-size: 11.6pt;
+            color: var(--ink-soft);
+            line-height: 1.75;
+            text-align: justify;
+        }
+
+        .about strong {
+            color: var(--moss-deep);
+            font-weight: 500;
+        }
+
+        /* 作品集 */
+        .port-url {
+            display: inline-block;
+            font-size: 12pt;
+            font-weight: 500;
+            color: #fff;
+            background: var(--moss);
+            border-radius: 999px;
+            padding: 0.8mm 6mm;
+            margin-bottom: 2.5mm;
+        }
+
+        .port-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4mm;
+        }
+
+        .port-list li {
+            font-size: 11.2pt;
+            color: var(--ink-soft);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .port-list li::before {
+            content: "";
+            width: 2.4mm;
+            height: 2.4mm;
+            background: var(--clay);
+            flex: 0 0 auto;
+        }
+
+        .port-list li b {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* 經歷 */
+        .item {
+            margin-bottom: 3.6mm;
+            padding-left: 6mm;
+            position: relative;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 2.4mm;
+            width: 2.6mm;
+            height: 2.6mm;
+            background: var(--moss);
+            transform: rotate(45deg);
+        }
+
+        .item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .item-top h3 {
+            font-size: 12.4pt;
+        }
+
+        .item-top .when {
+            font-size: 10.2pt;
+            color: var(--moss);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .item .org {
+            font-size: 10.4pt;
+            color: var(--ink-faint);
+            line-height: 1.4;
+            margin-bottom: 0.6mm;
+        }
+
+        .item p {
+            font-size: 11.2pt;
+            color: var(--ink-soft);
+            line-height: 1.62;
+            text-align: justify;
+        }
+
+        /* ============ 右欄 ============ */
+        .aside h2.sec {
+            font-size: 13pt;
+        }
+
+        .bars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2mm 4mm;
+        }
+
+        .bar-row .bar-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9.8pt;
+            color: var(--ink-soft);
+            line-height: 1.3;
+        }
+
+        .bar-row .bar-top b {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .bar {
+            height: 2.2mm;
+            background: var(--moss-soft);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 0.8mm;
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--moss), var(--clay));
+            border-radius: 999px;
+        }
+
+        .kv {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kv li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 11pt;
+            color: var(--ink-soft);
+            padding: 1.1mm 0;
+            border-bottom: 1px dotted var(--line);
+        }
+
+        .kv li:last-child {
+            border-bottom: none;
+        }
+
+        .kv li b {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .edu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2.6mm;
+        }
+
+        .edu-list h3 {
+            font-size: 11.4pt;
+        }
+
+        .edu-list .sub {
+            font-size: 10pt;
+            color: var(--ink-faint);
+            line-height: 1.4;
+        }
+
+        .edu-list .when {
+            font-size: 9.8pt;
+            color: var(--moss);
+            font-weight: 500;
+        }
+
+        /* ============ 工具列 ============ */
+        .toolbar {
+            width: 210mm;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .toolbar .hint {
+            font-size: 8.8pt;
+            color: #8b9189;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 9.5pt;
+            font-weight: 500;
+            border: 1px solid var(--moss);
+            cursor: pointer;
+            font-family: inherit;
+            background: transparent;
+            color: var(--moss-deep);
+        }
+
+        .btn.primary {
+            background: var(--moss);
+            color: #fff;
+        }
+
+        .btn.on {
+            background: var(--moss-soft);
+        }
+
+        @media (max-width: 830px) {
+            body {
+                padding: 14px 0 40px;
+            }
+
+            .stage {
+                width: 210mm;
+                transform-origin: top center;
+                transform: scale(0.6);
+                margin: 0 auto;
+                height: calc(297mm * 0.6 + 60px);
+            }
+
+            .toolbar {
+                width: auto;
+                padding: 0 14px;
+            }
+
+            .toolbar .hint {
+                margin-left: 0;
+                text-align: left;
+                width: 100%;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .toolbar {
+                display: none !important;
+            }
+
+            .stage {
+                transform: none;
+                width: auto;
+                height: auto;
+            }
+
+            .a4 {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: avoid;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="window.print()">列印 ／ 存成 PDF</button>
+        <a class="btn" href="./resume.html">版型 A</a>
+        <a class="btn" href="./resume-b.html">版型 B</a>
+        <a class="btn on" href="./resume-c.html">版型 C</a>
+        <a class="btn" href="./resume-d.html">版型 D</a>
+        <a class="btn" href="./index.html">回作品集</a>
+        <div class="hint">列印時請勾選「背景圖形」，深色橫幅才會印出來。</div>
+    </div>
+
+    <div class="stage">
+        <div class="a4">
+
+            <!-- ============ 抬頭 ============ -->
+            <header class="banner">
+                <span class="g1"></span>
+                <span class="g2"></span>
+                <span class="g3"></span>
+
+                <div>
+                    <h1>林宣芝</h1>
+                    <div class="en">Lin-Xuan-Zhi ｜ Lina</div>
+                    <div class="job">網頁工程師 ／ 前端工程師</div>
+                    <div class="meta">
+                        <span><b>Tel</b>0960-988-172</span>
+                        <span><b>Email</b>a88091500@gmail.com</span>
+                        <span><b>Location</b>新北市淡水區</span>
+                        <span><b>GitHub</b>github.com/lina88091500</span>
+                    </div>
+                </div>
+
+                <div class="shot">
+                    <img src="./1121127林宣芝二吋.jpg" alt="林宣芝">
+                </div>
+            </header>
+
+            <!-- ============ 內文 ============ -->
+            <div class="body">
+
+                <div class="maincol">
+                    <section>
+                        <h2 class="sec">關於我 <em>About</em></h2>
+                        <p class="about">
+                            服務業與行政資歷約 8 年，近兩年在房仲門市擔任<strong>店務秘書兼社群小編</strong>，
+                            負責全店的宣傳圖文、形象照修圖與活動影片。
+                            2026 年 4～9 月參加勞動部「全端網頁開發與 AI 應用」職前訓練，把美編經驗延伸到網頁實作；
+                            <strong>習慣用 AI 工具輔助寫程式，再由自己測試與調整畫面</strong>。
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="sec">作品集 <em>Portfolio</em></h2>
+                        <a class="port-url" href="http://220.128.133.15/s1150101/lina/index.html">220.128.133.15/s1150101/lina</a>
+                        <ul class="port-list">
+                            <li><b>ZL&amp; accessories 飾品電商</b>　響應式前端切版</li>
+                            <li><b>尋找貓咪的家 領養平台</b>　前後台增刪查改與權限</li>
+                            <li><b>Bloom 日系美妝 CMS</b>　PHP + MySQL 內容管理</li>
+                            <li><b>Bloom CMS・RWD 版</b>　響應式重構</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="sec">工作經歷 <em>Experience</em></h2>
+
+                        <div class="item">
+                            <div class="item-top">
+                                <h3>店務秘書（兼社群小編）</h3>
+                                <div class="when">2024/05 – 2026/01</div>
+                            </div>
+                            <div class="org">永慶不動產籬仔內瑞豐加盟店・鉅鈦不動產仲介經紀</div>
+                            <p>以 Photoshop、Illustrator、Canva 製作店內宣傳圖文與業務形象照修圖；負責活動拍攝、影片剪輯與社群發文，每月製作 PPT 圖表報告並協助開會，並處理案件文書與資料統整。</p>
+                        </div>
+
+                        <div class="item">
+                            <div class="item-top">
+                                <h3>作業員／包裝員</h3>
+                                <div class="when">2020/05 – 2023/03</div>
+                            </div>
+                            <div class="org">橙品手作烘焙</div>
+                            <p>負責分裝、標籤製作與收貨揀貨，協調分裝組工作事項，並帶領約 10 位新進人員。</p>
+                        </div>
+
+                        <div class="item">
+                            <div class="item-top">
+                                <h3>餐飲服務生・牙醫助理</h3>
+                                <div class="when">2015/07 – 2024/01</div>
+                            </div>
+                            <div class="org">永和豆漿・食忤生活輕食・陳學偉牙科</div>
+                            <p>累積第一線接待與現場應對經驗。</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 右欄 -->
+                <div class="aside">
+                    <section>
+                        <h2 class="sec">技能 <em>Skills</em></h2>
+                        <div class="bars">
+                            <div class="bar-row">
+                                <div class="bar-top"><b>Photoshop</b><span>70</span></div>
+                                <div class="bar"><i style="width:70%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>Illustrator</b><span>70</span></div>
+                                <div class="bar"><i style="width:70%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>Canva</b><span>70</span></div>
+                                <div class="bar"><i style="width:70%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>HTML5</b><span>65</span></div>
+                                <div class="bar"><i style="width:65%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>CSS3</b><span>65</span></div>
+                                <div class="bar"><i style="width:65%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>Git / GitHub</b><span>65</span></div>
+                                <div class="bar"><i style="width:65%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>AI 輔助開發</b><span>60</span></div>
+                                <div class="bar"><i style="width:60%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>影片剪輯</b><span>60</span></div>
+                                <div class="bar"><i style="width:60%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>RWD</b><span>55</span></div>
+                                <div class="bar"><i style="width:55%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>JavaScript</b><span>50</span></div>
+                                <div class="bar"><i style="width:50%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>PHP</b><span>50</span></div>
+                                <div class="bar"><i style="width:50%"></i></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-top"><b>MySQL</b><span>45</span></div>
+                                <div class="bar"><i style="width:45%"></i></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="sec">學歷與訓練 <em>Education</em></h2>
+                        <ul class="edu-list">
+                            <li>
+                                <h3>全端網頁開發與 AI 應用</h3>
+                                <div class="sub">勞動部勞動力發展署 職前訓練</div>
+                                <div class="when">2026/04 – 2026/09</div>
+                            </li>
+                            <li>
+                                <h3>Photoshop・社群小編實務</h3>
+                                <div class="sub">巨匠電腦 進修課程</div>
+                            </li>
+                            <li>
+                                <h3>私立淡江高中</h3>
+                                <div class="sub">應用日語科</div>
+                                <div class="when">2015/09 – 2018/06</div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="sec">語言・條件 <em>Info</em></h2>
+                        <ul class="kv">
+                            <li><b>中文</b><span>精通</span></li>
+                            <li><b>日文</b><span>JLPT N5</span></li>
+                            <li><b>英文</b><span>略懂</span></li>
+                            <li><b>可到職</b><span>2026/10/01</span></li>
+                            <li><b>地區</b><span>台北・新北</span></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
