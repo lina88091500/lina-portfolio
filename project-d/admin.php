@@ -68,7 +68,7 @@ if (empty($_SESSION['login'])) {
                         <a href="?do=mvim">動畫圖片管理</a>
                     </div>
                     <div class="mainmu cent <?= ($currentDo=='image')?'active-menu':''; ?>">
-                        <a href="?do=image">校園映象資料管理</a>
+                        <a href="?do=image">品牌形象圖管理</a>
                     </div>
                     <div class="mainmu cent <?= ($currentDo=='total')?'active-menu':''; ?>">
                         <a href="?do=total">進站總人數管理</a>

@@ -5,25 +5,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>林宣芝 Lina｜網頁設計作品集</title>
-    <meta name="description" content="林宣芝（Lina）的網頁設計作品集 —— 從美編與行政跨入前端，收錄電商切版、PHP 內容管理與後台介面設計等實作專案。" />
+    <meta name="description"
+        content="林宣芝（Lina）的網頁設計作品集 —— 從美編與行政跨入前端，收錄電商切版、CRUD 後台流程、PHP 內容管理系統與 RWD 重構等四個實作專案，每個專案都附上目標、流程、我的貢獻與成果。" />
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9997;</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
 
     <style>
         :root {
             --bg: #faf7f2;
+            --bg-alt: #f4ede6;
             --surface: #ffffff;
             --ink: #2c2a28;
             --ink-soft: #6b6560;
+            --ink-faint: #9a938c;
             --line: #e7e0d6;
             --accent: #9c5c68;
-            --accent-soft: #f2e7e8;
-            --radius: 14px;
-            --shadow: 0 10px 30px rgba(60, 45, 40, 0.07);
+            --accent-deep: #6e3d47;
+            --accent-soft: #f6ebec;
+            --gold: #b8895f;
+            --gold-soft: #f6eee4;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 4px 14px rgba(60, 45, 40, 0.06);
+            --shadow: 0 14px 38px rgba(60, 45, 40, 0.10);
+            --shadow-lg: 0 26px 60px rgba(60, 45, 40, 0.16);
         }
 
         * {
@@ -36,106 +46,754 @@
             background: var(--bg);
             color: var(--ink);
             font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", sans-serif;
-            line-height: 1.75;
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
 
-        .wrap {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3, h4, h5 {
             font-family: 'Noto Serif TC', Georgia, serif;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.45;
             letter-spacing: 0.5px;
         }
 
         a {
             color: inherit;
+            text-decoration: none;
         }
 
-        /* ---------- Hero ---------- */
-        header.hero {
-            padding: 88px 0 56px;
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* 內文一律左右兩端對齊，右側邊緣才不會參差不齊 */
+        .page-head p,
+        .hero p.lead,
+        .sec-note,
+        .fact p,
+        .work-body p,
+        .repo-card p,
+        .timeline p,
+        .flow li span,
+        .result-list div span,
+        .notes-list li,
+        .demo-box,
+        .detail-head .sub {
+            text-align: justify;
+            text-justify: inter-ideograph;
+            word-break: break-word;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============ 導覽列（分頁切換） ============ */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(250, 247, 242, 0.9);
+            backdrop-filter: saturate(150%) blur(12px);
             border-bottom: 1px solid var(--line);
+        }
+
+        .topbar .inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 66px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+
+        .brand b {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.12rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .brand small {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--ink-faint);
+        }
+
+        nav.tabs {
+            margin-left: auto;
+            display: flex;
+            gap: 4px;
+            min-width: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        nav.tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav.tabs a {
+            flex: 0 0 auto;
+            padding: 8px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            transition: background 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        nav.tabs a:hover {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        nav.tabs a.active {
+            color: #fff;
+            background: var(--accent);
+            box-shadow: 0 6px 16px rgba(156, 92, 104, 0.28);
+        }
+
+        /* ============ 分頁容器 ============ */
+        .page {
+            display: none;
+            animation: fadeUp 0.42s ease both;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .page-head {
+            padding: 54px 0 26px;
         }
 
         .eyebrow {
-            font-size: 0.8rem;
+            font-size: 0.74rem;
             letter-spacing: 3px;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
 
-        header.hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 6px;
+        .page-head h2 {
+            font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+            margin-bottom: 8px;
         }
 
-        header.hero .en-name {
+        .page-head p {
             color: var(--ink-soft);
-            font-size: 1rem;
-            letter-spacing: 2px;
-            font-family: 'Noto Sans TC', sans-serif;
-            font-weight: 300;
-            margin-bottom: 28px;
+            font-size: 0.95rem;
+            max-width: 62ch;
         }
 
-        header.hero .role {
-            font-size: 1.05rem;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 24px;
+        .block {
+            padding: 12px 0 64px;
         }
 
-        header.hero p.bio {
-            max-width: 60ch;
-            color: var(--ink-soft);
-            font-size: 0.98rem;
-        }
-
-        /* ---------- Sections ---------- */
-        section {
-            padding: 56px 0;
+        /* ============ 首頁 Hero ============ */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(1000px 420px at 88% -8%, #f7e7e6 0%, rgba(247, 231, 230, 0) 62%),
+                radial-gradient(760px 360px at 4% 104%, var(--gold-soft) 0%, rgba(246, 238, 228, 0) 60%),
+                var(--bg);
             border-bottom: 1px solid var(--line);
         }
 
-        .section-title {
-            font-size: 1.35rem;
-            margin-bottom: 6px;
+        .hero .inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 74px 24px 66px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 54px;
+            align-items: center;
         }
 
-        .section-note {
+        .hero h1 {
+            font-size: clamp(2.1rem, 5.4vw, 3.15rem);
+            margin-bottom: 4px;
+        }
+
+        .hero .en-name {
+            color: var(--ink-faint);
+            font-size: 0.95rem;
+            letter-spacing: 2.5px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero .role {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero .role span {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 0.83rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .hero p.lead {
+            color: var(--ink-soft);
+            font-size: 1rem;
+            max-width: 46ch;
+            margin-bottom: 28px;
+        }
+
+        .hero p.lead strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            border: 1px solid var(--accent);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+            cursor: pointer;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(156, 92, 104, 0.26);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(156, 92, 104, 0.34);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn.ghost:hover {
+            background: var(--accent-soft);
+            transform: translateY(-2px);
+        }
+
+        .btn.small {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* 首頁右側截圖拼貼 */
+        .collage {
+            position: relative;
+            height: 380px;
+        }
+
+        .collage figure {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .collage figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .collage .c1 {
+            width: 76%;
+            height: 66%;
+            top: 0;
+            right: 0;
+            transform: rotate(2deg);
+            z-index: 2;
+        }
+
+        .collage .c2 {
+            width: 62%;
+            height: 56%;
+            bottom: 0;
+            left: 0;
+            transform: rotate(-3deg);
+            z-index: 3;
+        }
+
+        .collage .c3 {
+            width: 32%;
+            height: 46%;
+            bottom: 6%;
+            right: 4%;
+            transform: rotate(4deg);
+            z-index: 1;
+        }
+
+        .collage figure:hover {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: var(--shadow-lg);
+            z-index: 5;
+        }
+
+        /* ============ 數據列 ============ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 46px 0 8px;
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat b {
+            display: block;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.9rem;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .stat span {
+            font-size: 0.83rem;
+            color: var(--ink-soft);
+        }
+
+        /* ============ 區塊標題 ============ */
+        .sec-title {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin: 56px 0 6px;
+        }
+
+        .sec-title h3 {
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+
+        .sec-title .line {
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .sec-note {
             color: var(--ink-soft);
             font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        /* ============ 作品卡片 ============ */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+
+        .work-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+            border-color: #d9c8c2;
+        }
+
+        .thumb {
+            position: relative;
+            display: block;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .thumb img {
+            transform: scale(1.04);
+        }
+
+        .thumb .kind {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--accent);
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .thumb .status {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            z-index: 2;
+            background: var(--gold);
+            color: #fff;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .status-pill {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            padding: 2px 11px;
+            border-radius: 999px;
+            margin-left: 8px;
+            vertical-align: 2px;
+        }
+
+        .work-body {
+            padding: 20px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .work-body h4 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .work-body .folder {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-bottom: 12px;
+        }
+
+        .work-body p {
+            font-size: 0.89rem;
+            color: var(--ink-soft);
+            margin-bottom: 16px;
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            margin-bottom: 16px;
+        }
+
+        .stack span {
+            font-size: 0.73rem;
+            color: var(--ink-soft);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            padding: 2px 8px;
+        }
+
+        .work-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ============ 專案細節頁 ============ */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.87rem;
+            color: var(--accent);
+            margin-top: 34px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .detail-head {
+            padding: 16px 0 26px;
+        }
+
+        .detail-head h2 {
+            font-size: clamp(1.7rem, 4vw, 2.3rem);
+            margin-bottom: 8px;
+        }
+
+        .detail-head .sub {
+            color: var(--ink-soft);
+            font-size: 0.95rem;
+            max-width: 62ch;
+            margin-bottom: 16px;
+        }
+
+        .shot {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--surface);
+            margin-bottom: 10px;
+        }
+
+        .shot img {
+            width: 100%;
+        }
+
+        .shot-cap {
+            font-size: 0.8rem;
+            color: var(--ink-faint);
+            text-align: center;
+            margin-bottom: 34px;
+        }
+
+        .shot-pair {
+            display: grid;
+            grid-template-columns: 2.1fr 1fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .shot-pair .shot {
+            height: 420px;
+        }
+
+        .shot-pair .shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        /* 手機版截圖完整顯示、不裁切 */
+        .shot-pair .shot.contain img {
+            object-fit: contain;
+            background: var(--bg-alt);
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            margin-bottom: 10px;
+        }
+
+        .fact {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+        }
+
+        .fact h5 {
+            font-size: 0.97rem;
+            margin-bottom: 6px;
+            color: var(--accent-deep);
+        }
+
+        .fact p {
+            font-size: 0.87rem;
+            color: var(--ink-soft);
+        }
+
+        .flow {
+            counter-reset: step;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .flow li {
+            counter-increment: step;
+            list-style: none;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 18px 18px 16px;
+        }
+
+        .flow li::before {
+            content: counter(step);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .flow li b {
+            display: block;
+            font-size: 0.93rem;
+            margin-bottom: 4px;
+        }
+
+        .flow li span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+        }
+
+        .result-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .result-list div {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 13px 18px;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+
+        .result-list div::before {
+            content: "◆";
+            color: var(--gold);
+            font-size: 0.7rem;
+            line-height: 2.2;
+        }
+
+        .result-list div span {
+            display: block;
+            flex: 1;
+        }
+
+        .result-list strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .demo-box {
+            background: var(--gold-soft);
+            border: 1px dashed #dfc7ad;
+            border-radius: var(--radius-sm);
+            padding: 18px 22px;
+            font-size: 0.88rem;
+            color: var(--ink-soft);
             margin-bottom: 30px;
         }
 
-        /* ---------- Skills ---------- */
-        .skill-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 20px;
-            align-items: baseline;
-            padding: 14px 0;
-            border-top: 1px dashed var(--line);
+        .demo-box b {
+            color: var(--accent-deep);
         }
 
-        .skill-group:first-of-type {
-            border-top: none;
+        code {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            background: rgba(156, 92, 104, 0.09);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 0.86em;
+            color: var(--accent-deep);
         }
 
-        .skill-group .label {
-            flex: 0 0 108px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--ink);
+        /* ============ 技能 ============ */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px 24px 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skill-card h4 {
+            font-size: 1.02rem;
+            margin-bottom: 2px;
+        }
+
+        .skill-card .hint {
+            font-size: 0.79rem;
+            color: var(--ink-faint);
+            margin-bottom: 14px;
+            min-height: 1.4em;
         }
 
         .tags {
@@ -145,132 +803,225 @@
         }
 
         .tag {
-            background: var(--surface);
+            background: var(--bg);
             border: 1px solid var(--line);
-            border-radius: 20px;
+            border-radius: 999px;
             padding: 4px 13px;
-            font-size: 0.82rem;
+            font-size: 0.81rem;
             color: var(--ink-soft);
         }
 
-        /* ---------- Project cards ---------- */
-        .group-label {
-            display: inline-block;
+        .tag.strong {
+            background: var(--accent-soft);
+            border-color: #ecd9db;
+            color: var(--accent-deep);
+        }
+
+        /* ============ 時間軸 ============ */
+        .timeline {
+            position: relative;
+            padding-left: 26px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(var(--accent-soft), var(--line));
+        }
+
+        .timeline .item {
+            position: relative;
+            padding-bottom: 26px;
+        }
+
+        .timeline .item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 11px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 3px solid var(--accent);
+        }
+
+        .timeline .when {
             font-size: 0.78rem;
             letter-spacing: 1px;
             color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 6px;
-            padding: 3px 10px;
-            margin: 26px 0 14px;
+            font-weight: 500;
         }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 22px;
+        .timeline h4 {
+            font-size: 1.02rem;
+            margin: 2px 0 4px;
         }
 
-        .card {
+        .timeline p {
+            font-size: 0.89rem;
+            color: var(--ink-soft);
+            max-width: 64ch;
+        }
+
+        /* ============ 學習歷程卡 ============ */
+        .repo-card {
             display: flex;
             flex-direction: column;
             background: var(--surface);
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            padding: 26px 24px 22px;
-            text-decoration: none;
+            padding: 22px 22px 20px;
             transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
         }
 
-        .card:hover {
+        .repo-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
             border-color: var(--accent);
         }
 
-        .card .kind {
-            font-size: 0.76rem;
+        .repo-card .kind {
+            font-size: 0.74rem;
             letter-spacing: 1px;
             color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .repo-card h4 {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.98rem;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
-        .card h3 {
-            font-size: 1.12rem;
-            margin-bottom: 4px;
-        }
-
-        .card .folder {
-            font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-            font-size: 0.78rem;
+        .repo-card p {
+            font-size: 0.87rem;
             color: var(--ink-soft);
             margin-bottom: 14px;
         }
 
-        .card p {
-            font-size: 0.9rem;
-            color: var(--ink-soft);
-            margin-bottom: 16px;
-        }
-
-        .card .stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+        .repo-card .go {
             margin-top: auto;
-        }
-
-        .card .stack span {
-            font-size: 0.75rem;
-            color: var(--ink-soft);
-            border: 1px solid var(--line);
-            border-radius: 5px;
-            padding: 2px 8px;
-        }
-
-        .card .go {
-            margin-top: 16px;
             font-size: 0.85rem;
+            color: var(--accent);
             font-weight: 500;
+        }
+
+        /* ============ 聯絡 ============ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-card span {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--ink-faint);
+            margin-bottom: 4px;
+        }
+
+        .contact-card a,
+        .contact-card p {
+            font-size: 0.98rem;
+            color: var(--ink);
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
             color: var(--accent);
         }
 
-        /* ---------- Contact ---------- */
-        .contact-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 40px;
-            font-size: 0.95rem;
-        }
-
-        .contact-list div span {
-            display: block;
-            font-size: 0.78rem;
-            letter-spacing: 1px;
+        .notes-list {
             color: var(--ink-soft);
-            margin-bottom: 2px;
+            font-size: 0.9rem;
+            padding-left: 1.2em;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .contact-list a {
-            text-decoration: none;
+        .notes-list a {
+            color: var(--accent);
             border-bottom: 1px solid var(--accent);
-            padding-bottom: 1px;
+            word-break: break-all;
         }
 
         footer {
-            padding: 34px 0 48px;
-            color: var(--ink-soft);
-            font-size: 0.82rem;
+            border-top: 1px solid var(--line);
+            padding: 28px 0 40px;
+            color: var(--ink-faint);
+            font-size: 0.8rem;
             text-align: center;
         }
 
-        @media (max-width: 560px) {
-            header.hero {
-                padding: 60px 0 40px;
+        /* ============ RWD ============ */
+        @media (max-width: 900px) {
+            .hero .inner {
+                grid-template-columns: 1fr;
+                padding: 52px 24px 46px;
+                gap: 36px;
             }
 
-            .skill-group .label {
-                flex-basis: 100%;
+            .collage {
+                height: 300px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .shot-pair {
+                grid-template-columns: 1fr;
+            }
+
+            .shot-pair .shot {
+                height: auto;
+            }
+
+            .shot-pair .shot img {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .topbar .inner {
+                height: auto;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 12px 16px;
+            }
+
+            nav.tabs {
+                margin-left: 0;
+                padding-bottom: 2px;
+            }
+
+            .wrap {
+                padding: 0 18px;
+            }
+
+            .collage {
+                height: 240px;
+            }
+
+            .sec-title h3 {
+                white-space: normal;
             }
         }
     </style>
@@ -278,251 +1029,630 @@
 
 <body>
 
-    <header class="hero">
-        <div class="wrap">
-            <div class="eyebrow">Web Design Portfolio</div>
-            <h1>林宣芝</h1>
-            <div class="en-name">Lin, Xuan-Zhi ｜ Lina</div>
-            <div class="role">網頁設計 · 前端切版 · 視覺美編</div>
-            <p class="bio">
-                有約八年的第一線服務、行政秘書與社群美編經驗。<br>
-                在房仲門市擔任秘書兼小編期間，<br>
-                獨立負責宣傳圖文、形象照修圖、影片剪輯與每月月會報告。<br>
-                2026 年參加勞動部「全端網頁開發與 AI 應用」職前訓練，<br>
-                把原本的視覺專長延伸到網頁實作 ——<br>
-                自己規劃版面與配色，善用 AI 工具輔助產生程式碼，<br>
-                再由我測試、修改與微調畫面。<br>
-                以下是課程期間完成的幾個作業專案。
-            </p>
+    <!-- ===================== 導覽列 ===================== -->
+    <header class="topbar">
+        <div class="inner">
+            <a class="brand" href="#/home">
+                <b>林宣芝 Lina</b><small>PORTFOLIO</small>
+            </a>
+            <nav class="tabs" id="tabs">
+                <a href="#/home" data-tab="home">首頁</a>
+                <a href="#/about" data-tab="about">關於我</a>
+                <a href="#/skills" data-tab="skills">技能</a>
+                <a href="#/works" data-tab="works">作品</a>
+                <a href="#/learning" data-tab="learning">學習歷程</a>
+                <a href="#/contact" data-tab="contact">聯絡我</a>
+            </nav>
         </div>
     </header>
 
-    <section id="skills">
-        <div class="wrap">
-            <h2 class="section-title">技能</h2>
-            <p class="section-note">實際用在下方專案裡的工具與技術。</p>
+    <main id="app">
 
-            <div class="skill-group">
-                <div class="label">網頁前端</div>
-                <div class="tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">響應式設計 RWD</span>
-                    <span class="tag">Bootstrap 5</span>
-                    <span class="tag">JavaScript（原生）</span>
-                    <span class="tag">jQuery</span>
-                </div>
-            </div>
-            <div class="skill-group">
-                <div class="label">後端與資料庫</div>
-                <div class="tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">CRUD 資料操作</span>
-                </div>
-            </div>
-            <div class="skill-group">
-                <div class="label">視覺設計</div>
-                <div class="tags">
-                    <span class="tag">Photoshop</span>
-                    <span class="tag">Illustrator</span>
-                    <span class="tag">Canva</span>
-                    <span class="tag">版面配置</span>
-                    <span class="tag">影片剪輯</span>
-                </div>
-            </div>
-            <div class="skill-group">
-                <div class="label">開發協作</div>
-                <div class="tags">
-                    <span class="tag">Git</span>
-                    <span class="tag">GitHub</span>
-                    <span class="tag">ChatGPT / Gemini 輔助開發</span>
-                    <span class="tag">Claude</span>
-                </div>
-            </div>
-            <div class="skill-group">
-                <div class="label">語言</div>
-                <div class="tags">
-                    <span class="tag">中文（母語）</span>
-                    <span class="tag">日文 JLPT N5</span>
-                    <span class="tag">英文（略懂）</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="works">
-        <div class="wrap">
-            <h2 class="section-title">作品</h2>
-            <p class="section-note">點卡片即可在新視窗開啟該專案。資料夾名稱標在標題下方。</p>
-
-            <div class="cards">
-                <a class="card" href="./project-a/index.html" target="_blank" rel="noopener">
-                    <div class="kind">響應式靜態網站</div>
-                    <h3>ZL&amp; accessories 飾品電商</h3>
-                    <div class="folder">project-a/</div>
-                    <p>
-                        以 HTML / CSS / JavaScript<br> 
-                        加上 Bootstrap 切版的飾品品牌網站。<br>
-                        包含首頁、商品總覽（分類篩選＋分頁）、商品詳情頁（依網址參數切換商品）、
-                        會員登入／註冊，以及專屬訂製需求表單。收藏與登入狀態用瀏覽器 localStorage 記住。
-                    </p>
-                    <div class="stack">
-                        <span>HTML/CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>RWD</span>
+        <!-- ===================== 首頁 ===================== -->
+        <section class="page" id="page-home">
+            <div class="hero">
+                <div class="inner">
+                    <div>
+                        <div class="eyebrow">Web Design Portfolio · 2026</div>
+                        <h1>林宣芝</h1>
+                        <div class="en-name">LIN, XUAN-ZHI ｜ LINA</div>
+                        <div class="role">
+                            <span>網頁設計</span><span>前端切版</span><span>視覺美編</span>
+                        </div>
+                        <p class="lead">
+八年服務業與店務秘書經驗，在房仲門市擔任店務秘書（兼社群小編），獨立負責宣傳圖文、形象照修圖與影片剪輯，並在工作中導入 AI 工具處理文案初稿與素材發想，把重複性的作業時間壓下來。2026 年參加勞動部「全端網頁開發與 AI 應用」職前訓練，把<strong>原本的視覺專長，延伸成能自己動手做出來的網頁</strong>。
+                        </p>
+                        <div class="btn-row">
+                            <a class="btn primary" href="#/works">看四個作品 →</a>
+                            <a class="btn ghost" href="#/contact">聯絡我</a>
+                        </div>
                     </div>
-                    <div class="go">開啟專案 →</div>
-                </a>
 
-                <a class="card" href="./project-b/index.html" target="_blank" rel="noopener">
-                    <div class="kind">後台介面原型</div>
-                    <h3>尋找貓咪的家 · 領養平台</h3>
-                    <div class="folder">project-b/</div>
-                    <p>
-                        貓咪領養網站的前後台流程原型。<br>
-                        前台有輪播、待領養列表與詳情頁；<br>
-                        後台是一套完整的介面設計<br>
-                        「列表 → 新增 → 修改 → 刪除」，<br>
-                        並加上管理員登入判斷，<br>
-                        未登入者無法從網址直接進入後台。
-                    </p>
-                    <div class="stack">
-                        <span>HTML/CSS</span><span>Bootstrap 5</span><span>CRUD 流程</span><span>權限控制</span>
+                    <div class="collage">
+                        <figure class="c1"><img src="./assets/shots/project-a.png" alt="ZL&amp; accessories 飾品電商首頁畫面"></figure>
+                        <figure class="c2"><img src="./assets/shots/project-c.png" alt="Bloom Aesthetic Studio 日系美妝 CMS 首頁畫面"></figure>
+                        <figure class="c3"><img src="./assets/shots/project-d-mobile.png" alt="日系美妝 CMS 手機版畫面"></figure>
                     </div>
-                    <div class="go">開啟專案 →</div>
-                </a>
+                </div>
             </div>
 
-            <div class="group-label">Bloom Aesthetic Studio · 同一套系統的兩種版面</div>
-            <div class="cards">
-                <a class="card" href="./project-c/index.php" target="_blank" rel="noopener">
-                    <div class="kind">PHP + MySQL 動態網站</div>
-                    <h3>日系美妝 CMS · 固定版面版</h3>
-                    <div class="folder">project-c/</div>
-                    <p>
-                        以網頁設計乙級檢定題目為基礎改作的內容管理系統，前台固定 1024px 版面。<br>
-                        後台可管理網站標題、輪播圖、最新消息、導覽選單與管理員帳號。<br>
-                        資料存在 MySQL；連不到資料庫時會自動改用內建範例資料，讓畫面仍可完整呈現。
-                    </p>
-                    <div class="stack">
-                        <span>PHP</span><span>MySQL</span><span>jQuery</span><span>前台＋後台</span>
+            <div class="wrap">
+                <div class="stats">
+                    <div class="stat"><b>4</b><span>個完整實作專案</span></div>
+                    <div class="stat"><b>5</b><span>個 GitHub 練習庫</span></div>
+                    <div class="stat"><b>8</b><span>年職場實務經驗</span></div>
+                    <div class="stat"><b>2026</b><span>職前訓練結訓</span></div>
+                </div>
+
+                <div class="sec-title">
+                    <h3>精選作品</h3>
+                    <div class="line"></div>
+                    <a class="btn ghost small" href="#/works">全部作品</a>
+                </div>
+                <p class="sec-note">每個作品都寫清楚了「為什麼做、怎麼做、我負責哪些、做出什麼結果」，點卡片可以看細節。</p>
+
+                <div class="cards" id="featured-cards"></div>
+
+                <div class="sec-title">
+                    <h3>怎麼看這份作品集</h3>
+                    <div class="line"></div>
+                </div>
+                <ul class="notes-list" style="margin-bottom:60px;">
+                    <li>不想安裝環境的話，整份作品集已經上線：
+                        <a href="http://220.128.133.15/s1150101/lina/index.html" target="_blank" rel="noopener">http://220.128.133.15/s1150101/lina/index.html</a>
+                        ，四個作品（含需要 PHP 的 project-c、project-d）都能直接點開。</li>
+                    <li>project-a、project-b 是純前端，用瀏覽器直接開 <code>index.html</code> 就能看。</li>
+                    <li>project-c、project-d 需要 PHP 環境（例如 XAMPP）；沒有匯入資料庫也能看到完整畫面，會自動切換成內建範例資料。</li>
+                    <li>各專案的展示帳號密碼寫在每個作品的細節頁裡，網站本身的頂端也有標示。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== 關於我 ===================== -->
+        <section class="page" id="page-about">
+            <div class="wrap">
+                <div class="page-head">
+                    <div class="eyebrow">About</div>
+                    <h2>從美編，到把版面真的做出來</h2>
+                    <p>過去八年我負責「把東西做得好看」；現在我想把同一件事做到底 —— 從構圖、配色，一路做到能在瀏覽器裡運作的頁面。</p>
+                </div>
+
+                <div class="block">
+                    <div class="facts">
+                        <div class="fact">
+                            <h5>我擅長的</h5>
+                            <p>版面規劃與配色、切版還原、把一長串內容整理成好讀的資訊層次。這些是我在做圖文與月會簡報時累積下來的。</p>
+                        </div>
+                        <div class="fact">
+                            <h5>我正在補強的</h5>
+                            <p>JavaScript 的互動邏輯，以及 PHP 的後端資料流。作品 B 與 C 就是為了練這兩塊而做的。</p>
+                        </div>
+                        <div class="fact">
+                            <h5>我的做事方式</h5>
+                            <p>先想清楚這個頁面要解決什麼問題再動手。我把 AI 當成加速工具：讓它產出程式碼與文案的初稿，我負責決定版面與流程、實際測試、找出問題再修到能用。從上一份工作開始就是這樣做事的。</p>
+                        </div>
                     </div>
-                    <div class="go">開啟專案 →</div>
-                </a>
 
-                <a class="card" href="./project-d/index.php" target="_blank" rel="noopener">
-                    <div class="kind">PHP CMS · 響應式重構版</div>
-                    <h3>日系美妝 CMS · RWD 版面版</h3>
-                    <div class="folder">project-d/</div>
-                    <p>
-                        與 project-c 同一套後端邏輯，但把前台從固定 1024px 版面重寫為流動式響應式版面：
-                        新的置頂導覽列、可捲動的選單、依裝置寬度自動調整的三欄／單欄佈局，
-                        手機、平板、桌機都能正常閱讀。
-                    </p>
-                    <div class="stack">
-                        <span>PHP</span><span>MySQL</span><span>RWD 重構</span><span>手機適配</span>
+                    <div class="sec-title">
+                        <h3>經歷與轉職歷程</h3>
+                        <div class="line"></div>
                     </div>
-                    <div class="go">開啟專案 →</div>
-                </a>
+                    <p class="sec-note">從第一線服務、店務秘書，到現在的網頁實作。</p>
+
+                    <div class="timeline">
+                        <div class="item">
+                            <div class="when">2026</div>
+                            <h4>勞動部「全端網頁開發與 AI 應用」職前訓練</h4>
+                            <p>從 HTML／CSS 一路上到 JavaScript、PHP、MySQL 與物件導向；課堂練習全部推上 GitHub，課後再把作業延伸成右邊這四個完整專案。</p>
+                        </div>
+                        <div class="item">
+                            <div class="when">房仲門市時期</div>
+                            <h4>店務秘書（兼社群小編）</h4>
+                            <p>獨立負責宣傳圖文設計、物件形象照修圖、短影片剪輯，以及每個月的月會簡報。後期把 AI 工具帶進日常流程，用來產文案初稿、整理月會資料與發想貼文主題，我再依門市的實際狀況修改定稿，省下來的時間就拿去把畫面做得更細。習慣一個人把案子從發想做到交付。</p>
+                        </div>
+                        <div class="item">
+                            <div class="when">更早之前</div>
+                            <h4>第一線服務業</h4>
+                            <p>八年下來最實用的一件事：使用者卡在哪裡，通常不會主動說出口。所以做介面時，我會先想「第一次來的人會不會找不到」。</p>
+                        </div>
+                    </div>
+
+                    <div class="sec-title">
+                        <h3>這個作品集網站本身</h3>
+                        <div class="line"></div>
+                    </div>
+                    <p class="sec-note">版面與內容由我規劃，程式碼以 AI 工具輔助產生，再由我調整與測試。</p>
+                    <div class="facts">
+                        <div class="fact">
+                            <h5>設計</h5>
+                            <p>單一重點色（灰調玫瑰 <code>#9c5c68</code>）搭暖米白底，呼應兩組作品的粉與香檳金；標題用思源宋體、內文用思源黑體。</p>
+                        </div>
+                        <div class="fact">
+                            <h5>結構</h5>
+                            <p>用 hash 路由做成分頁式切換，不必整頁重新載入。六個分頁＋四個專案細節頁，看的人不用一直往下捲。</p>
+                        </div>
+                        <div class="fact">
+                            <h5>技術與分工</h5>
+                            <p>純 HTML / CSS / 原生 JavaScript，沒有用框架；CSS Grid ＋ Flexbox 排版。程式碼由 AI 工具協助產生，配色、版面、文案與各裝置下的測試修改則是我自己完成的。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="learning">
-        <div class="wrap">
-            <h2 class="section-title">學習歷程</h2>
-            <p class="section-note">課程期間跟著老師練習的檔案，個別有上傳在 GitHub 上，點卡片可以進 GitHub 看原始碼。</p>
+        <!-- ===================== 技能 ===================== -->
+        <section class="page" id="page-skills">
+            <div class="wrap">
+                <div class="page-head">
+                    <div class="eyebrow">Skills</div>
+                    <h2>技能</h2>
+                    <p>下面每一項都實際用在作品裡。<strong>深色標籤</strong>是我最常用、也最有把握的部分。</p>
+                </div>
 
-            <div class="cards">
-                <a class="card" href="https://github.com/lina88091500/web-course-study-" target="_blank" rel="noopener">
-                    <div class="kind">HTML／CSS／JavaScript</div>
-                    <h3>web-course-study-</h3>
-                    <div class="folder">跟課練習紀錄</div>
-                    <p>從表格、表單、iframe 到 CSS、JavaScript、留言板，橫跨 4 月中到 7 月每一堂課的練習檔案。</p>
-                    <div class="go">看原始碼 →</div>
-                </a>
-
-                <a class="card" href="https://github.com/lina88091500/11501-FULL-BASIC" target="_blank" rel="noopener">
-                    <div class="kind">PHP 基礎</div>
-                    <h3>11501-FULL-BASIC</h3>
-                    <div class="folder">語法練習</div>
-                    <p>PHP 全科基礎語法練習：變數、條件判斷、迴圈，依上課日期逐日累積。</p>
-                    <div class="go">看原始碼 →</div>
-                </a>
-
-                <a class="card" href="https://github.com/lina88091500/115-html" target="_blank" rel="noopener">
-                    <div class="kind">HTML／PHP 入門</div>
-                    <h3>115-html</h3>
-                    <div class="folder">入門練習</div>
-                    <p>字串與日期函式、BMI 計算、Cookie／Session 登入練習、頁面 include 拆分。</p>
-                    <div class="go">看原始碼 →</div>
-                </a>
+                <div class="block">
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>網頁前端</h4>
+                            <div class="hint">用在 project-a、project-b、project-d</div>
+                            <div class="tags">
+                                <span class="tag strong">HTML5</span>
+                                <span class="tag strong">CSS3</span>
+                                <span class="tag strong">響應式設計 RWD</span>
+                                <span class="tag strong">Bootstrap 5</span>
+                                <span class="tag">JavaScript（原生）</span>
+                                <span class="tag">jQuery</span>
+                                <span class="tag">localStorage</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h4>後端與資料庫</h4>
+                            <div class="hint">用在 project-c、project-d</div>
+                            <div class="tags">
+                                <span class="tag strong">PHP</span>
+                                <span class="tag strong">MySQL</span>
+                                <span class="tag">PDO 資料存取</span>
+                                <span class="tag">CRUD 增刪查改</span>
+                                <span class="tag">Session 登入驗證</span>
+                                <span class="tag">bcrypt 密碼雜湊</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h4>視覺設計</h4>
+                            <div class="hint">八年職場實務累積</div>
+                            <div class="tags">
+                                <span class="tag strong">Photoshop</span>
+                                <span class="tag strong">Illustrator</span>
+                                <span class="tag strong">版面配置</span>
+                                <span class="tag">Canva</span>
+                                <span class="tag">去背修圖</span>
+                                <span class="tag">影片剪輯</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h4>開發協作</h4>
+                            <div class="hint">日常工作流程</div>
+                            <div class="tags">
+                                <span class="tag strong">Git</span>
+                                <span class="tag strong">GitHub</span>
+                                <span class="tag">FileZilla 上傳部署</span>
+                                <span class="tag">XAMPP 環境</span>
+                                <span class="tag">Claude / ChatGPT / Gemini 輔助開發</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h4>辦公與行政</h4>
+                            <div class="hint">前一份工作的日常</div>
+                            <div class="tags">
+                                <span class="tag">Word / Excel / PowerPoint</span>
+                                <span class="tag">月會簡報製作</span>
+                                <span class="tag">社群貼文企劃</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h4>語言</h4>
+                            <div class="hint"></div>
+                            <div class="tags">
+                                <span class="tag strong">中文（母語）</span>
+                                <span class="tag">日文 JLPT N5</span>
+                                <span class="tag">英文（略懂）</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="group-label">「學校系統」練習・基礎版與物件導向版</div>
-            <div class="cards">
-                <a class="card" href="https://github.com/lina88091500/115-php" target="_blank" rel="noopener">
-                    <div class="kind">PHP 基礎</div>
-                    <h3>115-php</h3>
-                    <div class="folder">基礎版</div>
-                    <p>PDO 資料庫操作、註冊登入流程，並以「學校系統」為題練習前後台的基本功能。</p>
-                    <div class="go">看原始碼 →</div>
-                </a>
-
-                <a class="card" href="https://github.com/lina88091500/115-oop" target="_blank" rel="noopener">
-                    <div class="kind">PHP 物件導向</div>
-                    <h3>115-oop</h3>
-                    <div class="folder">物件導向版</div>
-                    <p>把 115-php 的「學校系統」練習改寫成物件導向寫法，補上前台公告頁與更完整的後台管理。</p>
-                    <div class="go">看原始碼 →</div>
-                </a>
+        <!-- ===================== 作品列表 ===================== -->
+        <section class="page" id="page-works">
+            <div class="wrap">
+                <div class="page-head">
+                    <div class="eyebrow">Works</div>
+                    <h2>作品</h2>
+                    <p>四個專案：兩個純前端、兩個 PHP 動態網站。點「看專案細節」會看到目標、製作流程、我負責的部分與具體成果；點「開啟網站」則會在新視窗打開實際的作品。</p>
+                </div>
+                <div class="block">
+                    <div class="cards" id="work-cards"></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="notes">
-        <div class="wrap">
-            <h2 class="section-title">關於這些專案</h2>
-            <p class="section-note" style="margin-bottom:14px;">給第一次看的人的幾點說明。</p>
-            <ul style="color:var(--ink-soft); font-size:0.92rem; padding-left:1.2em; display:flex; flex-direction:column; gap:8px;">
-                <li>不想另外安裝環境的話，整個作品集也已經放上線，直接用瀏覽器開啟 <a href="http://220.128.133.15/s1150101/lina/index.html" target="_blank" rel="noopener" style="border-bottom:1px solid var(--accent);">http://220.128.133.15/s1150101/lina/index.html</a> 就能看到全部四個作品（含 project-c、project-d 的 PHP 頁面）。</li>
-                <li>project-a 與 project-b 是純前端網頁，直接用瀏覽器開啟 <code>index.html</code> 就能看。</li>
-                <li>project-c 與 project-d 需要 PHP 環境（例如 XAMPP）。把資料夾放到網站根目錄後開啟 <code>index.php</code>；沒有匯入資料庫也能看到畫面（會顯示範例資料）。</li>
-                <li>
-                    <strong>帳密使用登入號</strong>（各專案首頁上也都有標示）：
-                    <ul style="margin-top:6px; padding-left:1.2em; display:flex; flex-direction:column; gap:4px;">
-                        <li>project-a（飾品電商）：會員登入為前端示範，輸入<strong>任意 Email 與密碼</strong>即可登入。</li>
-                        <li>project-b（尋找貓咪的家）：點右上「登入」，帳號 <code>admin</code>、密碼 <code>1234</code>（前端示範，任意輸入亦可）。</li>
-                        <li>project-c／project-d（日系美妝 CMS）：點「品牌後台管理」，帳號 <code>admin</code>、密碼 <code>1234</code>。</li>
+        <!-- ===================== 專案細節（由 JS 產生） ===================== -->
+        <section class="page" id="page-detail">
+            <div class="wrap" id="detail-body"></div>
+        </section>
+
+        <!-- ===================== 學習歷程 ===================== -->
+        <section class="page" id="page-learning">
+            <div class="wrap">
+                <div class="page-head">
+                    <div class="eyebrow">Learning</div>
+                    <h2>學習歷程</h2>
+                    <p>課程期間跟著老師做的練習檔案，依上課日期推上 GitHub。上面那四個作品，就是從這些練習延伸出來的。</p>
+                </div>
+
+                <div class="block">
+                    <div class="sec-title">
+                        <h3>課堂練習紀錄</h3>
+                        <div class="line"></div>
+                    </div>
+                    <p class="sec-note">點卡片可以直接進 GitHub 看原始碼。</p>
+                    <div class="cards">
+                        <a class="repo-card" href="https://github.com/lina88091500/web-course-study-" target="_blank" rel="noopener">
+                            <div class="kind">HTML／CSS／JavaScript</div>
+                            <h4>web-course-study-</h4>
+                            <p>從表格、表單、iframe 到 CSS、JavaScript、留言板，橫跨 4 月中到 7 月每一堂課的練習檔案。</p>
+                            <div class="go">看原始碼 →</div>
+                        </a>
+                        <a class="repo-card" href="https://github.com/lina88091500/11501-FULL-BASIC" target="_blank" rel="noopener">
+                            <div class="kind">PHP 基礎</div>
+                            <h4>11501-FULL-BASIC</h4>
+                            <p>PHP 全科基礎語法練習：變數、條件判斷、迴圈，依上課日期逐日累積。</p>
+                            <div class="go">看原始碼 →</div>
+                        </a>
+                        <a class="repo-card" href="https://github.com/lina88091500/115-html" target="_blank" rel="noopener">
+                            <div class="kind">HTML／PHP 入門</div>
+                            <h4>115-html</h4>
+                            <p>字串與日期函式、BMI 計算、Cookie／Session 登入練習、頁面 include 拆分。</p>
+                            <div class="go">看原始碼 →</div>
+                        </a>
+                    </div>
+
+                    <div class="sec-title">
+                        <h3>「學校系統」練習</h3>
+                        <div class="line"></div>
+                    </div>
+                    <p class="sec-note">同一個題目寫兩次，第二次改成物件導向，體會兩種寫法的差別。</p>
+                    <div class="cards">
+                        <a class="repo-card" href="https://github.com/lina88091500/115-php" target="_blank" rel="noopener">
+                            <div class="kind">PHP 基礎版</div>
+                            <h4>115-php</h4>
+                            <p>PDO 資料庫操作、註冊登入流程，並以「學校系統」為題練習前後台的基本功能。</p>
+                            <div class="go">看原始碼 →</div>
+                        </a>
+                        <a class="repo-card" href="https://github.com/lina88091500/115-oop" target="_blank" rel="noopener">
+                            <div class="kind">PHP 物件導向版</div>
+                            <h4>115-oop</h4>
+                            <p>把 115-php 的「學校系統」改寫成物件導向寫法，補上前台公告頁與更完整的後台管理。</p>
+                            <div class="go">看原始碼 →</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 聯絡 ===================== -->
+        <section class="page" id="page-contact">
+            <div class="wrap">
+                <div class="page-head">
+                    <div class="eyebrow">Contact</div>
+                    <h2>聯絡我</h2>
+                    <p>想看更多細節，或想知道某個功能我是怎麼做的，歡迎來信或來電，我可以直接展示給你看。</p>
+                </div>
+
+                <div class="block">
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <span>EMAIL</span>
+                            <a href="mailto:a88091500@gmail.com">a88091500@gmail.com</a>
+                        </div>
+                        <div class="contact-card">
+                            <span>PHONE</span>
+                            <a href="tel:+886960988172">0960-988-172</a>
+                        </div>
+                        <div class="contact-card">
+                            <span>LOCATION</span>
+                            <p>新北市淡水區</p>
+                        </div>
+                        <div class="contact-card">
+                            <span>GITHUB</span>
+                            <a href="https://github.com/lina88091500" target="_blank" rel="noopener">github.com/lina88091500</a>
+                        </div>
+                    </div>
+
+                    <div class="sec-title">
+                        <h3>作品的展示帳號</h3>
+                        <div class="line"></div>
+                    </div>
+                    <div class="demo-box">
+                        <b>project-a（ZL&amp; 飾品電商）</b>：點右上「登入」，輸入<b>任意 Email 與任意密碼</b>即可登入（純前端展示）。<br>
+                        <b>project-b（尋找貓咪的家）</b>：點右上「登入」，帳號 <code>admin</code>、密碼 <code>1234</code>。<br>
+                        <b>project-c ╱ project-d（日系美妝 CMS）</b>：點「品牌後台管理」，帳號 <code>admin</code>、密碼 <code>1234</code>。
+                    </div>
+
+                    <div class="sec-title">
+                        <h3>線上版本與原始碼</h3>
+                        <div class="line"></div>
+                    </div>
+                    <ul class="notes-list" style="margin-bottom:50px;">
+                        <li>整份作品集（含 PHP 專案）：
+                            <a href="http://220.128.133.15/s1150101/lina/index.html" target="_blank" rel="noopener">http://220.128.133.15/s1150101/lina/index.html</a>
+                        </li>
+                        <li>原始碼：
+                            <a href="https://github.com/lina88091500/lina-portfolio" target="_blank" rel="noopener">github.com/lina88091500/lina-portfolio</a>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="wrap">
-            <h2 class="section-title">聯絡方式</h2>
-            <p class="section-note">歡迎來信或來電。</p>
-            <div class="contact-list">
-                <div>
-                    <span>EMAIL</span>
-                    <a href="mailto:a88091500@gmail.com">a88091500@gmail.com</a>
-                </div>
-                <div>
-                    <span>電話</span>
-                    <a href="tel:+886960988172">0960-988-172</a>
-                </div>
-                <div>
-                    <span>所在地</span>
-                    新北市淡水區
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
 
     <footer>
-        <div class="wrap">© 2026 林宣芝 Lina 版權所有</div>
+        <div class="wrap">© 2026 林宣芝 Lina · 版面與內容由本人規劃，程式碼以 AI 工具輔助開發</div>
     </footer>
+
+    <script>
+        /* ===================== 專案資料 ===================== */
+        var ONLINE_BASE = "http://220.128.133.15/s1150101/lina/";
+
+        var WORKS = [
+            {
+                id: "a",
+                folder: "project-a",
+                entry: "project-a/index.html",
+                kind: "響應式靜態網站",
+                status: "設計進行中",
+                title: "ZL& accessories 飾品電商",
+                sub: "為正在做斜槓賣飾品的朋友做的品牌網站雛形 —— 從品牌調性、版面設計到互動功能都自己包辦，目前仍在持續設計與精修。",
+                summary: "為朋友的斜槓飾品品牌做的網站雛形。以 HTML / CSS / JavaScript 加上 Bootstrap 5 切版，包含首頁、商品總覽、商品詳情、會員登入註冊與專屬訂製表單五種頁面，目前持續設計中。",
+                shot: "assets/shots/project-a.png",
+                shot2: "assets/shots/project-a-products.png",
+                shotCap: "首頁主視覺：深墨底 × 香檳金，讓飾品照片成為畫面上最亮的東西",
+                shot2Cap: "商品總覽頁：分類篩選＋分頁",
+                stack: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "RWD", "localStorage"],
+                goal: "我朋友正在做斜槓賣飾品，我想試著做一個她真的能拿來用的網站，而不是只交一份作業。目標是先做出一個能讓她看得到、可以直接給意見的雛形：有品牌感、點得動、手機也能看。",
+                role: "一個人完成：品牌調性與配色、五種頁面的版面設計、全部切版，以及商品篩選、分頁、收藏、登入狀態這些 JavaScript 互動。目前仍在依實際使用情境持續設計與精修。",
+                flow: [
+                    ["定調", "先決定「深墨底 × 香檳金」的方向，讓飾品照片是畫面上最亮的東西。"],
+                    ["畫版面", "先把五個頁面的區塊順序排出來，確認資訊層次再開始寫程式。"],
+                    ["切版", "用 Bootstrap 5 的柵格處理主結構，細部的間距與字級再自己用 CSS 調。"],
+                    ["加互動", "用原生 JavaScript 做分類篩選、分頁、收藏與登入狀態切換。"],
+                    ["手機調整", "在手機寬度下重新檢查導覽列、商品格線與表單，逐項微調。"]
+                ],
+                results: [
+                    ["5 種頁面完整串接", "首頁、商品總覽、商品詳情、會員登入註冊、專屬訂製需求表單。"],
+                    ["8 件商品 × 動態詳情頁", "詳情頁依網址參數 <code>?id=1~8</code> 切換內容，不必為每件商品各做一頁。"],
+                    ["篩選與分頁都是自己寫的", "分類篩選與分頁用原生 JavaScript 實作，沒有套現成外掛。"],
+                    ["狀態會被記住", "收藏與登入狀態存在瀏覽器 localStorage，重新整理後仍然保留。"],
+                    ["手機版另外調過", "不是只靠框架自動縮，導覽列與商品格線都有針對小螢幕重新排。"]
+                ],
+                learned: "最大的收穫是「資訊層次」：同一批商品照片，把留白和字級調整過之後，質感差很多。也第一次體會到「做給真的有人要用的網站」跟做作業不一樣 —— 版面要好看，還要考慮她之後怎麼上架新商品。",
+                demo: "點右上「登入」進入會員中心，輸入<b>任意 Email 與任意密碼</b>即可登入（純前端展示，狀態存在 localStorage）。",
+                todo: "這個專案還在進行中，我會持續設計與精修：商品列表頁的收藏愛心還沒接上功能（詳情頁可以用）；商品照片與文案要換成朋友實際要賣的品項；之後也想幫她把上架流程做得更好操作。"
+            },
+            {
+                id: "b",
+                folder: "project-b",
+                entry: "project-b/index.html",
+                kind: "前後台流程原型",
+                title: "尋找貓咪的家 · 領養平台",
+                sub: "練習「一份資料被前後台共用」的完整增刪查改流程，以及後台的登入權限控制。",
+                summary: "貓咪領養網站的前後台原型。前台有輪播、待領養列表與詳情頁；後台是完整的「列表 → 新增 → 修改 → 已被收養（刪除）」流程，並加上登入守衛。",
+                shot: "assets/shots/project-b.png",
+                shotCap: "前台首頁：精選輪播與待領養列表",
+                stack: ["HTML5", "CSS3", "Bootstrap 5", "JavaScript", "CRUD 流程", "權限控制"],
+                goal: "前一個作品的資料是寫死的。這次我想試的是：後台改了資料，前面的列表要真的跟著變 —— 也就是四個動作共用同一份資料來源，而不是各做各的假畫面。",
+                role: "全部自己做：前後台版面、共用資料模組的設計、四個 CRUD 頁面的流程串接，以及「未登入不能進後台」的判斷。",
+                flow: [
+                    ["先想資料", "先決定一隻貓要有哪些欄位，再回頭設計畫面，避免畫面做完才發現欄位不夠。"],
+                    ["抽出共用資料", "把貓咪清單集中寫在 <code>hw/cats-data.js</code>，四個頁面讀同一份，資料只有一個來源。"],
+                    ["做四個動作", "列表、新增、修改、刪除各一頁，全部對同一份清單操作，改完回列表就看得到結果。"],
+                    ["加權限", "在後台每一頁最上面做登入判斷，未登入直接導回登入頁。"],
+                    ["補照片上傳", "上傳的照片轉成圖片資料存起來，送出前就能即時預覽。"]
+                ],
+                results: [
+                    ["四個動作真的會互相影響", "新增、修改、刪除都寫進同一份 localStorage 清單，重新整理列表仍看得到結果。"],
+                    ["網址闖不進後台", "直接把 <code>admin.html</code> 或新增／修改／刪除頁的網址貼進瀏覽器，未登入會被導回登入頁。"],
+                    ["登出回到前台", "登出不會卡在登入頁，而是回到前台首頁，符合一般使用者的預期。"],
+                    ["照片上傳即時預覽", "選了檔案立刻看到縮圖，不用等送出才知道選錯。"],
+                    ["前台三種頁型", "輪播精選、待領養列表、貓咪詳情頁。"]
+                ],
+                learned: "學到最重要的一課是「資料只能有一個來源」。一開始前台和後台各寫一份清單，結果改了後台前台沒變；把資料抽出來共用之後，整個流程才對得起來。",
+                demo: "點右上「登入」，帳號 <code>admin</code>、密碼 <code>1234</code>（純前端展示，實際輸入任意帳密皆可登入）。",
+                todo: "前台首頁與詳情頁的貓咪目前還是另外寫死的展示內容，還沒和後台那份清單接在一起，這是接下來要整併的部分。"
+            },
+            {
+                id: "c",
+                folder: "project-c",
+                entry: "project-c/index.php",
+                kind: "PHP + MySQL 動態網站",
+                title: "Bloom Aesthetic Studio · 固定版面版",
+                sub: "以網頁設計乙級檢定題目為基礎改作，把它變成一個真的能用的日系美妝品牌內容管理系統。",
+                summary: "前台固定 1024px 版面的品牌官網，搭配九個後台管理模組；資料存在 MySQL，連不到資料庫時會自動改用內建範例資料，畫面仍然完整。",
+                shot: "assets/shots/project-c.png",
+                shotCap: "前台首頁（固定 1024px）：左側選單、中間最新消息、右側形象圖輪播",
+                stack: ["PHP", "MySQL", "PDO", "jQuery", "前台＋後台", "bcrypt"],
+                goal: "檢定題目的畫面是制式的教學版型。我想把它整個重新設計成日系美妝品牌的官網，同時保留題目要求的後台功能 —— 證明我能在既有系統上做改造，而不只是照抄。",
+                role: "重新設計整個前台視覺與版面、把題目的教學用語改寫成品牌情境、整理後台九個管理模組的介面，並補上資料庫連不上時的容錯與登入的安全性處理。",
+                flow: [
+                    ["拆解題目", "先看懂原本有哪些資料表、哪些後台功能，確認不能少掉的部分。"],
+                    ["重新設計 UI", "換成櫻花粉與霧金的日系配色，把「校園」情境全面改寫成美妝品牌情境。"],
+                    ["接後台", "九個管理模組共用同一個資料庫連線，避免每頁重複連線。"],
+                    ["加容錯", "資料庫連不到時自動切換成內建範例資料，讓沒有匯入資料庫的人也看得到完整畫面。"],
+                    ["補安全性", "寫入 SQL 的值先做逃逸處理，管理員密碼改用雜湊儲存。"]
+                ],
+                results: [
+                    ["9 個後台管理模組", "網站標題與 Header 圖、文字廣告、動畫圖片、品牌形象資料、進站人數、頁尾文字、最新消息、導覽選單與子選單、管理員帳號。"],
+                    ["沒有資料庫也能看", "連線只嘗試一次、九張表共用同一個連線並設 2 秒逾時；連不到就改用範例資料，約 2 秒內就能看到內容。"],
+                    ["密碼有雜湊", "管理員密碼用 bcrypt 儲存；若資料庫裡還留著舊的明碼密碼，登入成功當下會自動升級成雜湊。"],
+                    ["SQL 值有逃逸處理", "所有寫進 SQL 的值都先經過 <code>PDO::quote()</code>。"],
+                    ["後台有登入守衛", "未登入直接開 <code>admin.php</code> 會被導回登入頁。"]
+                ],
+                learned: "第一次處理「別人已經寫好的系統」。學會先讀懂結構再動手，也第一次認真想過：如果環境沒準備好，畫面該怎麼辦 —— 這就是後來加上範例資料容錯的原因。",
+                demo: "點「品牌後台管理」，帳號 <code>admin</code>、密碼 <code>1234</code>（未匯入資料庫也能登入瀏覽）。",
+                todo: "資料庫層還可以再改寫成預備語句（prepared statements），上傳圖片時也可以加上副檔名與檔案類型檢查。"
+            },
+            {
+                id: "d",
+                folder: "project-d",
+                entry: "project-d/index.php",
+                kind: "PHP CMS · RWD 重構",
+                title: "Bloom Aesthetic Studio · RWD 版面版",
+                sub: "同一套後端邏輯，把固定 1024px 的前台整個重寫成流動式響應式版面。",
+                summary: "與 project-c 共用同一套後端與資料結構，但前台改為置頂導覽列、以及依裝置寬度自動調整的三欄／單欄佈局，後台介面同樣是響應式的。",
+                shot: "assets/shots/project-d.png",
+                shot2: "assets/shots/project-d-mobile.png",
+                shot2Mobile: true,
+                shotCap: "桌機版：置頂導覽列 ＋ 滿版主視覺 ＋ 三欄內容",
+                shot2Cap: "同一頁的手機版：自動收成單欄",
+                stack: ["PHP", "MySQL", "RWD 重構", "CSS Grid", "手機適配"],
+                goal: "project-c 固定 1024px，手機打開要一直左右拖。我想證明的是：在完全不動後端的前提下，我有辦法把同一套系統的前台改成手機也好讀 —— 這是實務上很常遇到的需求。",
+                role: "負責整個前台的版面重寫：新的置頂導覽列、可捲動的選單、三欄／單欄的斷點切換，以及後台介面的響應式調整。後端邏輯與資料表維持不動。",
+                flow: [
+                    ["保留後端", "先確認 <code>api/</code> 與資料表完全不動，改版的風險才控制得住。"],
+                    ["重寫前台骨架", "把固定寬度的版面換成流動式容器，主視覺改為滿版。"],
+                    ["設計導覽", "左側選單改成置頂導覽列，項目多的時候可以橫向捲動。"],
+                    ["設定斷點", "桌機三欄、平板兩欄、手機單欄，逐一在各寬度下檢查有沒有破版。"],
+                    ["連後台一起改", "後台管理介面也調成響應式，寬螢幕下選單與內容面板置中排列。"]
+                ],
+                results: [
+                    ["同一套系統的兩種呈現", "與 project-c 並排展示，可以直接對照固定版面與響應式版面的差別。"],
+                    ["手機、平板、桌機都能讀", "不需要左右拖曳，主視覺、消息列表與形象圖都會自動重排。"],
+                    ["後端零改動", "資料表與 API 完全沿用 project-c，只重寫呈現層。"],
+                    ["後台也是 RWD", "管理介面同樣能在小螢幕上操作。"],
+                    ["同樣保有容錯", "沒有匯入資料庫時一樣會顯示內建範例資料。"]
+                ],
+                learned: "做完才真正懂 RWD 不是「加幾個 media query」，而是一開始就要用流動的容器去想版面。把固定寬度改成響應式，比一開始就用響應式做要花更多時間。",
+                demo: "點「品牌後台管理」，帳號 <code>admin</code>、密碼 <code>1234</code>（與 project-c 相同）。",
+                todo: "與 project-c 相同：資料庫層可改寫成預備語句，上傳圖片可加上檔案類型檢查。"
+            }
+        ];
+
+        /* ===================== 產生作品卡片 ===================== */
+        function tagList(arr) {
+            return arr.map(function (s) { return '<span>' + s + '</span>'; }).join('');
+        }
+
+        function cardHTML(w) {
+            return '' +
+                '<article class="work-card">' +
+                '  <a class="thumb" href="#/work/' + w.id + '">' +
+                '    <span class="kind">' + w.kind + '</span>' +
+                (w.status ? '    <span class="status">' + w.status + '</span>' : '') +
+                '    <img src="./' + w.shot + '" alt="' + w.title + ' 畫面截圖" loading="lazy">' +
+                '  </a>' +
+                '  <div class="work-body">' +
+                '    <h4>' + w.title + '</h4>' +
+                '    <div class="folder">' + w.folder + '/</div>' +
+                '    <p>' + w.summary + '</p>' +
+                '    <div class="stack">' + tagList(w.stack) + '</div>' +
+                '    <div class="work-actions">' +
+                '      <a class="btn primary small" href="#/work/' + w.id + '">看專案細節</a>' +
+                '      <a class="btn ghost small" href="./' + w.entry + '" target="_blank" rel="noopener">開啟網站 ↗</a>' +
+                '    </div>' +
+                '  </div>' +
+                '</article>';
+        }
+
+        document.getElementById('work-cards').innerHTML = WORKS.map(cardHTML).join('');
+        document.getElementById('featured-cards').innerHTML = WORKS.slice(0, 3).map(cardHTML).join('');
+
+        /* ===================== 專案細節頁 ===================== */
+        function detailHTML(w) {
+            var shots = w.shot2
+                ? '<div class="shot-pair">' +
+                '     <div><div class="shot"><img src="./' + w.shot + '" alt="' + w.title + ' 畫面"></div><div class="shot-cap">' + w.shotCap + '</div></div>' +
+                '     <div><div class="shot' + (w.shot2Mobile ? ' contain' : '') + '"><img src="./' + w.shot2 + '" alt="' + w.title + ' 其他畫面"></div><div class="shot-cap">' + w.shot2Cap + '</div></div>' +
+                '   </div>'
+                : '<div class="shot"><img src="./' + w.shot + '" alt="' + w.title + ' 畫面"></div>' +
+                '  <div class="shot-cap">' + w.shotCap + '</div>';
+
+            return '' +
+                '<a class="back-link" href="#/works">← 回到作品列表</a>' +
+                '<div class="detail-head">' +
+                '  <div class="eyebrow">' + w.kind + ' · ' + w.folder + '</div>' +
+                '  <h2>' + w.title + (w.status ? '<span class="status-pill">' + w.status + '</span>' : '') + '</h2>' +
+                '  <p class="sub">' + w.sub + '</p>' +
+                '  <div class="stack" style="margin-bottom:18px;">' + tagList(w.stack) + '</div>' +
+                '  <div class="btn-row">' +
+                '    <a class="btn primary" href="./' + w.entry + '" target="_blank" rel="noopener">開啟這個作品 ↗</a>' +
+                '    <a class="btn ghost" href="' + ONLINE_BASE + w.entry + '" target="_blank" rel="noopener">看線上版本 ↗</a>' +
+                '  </div>' +
+                '</div>' +
+                shots +
+                '<div class="sec-title"><h3>這個專案在做什麼</h3><div class="line"></div></div>' +
+                '<p class="sec-note">為什麼做、我負責哪些、做完學到什麼。</p>' +
+                '<div class="facts">' +
+                '  <div class="fact"><h5>為什麼做這個</h5><p>' + w.goal + '</p></div>' +
+                '  <div class="fact"><h5>我負責的部分</h5><p>' + w.role + '</p></div>' +
+                '  <div class="fact"><h5>做完之後學到的</h5><p>' + w.learned + '</p></div>' +
+                '</div>' +
+                '<div class="sec-title"><h3>製作流程</h3><div class="line"></div></div>' +
+                '<p class="sec-note">實際的順序，不是事後補的。</p>' +
+                '<ol class="flow">' +
+                w.flow.map(function (f) { return '<li><b>' + f[0] + '</b><span>' + f[1] + '</span></li>'; }).join('') +
+                '</ol>' +
+                '<div class="sec-title"><h3>做出什麼</h3><div class="line"></div></div>' +
+                '<p class="sec-note">都可以在網站上實際點開驗證。</p>' +
+                '<div class="result-list">' +
+                w.results.map(function (r) { return '<div><span><strong>' + r[0] + '</strong>　' + r[1] + '</span></div>'; }).join('') +
+                '</div>' +
+                '<div class="sec-title"><h3>展示帳號與下一步</h3><div class="line"></div></div>' +
+                '<p class="sec-note">誠實列出目前還沒做完的部分。</p>' +
+                '<div class="demo-box"><b>展示帳號：</b>' + w.demo + '<br><br><b>還可以再加強：</b>' + w.todo + '</div>' +
+                '<div class="btn-row" style="margin-bottom:64px;">' +
+                '  <a class="btn primary" href="./' + w.entry + '" target="_blank" rel="noopener">開啟這個作品 ↗</a>' +
+                '  <a class="btn ghost" href="#/works">回到作品列表</a>' +
+                '</div>';
+        }
+
+        /* ===================== hash 路由（分頁切換） ===================== */
+        var PAGES = ['home', 'about', 'skills', 'works', 'learning', 'contact', 'detail'];
+
+        function render() {
+            var hash = location.hash.replace(/^#\/?/, '');
+            var parts = hash.split('/');
+            var name = parts[0] || 'home';
+            var tabName = name;
+
+            if (name === 'work') {
+                var found = WORKS.filter(function (x) { return x.id === parts[1]; });
+                if (!found.length) { location.hash = '#/works'; return; }
+                document.getElementById('detail-body').innerHTML = detailHTML(found[0]);
+                document.title = found[0].title + '｜林宣芝 Lina 作品集';
+                name = 'detail';
+                tabName = 'works';
+            } else {
+                if (PAGES.indexOf(name) === -1 || name === 'detail') { name = 'home'; tabName = 'home'; }
+                document.title = '林宣芝 Lina｜網頁設計作品集';
+            }
+
+            PAGES.forEach(function (p) {
+                var el = document.getElementById('page-' + p);
+                if (el) { el.classList.toggle('active', p === name); }
+            });
+
+            var links = document.querySelectorAll('#tabs a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.toggle('active', links[i].getAttribute('data-tab') === tabName);
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('hashchange', render);
+        render();
+    </script>
 
 </body>
 
