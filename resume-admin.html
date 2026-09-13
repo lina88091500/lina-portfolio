@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>林宣芝 Lina｜履歷 · 版型 A</title>
-    <meta name="description" content="林宣芝（Lina）的求職履歷 —— 網頁工程師／前端工程師。" />
+    <title>林宣芝 Lina｜履歷 · 行政版</title>
+    <meta name="description" content="林宣芝（Lina）的求職履歷 —— 資訊助理／專案行政助理／行政專員。" />
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128196;</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,15 +16,16 @@
 
     <style>
         :root {
-            --ink: #2c2a28;
-            --ink-soft: #524b45;
-            --ink-faint: #8a837c;
-            --line: #e7e0d6;
-            --accent: #9c5c68;
-            --accent-deep: #6e3d47;
-            --accent-soft: #f6ebec;
-            --gold: #c08b5e;
-            --gold-soft: #f7efe4;
+            /* 專業藍 —— 行政／內勤取向 */
+            --ink: #1f2a36;
+            --ink-soft: #46525f;
+            --ink-faint: #8592a1;
+            --line: #dde5ee;
+            --accent: #2f5d8a;
+            --accent-deep: #1c3a5c;
+            --accent-soft: #e6eef7;
+            --gold: #7fa8c9;
+            --gold-soft: #eef4fa;
         }
 
         * {
@@ -34,7 +35,7 @@
         }
 
         body {
-            background: #ece5dc;
+            background: #e8ecf1;
             color: var(--ink);
             font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -59,7 +60,7 @@
             height: 297mm;
             margin: 0 auto;
             background: #fff;
-            box-shadow: 0 20px 54px rgba(60, 45, 40, 0.18);
+            box-shadow: 0 20px 54px rgba(31, 42, 54, 0.18);
             display: grid;
             grid-template-columns: 68mm 1fr;
             overflow: hidden;
@@ -70,12 +71,12 @@
         /* ============ 左側欄 ============ */
         .side {
             position: relative;
-            background: linear-gradient(165deg, #a86470 0%, var(--accent) 34%, var(--accent-deep) 78%, #58303a 100%);
+            background: linear-gradient(165deg, #3d709e 0%, var(--accent) 34%, var(--accent-deep) 78%, #12283f 100%);
             color: #fff;
-            padding: 10mm 7.5mm 8mm;
+            padding: 9mm 7.5mm 8mm;
             display: flex;
             flex-direction: column;
-            gap: 4.4mm;
+            gap: 5.6mm;
             overflow: hidden;
         }
 
@@ -87,7 +88,7 @@
         .deco.ring {
             width: 44mm;
             height: 44mm;
-            border: 1.4mm solid rgba(255, 255, 255, 0.14);
+            border: 1.4mm solid rgba(255, 255, 255, 0.13);
             border-radius: 50%;
             top: -15mm;
             left: -17mm;
@@ -96,9 +97,9 @@
         .deco.ring2 {
             width: 28mm;
             height: 28mm;
-            border: 0.8mm solid rgba(255, 255, 255, 0.16);
+            border: 0.8mm solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
-            bottom: 14mm;
+            bottom: 12mm;
             right: -12mm;
         }
 
@@ -106,8 +107,8 @@
             width: 26mm;
             height: 16mm;
             right: 6mm;
-            bottom: 4mm;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.3) 0.5mm, transparent 0.5mm);
+            bottom: 3mm;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.28) 0.5mm, transparent 0.5mm);
             background-size: 3.4mm 3.4mm;
         }
 
@@ -116,7 +117,7 @@
             height: 0;
             border-left: 7mm solid transparent;
             border-right: 7mm solid transparent;
-            border-bottom: 11mm solid rgba(192, 139, 94, 0.4);
+            border-bottom: 11mm solid rgba(127, 168, 201, 0.32);
             top: 52mm;
             right: -4mm;
             transform: rotate(18deg);
@@ -128,12 +129,12 @@
         }
 
         .photo-wrap {
-            width: 30mm;
-            height: 30mm;
+            width: 29mm;
+            height: 29mm;
             margin: 0 auto;
             border-radius: 50%;
             padding: 1.1mm;
-            background: linear-gradient(140deg, var(--gold) 0%, rgba(255, 255, 255, 0.85) 100%);
+            background: linear-gradient(140deg, var(--gold) 0%, rgba(255, 255, 255, 0.9) 100%);
         }
 
         .photo-wrap img {
@@ -141,6 +142,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            /* 半身照為直式，取上半部讓臉落在圓框中上方 */
             object-position: center 8%;
             display: block;
             background: #eee;
@@ -151,13 +153,13 @@
         }
 
         .id-block h1 {
-            font-size: 25pt;
+            font-size: 24pt;
             letter-spacing: 5px;
             line-height: 1.15;
         }
 
         .id-block .en {
-            font-size: 9.6pt;
+            font-size: 9.4pt;
             letter-spacing: 1.6px;
             color: rgba(255, 255, 255, 0.72);
             font-weight: 300;
@@ -167,17 +169,17 @@
         .id-block .job {
             display: inline-block;
             margin-top: 5px;
-            font-size: 11.5pt;
-            line-height: 1.5;
+            font-size: 10.6pt;
+            line-height: 1.45;
             border-top: 1px solid rgba(255, 255, 255, 0.35);
             border-bottom: 1px solid rgba(255, 255, 255, 0.35);
             padding: 2px 0;
         }
 
         .side h2 {
-            font-size: 12.5pt;
+            font-size: 12pt;
             letter-spacing: 2px;
-            margin-bottom: 3px;
+            margin-bottom: 2mm;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -185,8 +187,8 @@
 
         .side h2::before {
             content: "";
-            width: 3mm;
-            height: 3mm;
+            width: 2.8mm;
+            height: 2.8mm;
             background: var(--gold);
             transform: rotate(45deg);
             flex: 0 0 auto;
@@ -197,16 +199,16 @@
         }
 
         .contact li {
-            font-size: 11.4pt;
-            line-height: 1.35;
+            font-size: 11pt;
+            line-height: 1.32;
             color: rgba(255, 255, 255, 0.96);
-            margin-bottom: 4px;
+            margin-bottom: 2.4mm;
             word-break: break-all;
         }
 
         .contact li b {
             display: block;
-            font-size: 8pt;
+            font-size: 7.8pt;
             letter-spacing: 1.4px;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.55);
@@ -214,7 +216,7 @@
         }
 
         .skill-group {
-            margin-bottom: 5px;
+            margin-bottom: 3mm;
         }
 
         .skill-group:last-child {
@@ -222,7 +224,7 @@
         }
 
         .skill-group .label {
-            font-size: 10pt;
+            font-size: 9.6pt;
             color: rgba(255, 255, 255, 0.64);
             margin-bottom: 2px;
         }
@@ -230,32 +232,28 @@
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 2mm 1.2mm;
         }
 
+        /* 技能標籤一律白底藍字 */
         .tag {
-            font-size: 10.6pt;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 999px;
-            padding: 0 8px;
-        }
-
-        .tag.key {
+            font-size: 10.2pt;
+            line-height: 1.52;
             background: #fff;
-            border-color: #fff;
+            border: 1px solid #fff;
             color: var(--accent-deep);
             font-weight: 500;
+            border-radius: 999px;
+            padding: 0 7px;
         }
 
         .rows li {
-            font-size: 11.2pt;
+            font-size: 10.8pt;
             color: rgba(255, 255, 255, 0.94);
             display: flex;
             justify-content: space-between;
             gap: 8px;
-            padding: 1px 0;
+            padding: 1.1mm 0;
             border-bottom: 1px dotted rgba(255, 255, 255, 0.24);
         }
 
@@ -271,10 +269,10 @@
         /* ============ 右主欄 ============ */
         .main {
             position: relative;
-            padding: 11mm 10mm 9mm 9mm;
+            padding: 10mm 9.5mm 8mm 9mm;
             display: flex;
             flex-direction: column;
-            gap: 5mm;
+            gap: 5.6mm;
             overflow: hidden;
         }
 
@@ -295,7 +293,7 @@
             border: 1mm solid var(--accent-soft);
             transform: rotate(45deg);
             left: 4mm;
-            bottom: 6mm;
+            bottom: 5mm;
         }
 
         .main > section {
@@ -307,11 +305,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 3px;
+            margin-bottom: 2.5px;
         }
 
         .head h2 {
-            font-size: 15pt;
+            font-size: 14.5pt;
             color: var(--accent-deep);
             white-space: nowrap;
             letter-spacing: 1px;
@@ -329,13 +327,13 @@
         .head .line {
             flex: 1;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent-soft), rgba(231, 224, 214, 0.35));
+            background: linear-gradient(90deg, var(--accent-soft), rgba(221, 229, 238, 0.35));
         }
 
         .about {
-            font-size: 12pt;
+            font-size: 11.6pt;
             color: var(--ink-soft);
-            line-height: 1.72;
+            line-height: 1.68;
             text-align: justify;
         }
 
@@ -344,62 +342,82 @@
             font-weight: 500;
         }
 
-        /* 作品集 */
+        /* 核心能力 */
+        .core {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4mm 5mm;
+            list-style: none;
+        }
+
+        .core li {
+            font-size: 11.2pt;
+            color: var(--ink-soft);
+            display: flex;
+            gap: 6px;
+            line-height: 1.45;
+        }
+
+        .core li::before {
+            content: "";
+            width: 2.4mm;
+            height: 2.4mm;
+            margin-top: 1.6mm;
+            background: var(--gold);
+            transform: rotate(45deg);
+            flex: 0 0 auto;
+        }
+
+        .core li b {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* 資訊實作 */
         .work-box {
             border: 1px solid var(--line);
             border-left: 3mm solid var(--accent);
             border-radius: 3px;
-            padding: 4mm 5mm;
-            background: #fdfbf9;
+            padding: 3mm 5mm;
+            background: #fbfcfe;
         }
 
         .work-box .url {
             display: block;
-            font-size: 13pt;
+            font-size: 12.2pt;
             font-weight: 500;
             color: var(--accent-deep);
-            margin-bottom: 0.5mm;
-        }
-
-        .work-box .url-note {
-            font-size: 10.4pt;
-            color: var(--ink-faint);
-            margin-bottom: 2.5mm;
+            margin-bottom: 1.6mm;
         }
 
         .work-list {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1.6mm;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2mm 5mm;
         }
 
         .work-list li {
             display: flex;
             align-items: center;
-            gap: 7px;
-            font-size: 11.4pt;
+            gap: 6px;
+            font-size: 10.8pt;
             color: var(--ink-soft);
             white-space: nowrap;
         }
 
         .work-list li::before {
             content: "";
-            width: 2.6mm;
-            height: 2.6mm;
+            width: 2.4mm;
+            height: 2.4mm;
             background: var(--gold);
             transform: rotate(45deg);
             flex: 0 0 auto;
         }
 
-        .work-list li b {
-            color: var(--ink);
-            font-weight: 500;
-        }
-
         /* 條目 */
         .item {
-            margin-bottom: 3.2mm;
+            margin-bottom: 3.4mm;
         }
 
         .item:last-child {
@@ -414,33 +432,33 @@
         }
 
         .item-top h3 {
-            font-size: 12.8pt;
+            font-size: 12.4pt;
         }
 
         .item-top .when {
-            font-size: 10.4pt;
+            font-size: 10.2pt;
             color: var(--accent);
             font-weight: 500;
             white-space: nowrap;
         }
 
         .item .meta {
-            font-size: 10.6pt;
+            font-size: 10.2pt;
             color: var(--ink-faint);
             line-height: 1.4;
-            margin-bottom: 0.8mm;
+            margin-bottom: 0.6mm;
         }
 
         .item ul {
-            padding-left: 16px;
+            padding-left: 15px;
             display: flex;
             flex-direction: column;
         }
 
         .item li {
-            font-size: 11.4pt;
+            font-size: 11.1pt;
             color: var(--ink-soft);
-            line-height: 1.62;
+            line-height: 1.58;
             text-align: justify;
         }
 
@@ -454,9 +472,9 @@
             justify-content: space-between;
             align-items: baseline;
             gap: 12px;
-            font-size: 11.6pt;
+            font-size: 11.2pt;
             color: var(--ink-soft);
-            padding: 1.2mm 0;
+            padding: 1mm 0;
             border-bottom: 1px dotted var(--line);
         }
 
@@ -471,11 +489,11 @@
 
         .edu li .sub {
             color: var(--ink-faint);
-            font-size: 10.4pt;
+            font-size: 10.2pt;
         }
 
         .edu li .when {
-            font-size: 10.4pt;
+            font-size: 10.2pt;
             color: var(--accent);
             white-space: nowrap;
             font-weight: 500;
@@ -586,11 +604,11 @@
 
     <div class="toolbar">
         <button class="btn primary" onclick="window.print()">列印 ／ 存成 PDF</button>
-        <a class="btn on" href="./resume.html">版型 A</a>
+        <a class="btn" href="./resume.html">版型 A</a>
         <a class="btn" href="./resume-b.html">版型 B</a>
         <a class="btn" href="./resume-c.html">版型 C</a>
         <a class="btn" href="./resume-d.html">版型 D</a>
-        <a class="btn" href="./resume-admin.html">行政版</a>
+        <a class="btn on" href="./resume-admin.html">行政版</a>
         <a class="btn" href="./index.html">回作品集</a>
         <div class="hint">列印時請勾選「背景圖形」，色塊才會印出來。</div>
     </div>
@@ -611,7 +629,7 @@
                 <div class="id-block">
                     <h1>林宣芝</h1>
                     <div class="en">Lin-Xuan-Zhi ｜ Lina</div>
-                    <div class="job">網頁工程師 ／ 前端工程師</div>
+                    <div class="job">資訊助理 ／ 專案行政助理<br>行政專員</div>
                 </div>
 
                 <section>
@@ -626,29 +644,32 @@
                 <section>
                     <h2>專業技能</h2>
                     <div class="skill-group">
-                        <div class="label">前端</div>
+                        <div class="label">文書與數據</div>
                         <div class="tags">
-                            <span class="tag key">HTML5</span>
-                            <span class="tag key">CSS3</span>
-                            <span class="tag key">RWD</span>
-                            <span class="tag">JavaScript</span>
+                            <span class="tag key">Word</span>
+                            <span class="tag key">Excel</span>
+                            <span class="tag key">PowerPoint</span>
+                            <span class="tag">報表製作</span>
+                            <span class="tag">資料建檔</span>
                         </div>
                     </div>
                     <div class="skill-group">
-                        <div class="label">後端與工具</div>
+                        <div class="label">資訊支援</div>
                         <div class="tags">
-                            <span class="tag key">PHP</span>
-                            <span class="tag key">MySQL</span>
-                            <span class="tag">Git / GitHub</span>
+                            <span class="tag key">電腦設備排障</span>
+                            <span class="tag key">MySQL 資料庫</span>
+                            <span class="tag">HTML / CSS</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">AI 工具應用</span>
                         </div>
                     </div>
                     <div class="skill-group">
-                        <div class="label">設計與 AI</div>
+                        <div class="label">設計與行銷</div>
                         <div class="tags">
                             <span class="tag key">Photoshop</span>
                             <span class="tag key">Illustrator</span>
+                            <span class="tag">Canva</span>
                             <span class="tag">影片剪輯</span>
-                            <span class="tag">AI 輔助開發</span>
                         </div>
                     </div>
                 </section>
@@ -682,25 +703,40 @@
                         <div class="line"></div>
                     </div>
                     <p class="about">
-                        服務業與行政資歷約 8 年，近兩年在房仲門市擔任<strong>店務秘書兼社群小編</strong>，負責全店的宣傳圖文、形象照修圖與活動影片。
-                        2026 年 4～9 月參加勞動部「全端網頁開發與 AI 應用」職前訓練，把美編經驗延伸到網頁實作；
-                        <strong>習慣用 AI 工具輔助寫程式，再由自己測試與調整畫面</strong>。
+                        服務業與行政資歷約 8 年。近兩年於房仲門市擔任<strong>店務秘書</strong>，負責案件文書、資料建檔與月報表製作，
+                        並統籌活動安排與跨單位聯繫，同時擔任店內設備與電腦問題的第一線窗口。
+                        2026 年完成勞動部「全端網頁開發與 AI 應用」職前訓練，具備<strong>資料庫、網頁與 AI 工具</strong>的實作基礎，
+                        能同時承接行政事務與基礎資訊支援。
                     </p>
                 </section>
 
                 <section>
                     <div class="head">
-                        <h2>作品集</h2><em>Portfolio</em>
+                        <h2>核心能力</h2><em>Strengths</em>
+                        <div class="line"></div>
+                    </div>
+                    <ul class="core">
+                        <li><span><b>文書管理</b>　建檔・歸檔・追蹤</span></li>
+                        <li><span><b>數據彙整</b>　Excel 統計報表</span></li>
+                        <li><span><b>會議支援</b>　安排・記錄・追蹤</span></li>
+                        <li><span><b>資訊排障</b>　電腦・網路設備</span></li>
+                        <li><span><b>對外聯繫</b>　業務・廠商窗口</span></li>
+                        <li><span><b>數位工具</b>　AI 應用・流程優化</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="head">
+                        <h2>資訊實作</h2><em>Portfolio</em>
                         <div class="line"></div>
                     </div>
                     <div class="work-box">
                         <a class="url" href="http://220.128.133.15/s1150101/lina/index.html">220.128.133.15/s1150101/lina</a>
-                        <div class="url-note">課程期間完成 4 個網頁專案，可線上直接開啟操作。</div>
                         <ul class="work-list">
-                            <li><b>ZL&amp; accessories 飾品電商</b>　響應式前端切版</li>
-                            <li><b>尋找貓咪的家 領養平台</b>　前後台增刪查改與權限</li>
-                            <li><b>Bloom 日系美妝 CMS</b>　PHP + MySQL 內容管理</li>
-                            <li><b>Bloom 日系美妝 CMS・RWD 版</b>　響應式重構</li>
+                            <li>飾品電商網站</li>
+                            <li>貓咪領養平台（含後台）</li>
+                            <li>美妝品牌內容管理系統</li>
+                            <li>CMS 響應式重構版</li>
                         </ul>
                     </div>
                 </section>
@@ -718,9 +754,10 @@
                         </div>
                         <div class="meta">永慶不動產籬仔內瑞豐加盟店・鉅鈦不動產仲介經紀</div>
                         <ul>
-                            <li>以 Photoshop、Illustrator、Canva 製作店內宣傳圖文與業務形象照修圖。</li>
-                            <li>負責活動拍攝、影片剪輯與社群發文，每月製作 PPT 圖表報告並協助開會。</li>
-                            <li>處理案件文書與資料統整，並協助排除店內電腦與設備問題。</li>
+                            <li>處理案件文書與客戶資料建檔、歸檔與進度追蹤，維持全店資料正確與可查找。</li>
+                            <li>每月彙整營運數據製作 PPT 圖表報告，並協助會議安排、記錄與待辦事項追蹤。</li>
+                            <li>擔任店內資訊窗口，排除電腦、印表機與網路問題，縮短同仁等待與停工時間。</li>
+                            <li>規劃門市活動與社群宣傳，負責圖文設計、拍攝剪輯與人員時程協調。</li>
                         </ul>
                     </div>
 
@@ -731,7 +768,7 @@
                         </div>
                         <div class="meta">橙品手作烘焙</div>
                         <ul>
-                            <li>負責分裝、標籤製作與收貨揀貨，協調分裝組工作並帶領約 10 位新進人員。</li>
+                            <li>負責收貨揀貨、分裝與標籤製作，並帶領約 10 位新進人員。</li>
                         </ul>
                     </div>
 
@@ -740,8 +777,9 @@
                             <h3>餐飲服務生・牙醫助理</h3>
                             <div class="when">2015/07 – 2024/01</div>
                         </div>
+                        <div class="meta">永和豆漿・食忤生活輕食・陳學偉牙科</div>
                         <ul>
-                            <li>永和豆漿、食忤生活輕食、陳學偉牙科，累積第一線接待與現場應對經驗。</li>
+                            <li>負責櫃檯接待、預約安排與帳務處理，累積現場應對經驗。</li>
                         </ul>
                     </div>
                 </section>
